@@ -24,7 +24,7 @@ import { ViewTransitions } from "astro:transitions";
 import preload from "astro-preload";
 const makeTitle = title
   ? title 
-  : "Rohit Kushwaha";
+  : "Javier Picón";
 ---
 
 <!doctype html>
@@ -32,32 +32,32 @@ const makeTitle = title
   <head>
     <ViewTransitions />
     <meta charset="UTF-8" />
-    <meta name="description" content="A portfolio website built with latest technologies by Rohit Kushwaha" />
+    <meta name="description" content="Portfolio website by Javier Picón" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="google-site-verification" content="AuMlxg6HJG3Rwtp1H81O3OmPVW4WaI5jrk1X4Onm0hU" />
     <meta name="generator" content={Astro.generator} />
     <SEO
     title={makeTitle}
-    description="A portfolio website built with latest technologies by Rohit Kushwaha"
+    description="Portfolio website by Javier Picón"
     canonical={canonicalURL}
     twitter={{
-      creator: "@rohitk_06",
-      site: "@rohitk_06",
+      creator: "@mcpikon",
+      site: "@mcpikon",
       card: "summary_large_image",
     }}
     openGraph={{
       basic: {
         url: canonicalURL,
         type: "website",
-        title: `Rohit Kushwaha`,
+        title: `Javier Picón`,
         image: resolvedImageWithDomain,
       },
       image: {
-        alt: "Rohit Kushwaha",
+        alt: "Javier Picón",
       },
       optional: {
-        description: `A portfolio website built with latest technologies by Rohit Kushwaha`,
+        description: `Portfolio website by Javier Picón`,
       }
     }}
   />
@@ -117,7 +117,7 @@ const makeTitle = title
     }
 
     ::-webkit-scrollbar-track {
-      background-color: rgba(20, 20, 20);
+      background-color: #141414;
       -webkit-border-radius: 10px;
       border-radius: 10px;
     }
@@ -125,7 +125,7 @@ const makeTitle = title
     ::-webkit-scrollbar-thumb {
       -webkit-border-radius: 10px;
       border-radius: 10px;
-      background: #5b5b5b;
+      background: #14A1F0;
     }
   </style>
 </html>

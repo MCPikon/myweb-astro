@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#14A1F0",
+        secondary: "#087ec4"
       },
       animation: {
         text: "text 5s ease infinite",

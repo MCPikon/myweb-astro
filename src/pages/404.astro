@@ -5,7 +5,7 @@ import PageNav from "../components/PageNav";
 
 <Layout title="Parece que te has perdido">
   <main class="w-5/6 mx-auto relative" transition:persist>
-    <PageNav title="Parece que te has perdido 🤔" client:load />
+    <PageNav title="Parece que te has perdido" client:load />
     <section data-aos="fade-up" data-aos-anchor-placement="top-bottom">
       <div class="text-primary mt-36">
         <h1 class="text-9xl font-semibold flex justify-center items-center">
@@ -14,6 +14,9 @@ import PageNav from "../components/PageNav";
         <p class="text-center font-semibold">
           La página a la que estás intentando acceder no existe
         </p>
+        <div class="flex justify-center mt-6">
+          <img src="https://media3.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif?cid=ecf05e47vkyhmojozpgotsocb7eltnie0uxwmyb2n0uddq5u&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="lostgif">
+        </div>
         <div class="flex justify-center mt-6">
           <button
             onclick="history.back();"

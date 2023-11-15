@@ -1,27 +1,19 @@
 ---
 import { Image } from "astro:assets";
-import pfp from "../../public/pfp3.webp"
+import pfp from "../../public/pfp.webp"
 ---
 <div data-aos="fade-up" class="mx-auto  py-4 sm:py-4 lg:py-4">
     <div class="w-40 text-center mx-auto">
-      <Image class="rounded-full text-center" src={pfp} alt="Rohit Kushwaha" loading="eager" />
+      <Image class="rounded-full text-center" src={pfp} alt="Javier Picón" loading="eager" />
     </div>
     <div class="text-center">
-      <h1 class="py-4 tracking-tight text-primary">
+      <h1 class="py-4 tracking-tight text-gray-300">
         Hola! Soy Javier Picón 👋
       </h1>
-      <p class="text-3xl font-bold text-primary text-transparent bg-clip-text bg-gradient-to-r from-[#14A1F0] to-[#616161] sm:text-3xl md:text-5xl pb-2">
+      <p class="text-3xl font-bold text-secondary text-transparent bg-clip-text bg-gradient-to-r from-secondary to-[#585858] sm:text-3xl md:text-5xl pb-2">
       Desarrollador Web
       </p>
-      <p class="w-5/6 mx-auto mt-2 text-gray-400 font-medium">Me dedico a programar sobre todo en el backend y un poco en el frontend.</p>
-      <div class="mt-4 flex items-center justify-center gap-x-6">
-        <!-- <a
-        href="#about"
-        class=" hover:bg-primary hover:bg-opacity-10  bg-trasparent bg-opacity-10 px-5 transition-all py-3 text-lg font-semibold text-gray-400 shadow-sm rounded-lg border border-gray-200 border-opacity-10"
-      >
-        Contact
-      </a> -->
-      </div>
+      <p class="w-5/6 mx-auto mt-2 text-gray-100 font-medium">Me dedico a programar sobre todo en el backend y un poco en el frontend.</p>
       <div class="container_mouse">
         <a href="#about" aria-label="scrollButton" class="mouse-btn">
             <span class="mouse-scroll"></span>
@@ -31,7 +23,7 @@ import pfp from "../../public/pfp3.webp"
   </div>
   <style is:inline>
     :root {
-  --color: rgba(71, 71, 71, 0.918);
+  --color: #087ec4;
 }
 
 body {
@@ -61,7 +53,7 @@ body {
   display: block;
   width: 10px;
   height: 10px;
-  background: linear-gradient(170deg, rgba(74, 74, 74, 0.918), rgb(123, 124, 124));
+  background: linear-gradient(170deg, #087ec4, #14A1F0);
   border-radius: 50%;
   margin: auto;
   animation: scrolling 1s linear infinite;

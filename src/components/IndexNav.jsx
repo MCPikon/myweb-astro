@@ -30,15 +30,13 @@ export default function IndexNav() {
       {
         show ?
         <div className=" overflow-y-none  transition-transform ease-in-out delay-150">
-        <div className={` animate-menu -z-10 top-[0px] left-[0px]  fixed bg-primary  h-[100%] custom w-[100%]`}>
+        <div className={` animate-menu -z-10 top-[0px] left-[0px]  fixed bg-secondary  h-[100%] custom w-[100%]`}>
           <div className=" h-[100%] custom w-[100%] flex items-center justify-center">
             <ul className="flex flex-col text-4xl font-bold text-center space-y-10">
-              <a onClick={() => isShow(false)} aria-label="Home" href="/">Home</a>
-              <a onClick={() => isShow(false)} aria-label="projects" href="/projects">Projects</a>
-              <a onClick={() => isShow(false)} aria-label="about" href="/#about">About</a>
-              <a onClick={() => isShow(false)} aria-label="blogs" href="/blog">Blogs</a>
-              <a onClick={() => isShow(false)} aria-label="contact" href="/#contact">Contact</a>
-              <a>Download CV</a>
+              <a onClick={() => isShow(false)} aria-label="Home" href="/">Inicio</a>
+              <a onClick={() => isShow(false)} aria-label="projects" href="/projects">Proyectos</a>
+              <a onClick={() => isShow(false)} aria-label="about" href="/#about">Sobre mí</a>
+              <a target="_blank" href="/cv.pdf">Descargar CV</a>
             </ul>
           </div>
         </div>
