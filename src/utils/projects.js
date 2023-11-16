@@ -1,82 +1,67 @@
-import ras from "../assets/images/ras.webp";
-import joke from "../assets/images/joke.webp";
-import lofi from "../assets/images/lofi.webp";
-import blog from "../assets/images/blog.webp";
-import docAid from "../assets/images/docAid.webp";
-import LifeInsureEase from "../assets/images/lifeinsureease.webp";
-import Portfolio from "../assets/images/portfolio.webp"
+import myweb_astro from "../assets/images/myweb-astro.webp";
+import fridaypybot from "../assets/images/fridaypybot.webp";
+import gestiontareasfront from "../assets/images/gestiontareasfront.webp"
+import gestiontareasback from "../assets/images/gestiontareasback.webp";
+import weatherapi_project from "../assets/images/weatherapi_project.webp";
+import proyectofinal_tiendaonline from "../assets/images/proyectofinal-tiendaonline.webp";
+import testbuzzfeed from "../assets/images/testbuzzfeed.webp";
 const data = [
     {
-        name: "LifeInsureEase",
-        type: "Website",
-        url: "https://lifeinsureease.in/",
-        github: "https://github.com/DevRohit06/insurance-website",
-        image: LifeInsureEase,
-        slug: "lifeinsureease",
-        description: "This is an Insurance website made using Astro, Reactjs and Tailwind css. ",
-        tech: ['HTML', 'Javascript', 'Css', 'Tailwind css', 'Astro', 'Reactjs']
+        name: "myweb-astro",
+        type: "Sitio Web",
+        github: "https://github.com/MCPikon/myweb-astro",
+        image: myweb_astro,
+        description: "Esta página web, un portfolio creado con Astro, React y TailwindCSS",
+        tech: ['Astro', 'React', 'HTML', 'JavaScript', 'CSS', 'Tailwind CSS', 'Node.js']
+    },
+    {
+        name: "FridayPyBot",
+        type: "Telegram Bot",
+        github: "https://github.com/MCPikon/FridayPyBot",
+        image: fridaypybot,
+        description: "Un bot de Telegram con múltiples utilidades creado con Python y el módulo python-telegram-bot",
+        tech: ['Python', 'python-telegram-bot']
 
     },
     {
-        name: "Portfolio Website",
-        type: "Website",
-        url: "https://rohitk06.site/",
-        github: "https://github.com/DevRohit06/Portfolio-website",
-        image: Portfolio,
-        slug: "portfolio",
-        description: "This is my Portfolio website made using Astro, Reactjs and Tailwind css. ",
-        tech: ['HTML', 'Javascript', 'Css', 'Tailwind css', 'Astro', 'Reactjs']
+        name: "gestionTareasFront",
+        type: "Sitio Web",
+        github: "https://github.com/MCPikon/gestionTareasFront",
+        image: gestiontareasfront,
+        description: "Página web de gestión de tareas creada con Angular y Bootstrap 5",
+        tech: ['Angular 13', 'Bootstrap 5', 'Typescript']
     },
     {
-        name: "DocAid",
-        type: "Website",
-        url: "https://doc-aid.vercel.app/",
-        github: 'https://github.com/DevRohit06/DocAid',
-        image: docAid,
-        slug: "docaid",
-        description: "Website template for Health related businesses",
-        tech: ['HTML', 'Javascript', 'CSS', 'Tailwind css', 'ReactJS']
+        name: "gestionTareasBack",
+        type: "API",
+        github: 'https://github.com/MCPikon/gestionTareasBack',
+        image: gestiontareasback,
+        description: "API de la web de gestion de tareas creada con Java y Spring Boot/Security",
+        tech: ['Java 17', 'Spring Boot', 'Spring Security']
     },
     {
-        name: "DevBlogs",
-        type: "WebApp",
-        url: "https://www.devblogs.xyz/",
-        github: "https://github.com/DevRohit06/blog",
-        image: blog,
-        slug: "devblogs",
-        description: "This is a Blogging website made for technology lovers.",
-        tech: ['HTML', 'Javascript', 'Css', 'Tailwind css', 'Astro', 'Markdown']
+        name: "weatherAPI_project",
+        type: "Script",
+        github: "https://github.com/MCPikon/weatherAPI_project",
+        image: weatherapi_project,
+        description: "Script de Python conectado con la API de OpenWeatherMap que muestra el tiempo de la ciudad que se le indique por parámetro.",
+        tech: ['Python', 'OpenWeatherMap API']
     },
     {
-        name: "Ras Production",
-        type: "Website",
-        url: "https://rasproduction.vercel.app/",
-        github: "https://github.com/DevRohit06/videography-website",
-        image: ras,
-        slug: "ras",
-        description: "This is an Portfolio website for videography businesses made using HTML, Javascript, Css and Tailwind css it practices modern ui with dark theme ",
-        tech: ['HTML', 'Javascript', 'Css', 'Tailwind css']
+        name: "ProyectoFinal-TiendaOnline",
+        type: "Sitio Web",
+        github: "https://github.com/MCPikon/ProyectoFinal-TiendaOnline",
+        image: proyectofinal_tiendaonline,
+        description: "Proyecto Final de GS DAW - Tienda Online de Videojuegos hecha con Java y Spring Boot.",
+        tech: ['Java', 'Spring Boot', 'Hibernate', 'Bootstrap 5', 'MySQL', 'JavaScript', 'JQuery']
     },
     {
-        name: "Joke Generator",
-        type: "WebApp",
-        url: "https://jokes-generator-with-api.vercel.app/",
-        github: "https://github.com/DevRohit06/Jokes-Generator-With-API",
-        image: joke,
-        slug: "joke",
-        description: "The website which generates joke with multi topics such as anime, programming, etc.",
-        tech: ['React', 'Javascript', 'Css', 'Tailwind css', 'express', 'nodejs']
-    },
-
-    {
-        name: "Lofi Beats",
-        type: "Website",
-        url: "https://lofibeats-3oo4q8gbg-lofi.vercel.app/",
-        github: "https://github.com/Lofi-Beats/lofibeats",
-        image: lofi,
-        slug: "lofibeats",
-        description: "Website that was built for Discord music bot named lofi beats built using plain html javascript and tailwind css",
-        tech: ['HTML', 'Javascript', 'Css', 'Tailwind css']
+        name: "TestBuzzfeed",
+        type: "Sitio Web",
+        github: "https://github.com/MCPikon/TestBuzzfeed",
+        image: testbuzzfeed,
+        description: "Cuestionario Buzzfeed con la temática del anime Jujutsu Kaisen.",
+        tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5']
     },
 ]
 

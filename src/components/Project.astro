@@ -21,7 +21,7 @@ data-aos-delay="500"  id="projects" class="text-primary body-font m-6 w-5/6 mx-a
       Cada proyecto aparece con su descripción detallada y enlace a su respectivo repositorio.
     </p>
     <div class="flex justify-between items-center py-4">
-      <h1 class="font-extrabold text-xl">Proyectos Recientes</h1>
+      <h1 class="font-extrabold text-xl">Últimos Proyectos</h1>
       <a class="hover:text-gray-400" href="/projects">ver más</a>
     </div>
     <div
@@ -32,13 +32,13 @@ data-aos-delay="500"  id="projects" class="text-primary body-font m-6 w-5/6 mx-a
           data.slice(0, 3).map((item, index) => {
             return (
               <a
-                href={`${item.url}`}
+                href={"/projects#" + item.name}
                 class="relative mx-auto max-w-md overflow-hidden rounded-xl bg-transparent  border border-1 border-primary border-opacity-25 shadow-xl"
               >
                 <div class="bg-transparent">
                   <Image
                     src={item.image}
-                    class=" object-cover bg-cover w-full h-full rounded-t-xl"
+                    class="object-cover bg-cover w-full h-full rounded-t-xl"
                     alt=""
                     transition:name={item.name}
                   />

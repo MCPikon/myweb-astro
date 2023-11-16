@@ -1,12 +1,12 @@
 ---
-
+import { EMAIL, INSTAGRAM_URL, GITHUB_URL, LINKEDIN_URL } from "../utils/constants";
 ---
 
 <section class="top-5 z-50 mx-auto m-6 w-5/6">
   <nav class="flex items-center justify-between">
     <a
-      aria-label="javierpiconpastor@gmail.com"
-      href="mailto:javierpiconpastor@gmail.com"
+      aria-label={EMAIL}
+      href={"mailto:" + EMAIL}
       class="flex flex-row items-center justify-center"
     >
       <div
@@ -24,7 +24,7 @@
         >
       </div>
       <h3 class="hidden pl-4 text-sm text-primary font-medium opacity-80 lg:flex md:flex pointer-events-none">
-        javierpiconpastor@gmail.com
+        {EMAIL}
       </h3>
     </a>
 
@@ -32,7 +32,8 @@
       <div class="flex flex-1 items-center gap-3 text-primary">
         <a
           aria-label="Instagram"
-          href="https://instagram.com/mcpikon"
+          target="_blank"
+          href={INSTAGRAM_URL}
           class="flex flex-row items-center justify-center"
         >
           <svg
@@ -49,7 +50,8 @@
         </a> /
         <a
           aria-label="Github"
-          href="https://github.com/MCPikon"
+          target="_blank"
+          href={GITHUB_URL}
           class="flex flex-row items-center justify-center"
         >
           <svg
@@ -64,8 +66,9 @@
           >
         </a> /
         <a
-          href="https://www.linkedin.com/in/javierpiconpastor/"
           aria-label="Linkedin"
+          target="_blank"
+          href={LINKEDIN_URL}
           class="flex items-center justify-center"
         >
           <svg

@@ -20,4 +20,10 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-.vercel
+# Visual Studio Code config
+.vscode
+
+# Firebase config
+.firebase
+.firebaserc
+firebase.json

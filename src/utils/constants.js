@@ -1,0 +1,5 @@
+export const INSTAGRAM_URL = "https://instagram.com/mcpikon"
+export const GITHUB_URL = "https://github.com/MCPikon"
+export const TWITTER_URL = "https://twitter.com/mcpikon"
+export const LINKEDIN_URL = "https://www.linkedin.com/in/javierpiconpastor/"
+export const EMAIL = "javierpiconpastor@gmail.com"
