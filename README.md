@@ -1,147 +1,57 @@
 
-# Portfolio Website
+# MyWeb-Astro
 
-  
+## Autor
 
-![GitHub](https://img.shields.io/github/license/DevRohit06/Portfolio-website) ![GitHub stars](https://img.shields.io/github/stars/DevRohit06/Portfolio-website) ![GitHub forks](https://img.shields.io/github/forks/DevRohit06/Portfolio-website) ![GitHub last commit](https://img.shields.io/github/last-commit/DevRohit06/Portfolio-website)
+* [Javier Picón](https://github.com/MCPikon)
 
-  
+## Descripción
 
-This is my personal portfolio website built using Tailwind CSS and Astro. It showcases my projects, skills, and contact information.
+Esta es mi web portfolio personal creada con Astro, React y Tailwind CSS.
 
-  
+## Vista Previa
 
-## Preview
+![MyWeb-Astro Preview](https://raw.githubusercontent.com/MCPikon/myweb-astro/main/public/image.jpeg)
 
-  
+> Puedes visitar el sitio web [aquí](https://javier-picon.web.app).
 
-![Portfolio Website Preview](https://pbs.twimg.com/media/F6iOZw3WAAAtoqK?format=jpg&name=medium)
+## Instalación
 
-  
+Para poder ejecutar el proyecto en local hay que hacer lo siguiente:
 
-You can check out the live website [here](https://rohitk06.vercel.app).
-
-  
-
-## Features
-
-  
-
-- Responsive design
-
-- Projects showcase
-
-- Contact form
-
-- Blog Page
-
-  
-
-## Technologies Used
-
-  
-
-- [Tailwind CSS](https://tailwindcss.com/)
-
-- [Astro](https://astro.build/)
-
-- [React](https://react.dev/)
-
-  
-
-## Installation
-
-  
-
-To run this project locally, follow these steps:
-
-  
-
-1. Clone the repository:
-
-  
+1. Clona el repositorio:
 
 ```bash
-
-git clone https://github.com/DevRohit06/Portfolio-website.git
-
+git clone https://github.com/MCPikon/myweb-astro.git
 ```
 
-  
-
-2. Navigate to the project directory:
-
-  
+2. Entra a la carpeta del proyecto e instala las dependencias:
 
 ```bash
-
 cd Portfolio-website
-
-```
-
-  
-
-3. Install the dependencies:
-
-  
-
-```bash
-
 npm install
-
 ```
 
-  
-
-4. Start the development server:
-
-  
+3. Arranca el proyecto:
 
 ```bash
-
-npm run dev
-
+npm start
 ```
 
-  
+4. Abre tu navegador y entra a [http://localhost:4321](http://localhost:4321) para ver la web en ejecución.
 
-5. Open your browser and visit [http://localhost:3000](http://localhost:3000) to see the website locally.
+## Tecnologías
 
-  
+* [Astro](https://astro.build/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [React](https://react.dev/)
 
-## Usage
+## Licencia
 
-  
-
-You can use this project as a template for your own portfolio website. Customize it by adding your own projects, skills, and contact information.
-
-  
-
-## Contributing
-
-  
-
-If you'd like to contribute to this project, please open an issue or submit a pull request.
-
-  
-
-## License
-
-  
-
-This project is open source and available under the [MIT License](LICENSE).
-
-  
+Este proyecto es de código abierto y está disponible bajo la [Licencia 2.0 de Apache](LICENSE).
 
 ---
 
-  
-
-Icons made by [FontAwesome](https://fontawesome.com/).
-
-  
-
-Feel free to reach out if you have any questions or suggestions!
-
+Iconos sacados de [FontAwesome](https://fontawesome.com/).
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build)
