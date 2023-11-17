@@ -9,7 +9,7 @@ import robotsTxt from "astro-robots-txt";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://javier-picon.web.app",
+  site: "https://javier-picon.vercel.app",
   prefetch: true,
   integrations: [tailwind({
     config: {
@@ -21,8 +21,8 @@ export default defineConfig({
     }
   }), robotsTxt({
     sitemap: [
-      'https://javier-picon.web.app/sitemap-0.xml',
-      'http://javier-picon.web.app/sitemap-index.xml',
+      'https://javier-picon.vercel.app/sitemap-0.xml',
+      'http://javier-picon.vercel.app/sitemap-index.xml',
     ],
   })]
 });
