@@ -1,6 +1,10 @@
 
 # MyWeb-Astro
 
+[![Astro](https://img.shields.io/badge/Astro-3.0%2B-darkviolet?style=for-the-badge&logo=astro&logoColor=white&labelColor=101010)](https://astro.build/) &nbsp;
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.3.5%2B-dodgerblue?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=101010)](https://tailwindcss.com/) &nbsp;
+![Static Badge](https://img.shields.io/badge/React-18.2.0%2B-steelblue?style=for-the-badge&logo=react&logoColor=white&labelColor=101010)
+
 ## Autor
 
 * [Javier Picón](https://github.com/MCPikon)
