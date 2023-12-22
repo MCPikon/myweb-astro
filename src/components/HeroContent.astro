@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import pfp from "../../public/pfp.webp"
 ---
-<div data-aos="fade-up" class="mx-auto  py-4 sm:py-4 lg:py-4">
+<div data-aos="fade-up" class="mx-auto py-4 lg:py-4">
     <div class="w-40 text-center mx-auto">
       <Image class="rounded-full text-center" src={pfp} alt="Javier Picón" loading="eager" />
     </div>
@@ -14,61 +14,24 @@ import pfp from "../../public/pfp.webp"
       Desarrollador Web
       </p>
       <p class="w-5/6 mx-auto mt-2 text-gray-100 font-medium">Me dedico a programar sobre todo en el backend y un poco en el frontend.</p>
-      <div class="container_mouse">
-        <a href="#about" aria-label="scrollButton" class="mouse-btn">
-            <span class="mouse-scroll"></span>
-        </a>
-    </div>
+      <div>
+        <svg viewBox="0 0 24 24" class="animate-bounce stroke-primary h-12 flex justify-center w-full mt-8" height="1em" fill="none" xmlns="http://www.w3.org/2000/svg"
+          ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+            <path
+              d="M19 9L14 14.1599C13.7429 14.4323 13.4329 14.6493 13.089 14.7976C12.7451 14.9459 12.3745 15.0225 12 15.0225C11.6255 15.0225 11.2549 14.9459 10.9109 14.7976C10.567 14.6493 10.2571 14.4323 10 14.1599L5 9"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </g></svg
+        >
+      </div>
     </div>
   </div>
   <style is:inline>
     :root {
-  --color: #087ec4;
-}
-
-body {
-  background-color: #212121e8;
-}
-
-.container_mouse {
-  z-index: 50;
-  text-align: center;
-  color: var(--color);
-  font-weight: bold;
-  text-transform: uppercase;
-  padding-top: 2rem;
-  cursor: pointer;
-}
-
-.container_mouse .mouse-btn {
-  margin: auto;
-  width: 20px;
-  height: 40px;
-  border: 2px solid var(--color);
-  border-radius: 30px;
-  display: flex;
-}
-
-.container_mouse .mouse-btn .mouse-scroll {
-  display: block;
-  width: 10px;
-  height: 10px;
-  background: linear-gradient(170deg, #087ec4, #14A1F0);
-  border-radius: 50%;
-  margin: auto;
-  animation: scrolling 1s linear infinite;
-}
-
-
-@keyframes scrolling {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(10px);
-  }
-}
+      --color: #087ec4;
+    }
   </style>
