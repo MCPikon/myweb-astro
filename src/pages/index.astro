@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
 import Project from "../components/Project.astro";
 import Footer from "../components/Footer.astro";
 import IndexNav from "../components/IndexNav";
@@ -12,10 +13,9 @@ import IndexNav from "../components/IndexNav";
   <main class="relative">
     <IndexNav client:load/>
     <Header transition:animate="fade" />
-    <div class="smooth-scroll">
-      <Hero />
-      <About />
-    </div>
+    <Hero />
+    <About />
+    <Experience />
     <Project />
     <Footer />
   </main>
@@ -34,6 +34,6 @@ import IndexNav from "../components/IndexNav";
   }
   .animate__animated.animate__fadeInRightBig {
   --animate-duration: 0s;
-}
+  }
 </style>
 

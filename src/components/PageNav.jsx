@@ -88,7 +88,14 @@ export default function PageNav(props) {
             </a>
             <a
               className="w-full py-2 bg-primary text-center rounded-xl bg-opacity-10 hover:bg-opacity-5 text-primary font-bold"
-              href="/cv.pdf" target="_blank"
+              href="/#experience"
+            >
+              Experiencia
+            </a>
+            <a
+              className="w-full py-2 bg-primary text-center rounded-xl bg-opacity-10 hover:bg-opacity-5 text-primary font-bold"
+              href="/cv.pdf"
+              target="_blank"
             >
               Descargar CV
             </a>
