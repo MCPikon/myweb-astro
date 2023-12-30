@@ -4,8 +4,8 @@ import { getData } from "../utils/projects";
 const data = getData();
 ---
 
-<section id="projects" class="text-primary body-font m-6 w-5/6 mx-auto">
-  <div class="container px-5 py-24 mx-auto">
+<section id="projects" class="text-primary body-font w-5/6 mx-auto">
+  <div class="py-24 mx-auto">
     <h1
       data-aos="fade-up"
       data-aos-anchor-placement="top-bottom"
@@ -22,14 +22,20 @@ const data = getData();
       Estos son algunos de los proyectos en los que he estado trabajando últimamente. 
       Cada proyecto aparece con su descripción detallada y enlace a su respectivo repositorio.
     </p>
-    <div data-aos="fade-up"
-      data-aos-anchor-placement="top-bottom"
-      class="flex justify-between items-center py-4">
-      <h1 class="font-extrabold text-xl">Últimos Proyectos</h1>
-      <a class="hover:text-gray-400" href="/projects">ver más</a>
+      <div data-aos="fade-up"
+        data-aos-anchor-placement="center-bottom"
+        class="flex justify-between items-center py-8">
+        <h1 class="text-primary text-xl sm:text-3xl font-semibold">Últimos Proyectos</h1>
+        <a
+          class="text-primary px-4 py-2.5 bg-primary rounded-xl bg-opacity-10"
+          aria-label="blog link"
+          href="/projects"
+        >
+          Ver todos</a
+        >
     </div>
     <div
-      class="max-w-screen grid grid-cols-1 gap-8 md:grid md:grid-cols-2  lg:grid lg:grid-cols-3 xl:grid xl:grid-cols-3"
+      class="mx-auto grid grid-cols-1 gap-8 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 xl:grid xl:grid-cols-3"
     >
       {
         data &&
@@ -39,7 +45,7 @@ const data = getData();
                 data-aos="fade-up"
                 data-aos-anchor-placement="top-bottom"
                 href={"/projects#" + item.name}
-                class="relative mx-auto max-w-md overflow-hidden rounded-xl bg-transparent  border border-1 border-primary border-opacity-25 shadow-xl"
+                class="relative mx-auto overflow-hidden rounded-xl bg-transparent  border border-1 border-primary border-opacity-25 shadow-xl"
               >
                 <div class="bg-transparent">
                   <Image

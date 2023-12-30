@@ -1,14 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import pfp from "../../public/pfp.webp"
+import wavingHand from "../assets/images/waving_hand.png"
 ---
 <div data-aos="fade-up" class="mx-auto py-4 lg:py-4">
     <div class="w-40 text-center mx-auto">
       <Image class="rounded-full text-center" src={pfp} alt="Javier Picón" loading="eager" />
     </div>
     <div class="text-center">
-      <h1 class="py-4 tracking-tight text-gray-300">
-        Hola! Soy Javier Picón 👋
+      <h1 class="py-4 tracking-tight text-gray-300 flex items-center gap-2 justify-center">
+        Hola! Soy Javier Picón <span><img class="w-6" src={wavingHand.src} alt="waving hand emoji"></span>
       </h1>
       <p class="text-3xl font-bold text-secondary text-transparent bg-clip-text bg-gradient-to-r from-secondary to-[#585858] sm:text-3xl md:text-5xl pb-2">
       Desarrollador Web

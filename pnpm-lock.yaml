@@ -23,9 +23,9 @@ dependencies:
   '@astrojs/vercel':
     specifier: ^6.1.0
     version: 6.1.0(astro@4.0.7)
-  '@fontsource/inter':
-    specifier: ^5.0.8
-    version: 5.0.8
+  '@fontsource-variable/onest':
+    specifier: ^5.0.2
+    version: 5.0.2
   '@heroicons/react':
     specifier: ^2.0.18
     version: 2.0.18(react@18.2.0)
@@ -743,8 +743,8 @@ packages:
     dev: false
     optional: true
 
-  /@fontsource/inter@5.0.8:
-    resolution: {integrity: sha512-28knWH1BfOiRalfLs90U4sge5mpQ8ZH6FS0PTT+IZMKrZ7wNHDHRuKa1kQJg+uHcc6axBppnxll+HXM4c7zo/Q==}
+  /@fontsource-variable/onest@5.0.2:
+    resolution: {integrity: sha512-XsH6q+/OyO0Oba4OB/NkiQu3ON93U2Kx+1YxKpNZMuS+a+WvxipwhO8Und2CC0mLI33xOZzTWUk4wtnsUJzjCQ==}
     dev: false
 
   /@heroicons/react@2.0.18(react@18.2.0):
