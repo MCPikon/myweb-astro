@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/onest';
+import "aos/dist/aos.css";
 import { SEO } from "astro-seo";
 const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin).toString();
 const resolvedImageWithDomain = new URL(
@@ -20,7 +21,7 @@ const makeTitle = title
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <ViewTransitions />
     <meta charset="UTF-8" />
@@ -77,7 +78,7 @@ const makeTitle = title
         content-visibility: auto;
       }
       body {
-        font-family: "Onest Variable", sans-serif;
+        font-family: "Onest Variable", system-ui, sans-serif;
         background-color: rgb(20, 20, 20);
         background:
           linear-gradient(90deg, #171717 21px, transparent 1%) center,
@@ -119,6 +120,12 @@ const makeTitle = title
         background: #087ec4;
       }
     </style>
-    <script src="../utils/aos.js"></script>
+    <script>
+      import { aosInit } from "../utils/aos";
+      
+      aosInit();
+
+      document.addEventListener("astro:after-swap", aosInit);
+    </script>
   </body>
 </html>
