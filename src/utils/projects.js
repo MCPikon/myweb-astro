@@ -5,11 +5,12 @@ import gestiontareasback from "../assets/images/gestiontareasback.webp";
 import weatherapi_project from "../assets/images/weatherapi_project.webp";
 import proyectofinal_tiendaonline from "../assets/images/proyectofinal-tiendaonline.webp";
 import testbuzzfeed from "../assets/images/testbuzzfeed.webp";
-const data = [
+const PROJECTS = [
     {
         name: "myweb-astro",
         type: "Sitio Web",
         github: "https://github.com/MCPikon/myweb-astro",
+        url: "https://javier-picon.vercel.app/",
         image: myweb_astro,
         description: "Esta página web, un portfolio creado con Astro, React y TailwindCSS",
         tech: ['Astro', 'React', 'HTML', 'JavaScript', 'CSS', 'Tailwind CSS', 'Node.js']
@@ -59,12 +60,13 @@ const data = [
         name: "TestBuzzfeed",
         type: "Sitio Web",
         github: "https://github.com/MCPikon/TestBuzzfeed",
+        url: "https://mcpikon.github.io/TestBuzzfeed/",
         image: testbuzzfeed,
         description: "Cuestionario Buzzfeed con la temática del anime Jujutsu Kaisen.",
         tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5']
     },
 ]
 
-export function getData(){
-    return data;
+export function getProjects(){
+    return PROJECTS;
 }

@@ -1,0 +1,70 @@
+---
+import LinkIcon from "./icons/Link.astro"
+import GitHubIcon from "./icons/GitHub.astro"
+import WebsiteIcon from "./icons/Website.astro"
+
+import { Image } from "astro:assets"
+
+interface Props {
+  name: string
+  github: string
+  url?: string
+  image: ImageMetadata
+  description: string
+  tech: string[]
+}
+
+const { name, github, url, image, description, tech } = Astro.props
+---
+<>
+    <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" id={name} class="flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
+        <Image
+        class:list={"rounded-xl w-96"}
+        src={image}
+        alt={name}
+        transition:name={name}
+        />
+        <div class="flex flex-col gap-3">
+        <div class="">
+            <h1 class="sm:text-5xl text-3xl font-bold text-primary">
+            {name} {name == "myweb-astro" && <span class="ms-3 whitespace-nowrap text-lg align-middle bg-blue-700 text-blue-100 px-2.5 py-0.5 rounded-md">¡Esta Web!</span>}
+            </h1>
+            <p class="text-gray-400 py-1">{description}</p>
+        </div>
+        <div class="flex gap-3 justify-center lg:justify-start flex-wrap">
+            {tech.map((techItem) => {
+            return (
+                <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary bg-opacity-10">
+                {techItem}
+                </span>
+            );
+            })}
+        </div>
+        <div class="flex flex-wrap gap-2 justify-center lg:justify-start items-center">
+            <LinkIcon class="text-slate-300 size-6" />
+            <a
+            class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary"
+            target="_blank"
+            rel="noopener"
+            href={github}
+            >
+            <GitHubIcon class="fill-primary size-5" />
+            {" "}
+            Repositorio
+            </a>
+            {url && 
+                <a
+                class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary"
+                target="_blank"
+                rel="noopener"
+                href={url}
+                >
+                <WebsiteIcon class="text-primary size-6" />
+                {" "}
+                Visitar Web
+                </a>
+            }
+        </div>
+        </div>
+    </div>
+</>

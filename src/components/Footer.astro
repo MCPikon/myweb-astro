@@ -1,10 +1,12 @@
 ---
-import { INSTAGRAM_URL, TWITTER_URL, GITHUB_URL, LINKEDIN_URL } from "../utils/constants";
-
 import InstagramIcon from "./icons/Instagram.astro";
 import TwitterIcon from "./icons/Twitter.astro";
 import GitHubIcon from "./icons/GitHub.astro";
 import LinkedinIcon from "./icons/Linkedin.astro";
+
+import { INSTAGRAM_URL, TWITTER_URL, GITHUB_URL, LINKEDIN_URL } from "../utils/constants";
+
+const YEAR = new Date().getFullYear();
 ---
 
 <footer class="bg-secondary bg-opacity-5">
@@ -12,8 +14,8 @@ import LinkedinIcon from "./icons/Linkedin.astro";
     <div class="flex gap-y-6 sm:flex-row flex-col-reverse justify-between py-8">
       <div class="flex flex-col gap-y-6">
         <h1 class="text-primary font-extrabold text-2xl">Javier Picón</h1>
-        <p class="text-gray-400 sm:w-4/6 w-full">
-          Desarrollador Web Junior (Backend & Frontend)
+        <p class="text-slate-400 sm:w-4/6 w-full">
+          Desarrollador Web Junior <span class="text-slate-400/70 italic font-light">(Backend & Frontend)</span>
         </p>
       </div>
       <div class="flex flex-col gap-y-2">
@@ -55,6 +57,6 @@ import LinkedinIcon from "./icons/Linkedin.astro";
       </div>
     </div>
     <hr class="text-primary opacity-10"/>
-    <h1 class="text-secondary text-sm text-center py-4">© Made from Spain with ♥ by <a class="font-bold" href="/">Javier Picón</a></h1>
+    <h1 class="text-secondary text-sm text-center py-4">© {YEAR} - Made from Spain with ♥ by <a class="font-bold" href="/">Javier Picón</a></h1>
   </section>
 </footer>

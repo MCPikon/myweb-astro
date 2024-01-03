@@ -18,8 +18,7 @@ export default function IndexNav() {
                 >
                   {show ? (
                     <svg
-                      className="h-4"
-                      height="1em"
+                      className="size-4"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -35,8 +34,7 @@ export default function IndexNav() {
                     </svg>
                   ) : (
                     <svg
-                      className="h-4"
-                      height="1em"
+                      className="size-4"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -57,11 +55,11 @@ export default function IndexNav() {
           </div>
         </div>
         {show ? (
-          <div className=" overflow-y-none  transition-transform ease-in-out delay-150">
+          <div className="overflow-y-none transition-transform ease-in-out delay-150">
             <div
-              className={` animate-menu -z-10 top-[0px] left-[0px]  fixed bg-secondary  h-[100%] custom w-[100%]`}
+              className={`animate-menu -z-10 top-[0px] left-[0px] fixed bg-secondary h-[100%] custom w-[100%]`}
             >
-              <div className=" h-[100%] custom w-[100%] flex items-center justify-center">
+              <div className="h-full flex items-center justify-center">
                 <ul className="flex flex-col text-4xl font-bold text-center space-y-10">
                   <a onClick={() => isShow(false)} aria-label="Home" href="/">
                     Inicio
@@ -88,12 +86,13 @@ export default function IndexNav() {
                     Experiencia
                   </a>
                   <a
-                    className="flex items-center"
+                    className="flex justify-center items-center gap-x-2"
                     target="_blank"
+                    rel="noopener"
                     href="/cv.pdf"
                   >
                     <svg
-                      className="h-12 me-2"
+                      className="size-12"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       strokeWidth="2"
@@ -110,9 +109,9 @@ export default function IndexNav() {
                     </svg>
                     Descargar CV
                   </a>
-                  <a className="flex items-center">
+                  <a className="flex justify-center items-center gap-x-2">
                     <svg
-                      className="h-12 me-2 opacity-60"
+                      className="size-12 opacity-60"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       strokeWidth="2"
@@ -129,9 +128,11 @@ export default function IndexNav() {
                       <path d="M19.1 18h-6.2" />
                     </svg>
                     <span className="opacity-60">English</span>
-                    <span className="bg-blue-100 text-blue-800 text-sm font-medium ms-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                      Soon
-                    </span>
+                    <div className="flex justify-center items-center">
+                      <span className="bg-blue-900 text-blue-300 text-sm font-medium px-2.5 py-0.5 rounded">
+                        Soon
+                      </span>
+                    </div>
                   </a>
                 </ul>
               </div>

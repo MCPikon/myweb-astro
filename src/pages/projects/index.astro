@@ -1,14 +1,11 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import PageNav from "../../components/PageNav.jsx";
-import { getData } from "../../utils/projects";
 import Footer from "../../components/Footer.astro";
+import ProjectItem from "../../components/ProjectItem.astro";
 
-import GitHubIcon from "../../components/icons/GitHub.astro";
-import LinkIcon from "../../components/icons/Link.astro";
-
-const data = getData();
+import { getProjects } from "../../utils/projects";
+const PROJECTS = getProjects();
 ---
 
 <Layout title="Proyectos | Javier Picón">
@@ -23,50 +20,10 @@ const data = getData();
       </p>
       <div class="grid grid-cols-1 items-center w-full gap-4 mt-24">
         {
-          data?.map((item, index) => {
-            return (
-              <>
-                <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" id={item.name} class="flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
-                  <Image
-                    class:list={"rounded-xl w-96"}
-                    src={item.image}
-                    alt={item.name}
-                    transition:name={item.name}
-                  />
-                  <div class="flex flex-col gap-3">
-                    <div class="">
-                      <h1 class="sm:text-5xl text-3xl font-bold text-primary ">
-                        {item.name}
-                      </h1>
-                      <p class="text-gray-400 py-1">{item.description}</p>
-                    </div>
-                    <div class="flex gap-3 justify-center lg:justify-start flex-wrap">
-                      {item.tech.map((item) => {
-                        return (
-                          <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary bg-opacity-10">
-                            {item}
-                          </span>
-                        );
-                      })}
-                    </div>
-                    <div class="flex gap-2 justify-center lg:justify-start items-center">
-                        <LinkIcon class="text-slate-300 size-6" />
-                      <a
-                        class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary"
-                        target="_blank"
-                        href={item.github}
-                      >
-                        <GitHubIcon class="fill-primary size-5" />
-                        {" "}
-                        Repositorio
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <hr class="opacity-10 mt-8 mb-8" />
-              </>
-            );
-          })
+          PROJECTS?.map((project, index) => (
+            <ProjectItem {...project}/>
+            <hr class={index < PROJECTS.length-1 ? "opacity-10 mt-8 mb-8" : "opacity-0 mt-8 mb-8"}/>
+          ))
         }
       </div>
     </section>
