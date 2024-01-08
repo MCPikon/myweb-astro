@@ -1,7 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import pfp from "../../public/pfp.webp"
-import wavingHand from "../assets/images/waving_hand.png"
+import wavingHand from "../../public/waving_hand.png"
+
+import { getI18N } from "../i18n"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 <div data-aos="fade-up" class="mx-auto py-4 lg:py-4">
     <div class="w-40 text-center mx-auto">
@@ -9,12 +14,12 @@ import wavingHand from "../assets/images/waving_hand.png"
     </div>
     <div class="text-center">
       <h1 class="py-4 tracking-tight text-gray-300 flex items-center gap-2 justify-center">
-        Hola! Soy Javier Picón <span><img class="w-6" src={wavingHand.src} alt="waving hand emoji"></span>
+        {i18n.HERO_CONTENT_TITLE}<span><img class="w-6" src={wavingHand.src} alt="waving hand emoji"></span>
       </h1>
       <p class="text-3xl font-bold text-secondary text-transparent bg-clip-text bg-gradient-to-r from-secondary to-[#585858] sm:text-3xl md:text-5xl pb-2">
-      Desarrollador Web
+      {i18n.HERO_CONTENT_SUBTITLE}
       </p>
-      <p class="w-5/6 mx-auto mt-2 text-gray-100 font-medium">Me dedico a programar sobre todo en el backend y un poco en el frontend.</p>
+      <p class="w-5/6 mx-auto mt-2 text-gray-100 font-medium">{i18n.HERO_CONTENT_DESCRIPTION}</p>
       <div>
         <svg viewBox="0 0 24 24" class="animate-bounce stroke-primary h-12 flex justify-center w-full mt-8" height="1em" fill="none" xmlns="http://www.w3.org/2000/svg"
           ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g

@@ -1,7 +1,11 @@
 import { isOpen, goBack } from "../utils/nav";
 import { useStore } from "@nanostores/react";
+import { getI18N, getI18NPath } from "../i18n"
+
 export default function PageNav(props) {
   const $isOpen = useStore(isOpen);
+  let currentLocale = props.currentLocale
+  const i18n = getI18N({ currentLocale })
 
   return (
     <>
@@ -54,28 +58,28 @@ export default function PageNav(props) {
           <div className="flex flex-col justify-center items-center gap-4 px-4 m-4 py-4">
             <a
               className="w-full py-2 bg-primary text-center rounded-xl bg-opacity-10 hover:bg-opacity-5 text-primary font-bold"
-              href="/"
+              href={getI18NPath(currentLocale, "")}
             >
-              Inicio
+              {i18n.INDEX_AND_PAGE_NAV_LINK_1}
             </a>
             <a
               className="w-full py-2 bg-primary text-center rounded-xl bg-opacity-10 hover:bg-opacity-5 text-primary font-bold"
-              href="/#about"
+              href={getI18NPath(currentLocale, "#about")}
             >
-              Sobre mí
+              {i18n.INDEX_AND_PAGE_NAV_LINK_3}
             </a>
             <a
               className="w-full py-2 bg-primary text-center rounded-xl bg-opacity-10 hover:bg-opacity-5 text-primary font-bold"
-              href="/#experience"
+              href={getI18NPath(currentLocale, "#experience")}
             >
-              Experiencia
+              {i18n.INDEX_AND_PAGE_NAV_LINK_4}
             </a>
             <a
               className="w-full py-2 bg-primary text-center rounded-xl bg-opacity-10 hover:bg-opacity-5 text-primary font-bold"
               href="/cv.pdf"
               target="_blank"
             >
-              Descargar CV
+              {i18n.INDEX_AND_PAGE_NAV_LINK_5}
             </a>
           </div>
         </div>

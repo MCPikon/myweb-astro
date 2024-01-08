@@ -1,18 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageNav from "../components/PageNav";
+
+import { getI18N } from "../i18n"
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
-<Layout title="Parece que te has perdido">
+<Layout title={i18n["404_TITLE"]}>
   <main class="w-5/6 mx-auto relative" transition:persist>
-    <PageNav title="Parece que te has perdido" client:load />
+    <PageNav currentLocale={currentLocale} title={i18n["404_TITLE"]} client:load />
     <section data-aos="fade-up" data-aos-anchor-placement="top-bottom">
       <div class="text-primary mt-36">
         <h1 class="text-9xl font-semibold flex justify-center items-center">
           404
         </h1>
         <p class="text-center font-semibold">
-          La página a la que estás intentando acceder no existe
+          {i18n["404_BODY"]}
         </p>
         <div class="flex justify-center mt-6">
           <img class="rounded-xl" src="https://media3.giphy.com/media/3o7aTskHEUdgCQAXde/giphy.gif?cid=ecf05e47vkyhmojozpgotsocb7eltnie0uxwmyb2n0uddq5u&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="lostgif">
@@ -21,7 +25,7 @@ import PageNav from "../components/PageNav";
           <button
             onclick="history.back();"
             class="px-4 py-2 bg-primary rounded-xl bg-opacity-10 font-semibold"
-            >Volver atrás</button
+            >{i18n["404_GO_BACK_BUTTON"]}</button
           >
         </div>
       </div>

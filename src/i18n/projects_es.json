@@ -1,0 +1,61 @@
+[
+    {
+        "NAME": "myweb-astro",
+        "TYPE": "Sitio Web",
+        "GITHUB_URL": "https://github.com/MCPikon/myweb-astro",
+        "WEB_URL": "https://javier-picon.vercel.app/",
+        "IMAGE_PATH": "/projects/myweb-astro.webp",
+        "DESCRIPTION": "Esta página web, un portfolio creado con Astro, React y TailwindCSS",
+        "TECH": ["Astro", "React", "HTML", "JavaScript", "CSS", "Tailwind CSS", "Node.js"]
+    },
+    {
+        "NAME": "FridayPyBot",
+        "TYPE": "Telegram Bot",
+        "GITHUB_URL": "https://github.com/MCPikon/FridayPyBot",
+        "DESCRIPTION": "Un bot de Telegram con múltiples utilidades creado con Python y el módulo python-telegram-bot",
+        "IMAGE_PATH": "/projects/fridaypybot.webp",
+        "TECH": ["Python", "python-telegram-bot"]
+
+    },
+    {
+        "NAME": "gestionTareasFront",
+        "TYPE": "Sitio Web",
+        "GITHUB_URL": "https://github.com/MCPikon/gestionTareasFront",
+        "DESCRIPTION": "Página web de gestión de tareas creada con Angular y Bootstrap 5",
+        "IMAGE_PATH": "/projects/gestiontareasfront.webp",
+        "TECH": ["Angular 13", "Bootstrap 5", "Typescript"]
+    },
+    {
+        "NAME": "gestionTareasBack",
+        "TYPE": "API",
+        "GITHUB_URL": "https://github.com/MCPikon/gestionTareasBack",
+        "DESCRIPTION": "API de la web de gestion de tareas creada con Java y Spring Boot/Security",
+        "IMAGE_PATH": "/projects/gestiontareasback.webp",
+        "TECH": ["Java 17", "Spring Boot", "Spring Security"]
+    },
+    {
+        "NAME": "weatherAPI_project",
+        "TYPE": "Script",
+        "GITHUB_URL": "https://github.com/MCPikon/weatherAPI_project",
+        "DESCRIPTION": "Script de Python conectado con la API de OpenWeatherMap que muestra el tiempo de la ciudad que se le indique por parámetro.",
+        "IMAGE_PATH": "/projects/weatherapi_project.webp",
+        "TECH": ["Python", "OpenWeatherMap API"]
+    },
+    {
+        "NAME": "ProyectoFinal-TiendaOnline",
+        "TYPE": "Sitio Web",
+        "GITHUB_URL": "https://github.com/MCPikon/ProyectoFinal-TiendaOnline",
+        "DESCRIPTION": "Proyecto Final de GS DAW - Tienda Online de Videojuegos hecha con Java y Spring Boot.",
+        "IMAGE_PATH": "/projects/proyectofinal-tiendaonline.webp",
+        "TECH": ["Java", "Spring Boot", "Hibernate", "Bootstrap 5", "MySQL", "JavaScript", "JQuery"]
+    },
+    {
+        "NAME": "TestBuzzfeed",
+        "TYPE": "Sitio Web",
+        "GITHUB_URL": "https://github.com/MCPikon/TestBuzzfeed",
+        "WEB_URL": "https://mcpikon.github.io/TestBuzzfeed/",
+        "DESCRIPTION": "Cuestionario Buzzfeed con la temática del anime Jujutsu Kaisen.",
+        "IMAGE_PATH": "/projects/testbuzzfeed.webp",
+        "TECH": ["HTML", "CSS", "JavaScript", "Bootstrap 5"]
+    }
+]

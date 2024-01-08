@@ -6,6 +6,11 @@ import LinkedinIcon from "./icons/Linkedin.astro";
 
 import { INSTAGRAM_URL, TWITTER_URL, GITHUB_URL, LINKEDIN_URL } from "../utils/constants";
 
+import { getI18N } from "../i18n"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
 const YEAR = new Date().getFullYear();
 ---
 
@@ -15,11 +20,11 @@ const YEAR = new Date().getFullYear();
       <div class="flex flex-col gap-y-6">
         <h1 class="text-primary font-extrabold text-2xl">Javier Picón</h1>
         <p class="text-slate-400 sm:w-4/6 w-full">
-          Desarrollador Web Junior <span class="text-slate-400/70 italic font-light">(Backend & Frontend)</span>
+          {i18n.FOOTER_JOB_TITLE} <span class="text-slate-400/70 italic font-light">(Backend & Frontend)</span>
         </p>
       </div>
       <div class="flex flex-col gap-y-2">
-        <h1 class="text-primary text-xl font-bold ">Mis Redes</h1>
+        <h1 class="text-primary text-xl font-bold ">{i18n.FOOTER_MY_LINKS}</h1>
         <div class="fill-primary stroke-primary flex sm:justify-end justify-start gap-4 flex-nowrap">
             <a
             aria-label="Instagram"
@@ -27,7 +32,7 @@ const YEAR = new Date().getFullYear();
             href={INSTAGRAM_URL}
             class="flex flex-row items-center justify-center"
           >
-            <InstagramIcon class="fill-gray-200 size-6" />
+            <InstagramIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a>
           <a
             aria-label="Twitter/X"
@@ -35,7 +40,7 @@ const YEAR = new Date().getFullYear();
             href={TWITTER_URL}
             class="flex items-center justify-center"
           >
-            <TwitterIcon class="fill-gray-200 size-6" />
+            <TwitterIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a> 
           <a
             aria-label="Github"
@@ -43,7 +48,7 @@ const YEAR = new Date().getFullYear();
             href={GITHUB_URL}
             class="flex flex-row items-center justify-center"
           >
-            <GitHubIcon class="fill-gray-200 size-6" />
+            <GitHubIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a> 
           <a
             aria-label="Linkedin"
@@ -51,12 +56,12 @@ const YEAR = new Date().getFullYear();
             href={LINKEDIN_URL}
             class="flex items-center justify-center"
           >
-            <LinkedinIcon class="fill-gray-200 size-6" />
+            <LinkedinIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a>
         </div>
       </div>
     </div>
     <hr class="text-primary opacity-10"/>
-    <h1 class="text-secondary text-sm text-center py-4">© {YEAR} - Made from Spain with ♥ by <a class="font-bold" href="/">Javier Picón</a></h1>
+    <h1 class="text-secondary text-sm text-center py-4">© {YEAR} - {i18n.FOOTER_MADE_BY_TEXT}<a class="font-bold" href="/">Javier Picón</a></h1>
   </section>
 </footer>

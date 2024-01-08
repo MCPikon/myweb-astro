@@ -18,10 +18,12 @@ import preload from "astro-preload";
 const makeTitle = title
   ? title 
   : "Javier Picón";
+
+const { currentLocale } = Astro
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={currentLocale}>
   <head>
     <ViewTransitions />
     <meta charset="UTF-8" />
@@ -76,6 +78,9 @@ const makeTitle = title
       }
       img {
         content-visibility: auto;
+      }
+      html {
+        scroll-behavior: smooth;
       }
       body {
         font-family: "Onest Variable", system-ui, sans-serif;

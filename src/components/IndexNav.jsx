@@ -1,6 +1,10 @@
 import { useState } from "react";
-export default function IndexNav() {
+import { getI18N, getI18NPath } from "../i18n"
+
+export default function IndexNav(props) {
+  let currentLocale = props.currentLocale
   const [show, isShow] = useState(false);
+  const i18n = getI18N({ currentLocale })
 
   return (
     <>
@@ -14,7 +18,7 @@ export default function IndexNav() {
                   onClick={() => {
                     isShow(!show);
                   }}
-                  className="bg-primary  font-bold px-4 py-1 rounded-t-xl cursor-pointer"
+                  className="bg-primary  font-bold px-4 py-1 rounded-t-xl cursor-pointer transition-all ease-in-out md:hover:bg-blue-400"
                 >
                   {show ? (
                     <svg
@@ -61,32 +65,35 @@ export default function IndexNav() {
             >
               <div className="h-full flex items-center justify-center">
                 <ul className="flex flex-col text-4xl font-bold text-center space-y-10">
-                  <a onClick={() => isShow(false)} aria-label="Home" href="/">
-                    Inicio
+                  <a className="md:hover:underline" onClick={() => isShow(false)} aria-label="Home" href={getI18NPath(currentLocale, "")}>
+                    {i18n.INDEX_AND_PAGE_NAV_LINK_1}
                   </a>
                   <a
+                    className="md:hover:underline"
                     onClick={() => isShow(false)}
                     aria-label="projects"
-                    href="/projects"
+                    href={getI18NPath(currentLocale, "projects")}
                   >
-                    Proyectos
+                    {i18n.INDEX_NAV_LINK_2}
                   </a>
                   <a
+                    className="md:hover:underline"
                     onClick={() => isShow(false)}
                     aria-label="about"
-                    href="/#about"
+                    href={getI18NPath(currentLocale, "#about")}
                   >
-                    Sobre mí
+                    {i18n.INDEX_AND_PAGE_NAV_LINK_3}
                   </a>
                   <a
+                    className="md:hover:underline"
                     onClick={() => isShow(false)}
                     aria-label="experience"
-                    href="/#experience"
+                    href={getI18NPath(currentLocale, "#experience")}
                   >
-                    Experiencia
+                    {i18n.INDEX_AND_PAGE_NAV_LINK_4}
                   </a>
                   <a
-                    className="flex justify-center items-center gap-x-2"
+                    className="flex justify-center items-center gap-x-2 md:hover:underline"
                     target="_blank"
                     rel="noopener"
                     href="/cv.pdf"
@@ -107,11 +114,13 @@ export default function IndexNav() {
                       <path d="M12 17v-6" />
                       <path d="M9.5 14.5l2.5 2.5l2.5 -2.5" />
                     </svg>
-                    Descargar CV
+                    {i18n.INDEX_AND_PAGE_NAV_LINK_5}
                   </a>
-                  <a className="flex justify-center items-center gap-x-2">
+                  <a 
+                    className="flex justify-center items-center gap-x-2 md:hover:underline"
+                    href={currentLocale == "en" ? "/" : "/en"}>
                     <svg
-                      className="size-12 opacity-60"
+                      className="size-12"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       strokeWidth="2"
@@ -127,12 +136,7 @@ export default function IndexNav() {
                       <path d="M12 20l4 -9l4 9" />
                       <path d="M19.1 18h-6.2" />
                     </svg>
-                    <span className="opacity-60">English</span>
-                    <div className="flex justify-center items-center">
-                      <span className="bg-blue-900 text-blue-300 text-sm font-medium px-2.5 py-0.5 rounded">
-                        Soon
-                      </span>
-                    </div>
+                    {i18n.INDEX_NAV_LINK_6}
                   </a>
                 </ul>
               </div>

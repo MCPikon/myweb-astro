@@ -1,0 +1,16 @@
+[
+    {
+        "JOB": "Desarrollador Java",
+        "TYPE": "Becario/Prácticas",
+        "COMPANY": "Agrupo Sistemas",
+        "DATE": "Abril 2023 - Julio 2023",
+        "DESCRIPTION": "Desarrollo y Unit Testing con Mockito, Junit y Sonar de Proyecto de Presencia Digital con Spring Boot, Java 19 y Amazon Web Services"
+    },
+    {
+        "JOB": "Desarrollador Web",
+        "TYPE": "Becario/Prácticas",
+        "COMPANY": "DevAcademy España",
+        "DATE": "Marzo 2022 - Junio 2022",
+        "DESCRIPTION": "Prácticas del Grado Superior en Desarrollo de Aplicaciones Web en el que realicé el desarrollo de Proyecto de Automatización de RRSS con Java, Angular y NodeJS"
+    }
+]

@@ -3,31 +3,34 @@ import LinkIcon from "./icons/Link.astro"
 import GitHubIcon from "./icons/GitHub.astro"
 import WebsiteIcon from "./icons/Website.astro"
 
-import { Image } from "astro:assets"
-
 interface Props {
-  name: string
-  github: string
-  url?: string
-  image: ImageMetadata
-  description: string
-  tech: string[]
+  NAME: string
+  GITHUB_URL: string
+  WEB_URL?: string
+  IMAGE_PATH: string
+  DESCRIPTION: string
+  TECH: string[]
 }
 
-const { name, github, url, image, description, tech } = Astro.props
+import { getI18N } from "../i18n"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+
+const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIPTION: description, TECH: tech } = Astro.props
 ---
 <>
     <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" id={name} class="flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
-        <Image
-        class:list={"rounded-xl w-96"}
+        <img
+        class:list={"rounded-xl w-96 transition-all ease-in-out md:hover:scale-110"}
         src={image}
         alt={name}
-        transition:name={name}
-        />
+        transition:name={name}>
+        <img/>
         <div class="flex flex-col gap-3">
         <div class="">
             <h1 class="sm:text-5xl text-3xl font-bold text-primary">
-            {name} {name == "myweb-astro" && <span class="ms-3 whitespace-nowrap text-lg align-middle bg-blue-700 text-blue-100 px-2.5 py-0.5 rounded-md">¡Esta Web!</span>}
+            {name} {name == "myweb-astro" && <span class="ms-3 whitespace-nowrap text-lg align-middle bg-blue-700 text-blue-100 px-2.5 py-0.5 rounded-md">{i18n.PROJECT_ITEM_BADGE}</span>}
             </h1>
             <p class="text-gray-400 py-1">{description}</p>
         </div>
@@ -40,28 +43,28 @@ const { name, github, url, image, description, tech } = Astro.props
             );
             })}
         </div>
-        <div class="flex flex-wrap gap-2 justify-center lg:justify-start items-center">
+        <div class="flex flex-wrap gap-2 justify-center lg:justify-start items-center md:mt-2">
             <LinkIcon class="text-slate-300 size-6" />
             <a
-            class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary"
+            class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary transition-all ease-in-out md:hover:bg-opacity-20"
             target="_blank"
             rel="noopener"
             href={github}
             >
             <GitHubIcon class="fill-primary size-5" />
             {" "}
-            Repositorio
+            {i18n.PROJECT_ITEM_GITHUB_BUTTON}
             </a>
             {url && 
                 <a
-                class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary"
+                class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary transition-all ease-in-out md:hover:bg-opacity-20"
                 target="_blank"
                 rel="noopener"
                 href={url}
                 >
                 <WebsiteIcon class="text-primary size-6" />
                 {" "}
-                Visitar Web
+                {i18n.PROJECT_ITEM_WEBSITE_BUTTON}
                 </a>
             }
         </div>

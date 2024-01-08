@@ -24,5 +24,12 @@ export default defineConfig({
       'https://javier-picon.vercel.app/sitemap-0.xml',
       'http://javier-picon.vercel.app/sitemap-index.xml',
     ],
-  })]
+  })],
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  }
 });

@@ -1,7 +1,11 @@
 --- 
-import { getProjects } from "../utils/projects";
 import ProjectCard from "./ProjectCard.astro";
-const PROJECTS = getProjects();
+
+import { getI18N, getI18NProjects, getI18NPath } from "../i18n"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
+const PROJECTS = getI18NProjects({ currentLocale })
 ---
 
 <section id="projects" class="text-primary body-font w-5/6 mx-auto">
@@ -11,7 +15,7 @@ const PROJECTS = getProjects();
       data-aos-anchor-placement="top-bottom"
       class="mb-8 font-extrabold text-center text-4xl text-transparent bg-clip-text bg-gradient-to-tr from-secondary to-[#616161]"
     >
-      Proyectos Recientes
+      {i18n.RECENT_PROJECTS_TITLE}
     </h1>
 
     <p
@@ -19,19 +23,18 @@ const PROJECTS = getProjects();
       data-aos-anchor-placement="top-bottom"
       class="text-gray-400 font-medium text-lg text-center mb-16 w-full sm:w-5/6 mx-auto"
     >
-      Estos son algunos de los proyectos en los que he estado trabajando últimamente. 
-      Cada proyecto aparece con su descripción detallada y enlace a su respectivo repositorio.
+      {i18n.RECENT_PROJECTS_SUBTITLE}
     </p>
       <div data-aos="fade-up"
         data-aos-anchor-placement="center-bottom"
         class="flex justify-between items-center py-8">
-        <h1 class="text-primary text-xl sm:text-3xl font-semibold">Últimos Proyectos</h1>
+        <h1 class="text-primary text-xl sm:text-3xl font-semibold">{i18n.RECENT_PROJECTS_HEADER}</h1>
         <a
-          class="text-primary px-4 py-2.5 bg-primary rounded-xl bg-opacity-10"
-          aria-label="blog link"
-          href="/projects"
+          class="text-primary px-4 py-2.5 bg-primary rounded-xl bg-opacity-10 transition-all ease-in-out hover:bg-opacity-25"
+          aria-label="projects link"
+          href={getI18NPath(currentLocale, "projects")}
         >
-          Ver todos</a
+          {i18n.RECENT_PROJECTS_BUTTON}</a
         >
     </div>
     <div class="mx-auto grid grid-cols-1 gap-8 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 xl:grid xl:grid-cols-3">

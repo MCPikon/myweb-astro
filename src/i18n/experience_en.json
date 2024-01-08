@@ -1,0 +1,16 @@
+[
+    {
+        "JOB": "Java Developer",
+        "TYPE": "Internship",
+        "COMPANY": "Agrupo Sistemas",
+        "DATE": "April 2023 - July 2023",
+        "DESCRIPTION": "Development and Unit Testing with Mockito, Junit and Sonar of a Digital Presence Project with Spring Boot, Java 19 and Amazon Web Services"
+    },
+    {
+        "JOB": "Web Developer",
+        "TYPE": "Internship",
+        "COMPANY": "DevAcademy España",
+        "DATE": "March 2022 - June 2022",
+        "DESCRIPTION": "Internship for the Higher Degree in Web Application Development in which I developed the RRSS Automation Project with Java, Angular and NodeJS"
+    }
+]
