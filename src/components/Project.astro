@@ -1,7 +1,7 @@
 --- 
 import ProjectCard from "./ProjectCard.astro";
 
-import { getI18N, getI18NProjects, getI18NPath } from "../i18n"
+import { getI18N, getI18NProjects, getI18NPath } from "@/i18n"
 
 const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })
@@ -30,7 +30,7 @@ const PROJECTS = getI18NProjects({ currentLocale })
         class="flex justify-between items-center py-8">
         <h1 class="text-primary text-xl sm:text-3xl font-semibold">{i18n.RECENT_PROJECTS_HEADER}</h1>
         <a
-          class="text-primary px-4 py-2.5 bg-primary rounded-xl bg-opacity-10 transition-all ease-in-out hover:bg-opacity-25"
+          class="text-primary px-4 py-2.5 bg-primary rounded-xl bg-opacity-10 transition-all ease-in-out md:hover:bg-opacity-25"
           aria-label="projects link"
           href={getI18NPath(currentLocale, "projects")}
         >

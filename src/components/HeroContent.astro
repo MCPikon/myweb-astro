@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import pfp from "../../public/pfp.webp"
-import wavingHand from "../../public/waving_hand.png"
+import pfp from "public/pfp.webp"
+import wavingHand from "public/waving_hand.png"
 
-import { getI18N } from "../i18n"
+import { getI18N } from "@/i18n"
 
 const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })

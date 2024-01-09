@@ -1,17 +1,17 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import Hero from "../../components/Hero.astro";
-import About from "../../components/About.astro";
-import Experience from "../../components/Experience.astro";
-import Project from "../../components/Project.astro";
-import Footer from "../../components/Footer.astro";
-import IndexNav from "../../components/IndexNav";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Hero from "@/components/Hero.astro";
+import About from "@/components/About.astro";
+import Experience from "@/components/Experience.astro";
+import Project from "@/components/Project.astro";
+import Footer from "@/components/Footer.astro";
+import IndexNav from "@/components/IndexNav";
 ---
 
 <Layout title="Javier Picón | Portfolio">
   <main class="relative">
-    <IndexNav currentLocale="en" client:load/>
+    <IndexNav currentLocale="en" client:load />
     <Header transition:animate="fade" />
     <Hero />
     <About />

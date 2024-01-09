@@ -11,13 +11,13 @@ const LANGUAGES = {
 }
 
 export const getI18N = ({
-  currentLocale = 'es'
-}: {
-  currentLocale: string | undefined
-}) => {
-  if (currentLocale === LANGUAGES.ENGLISH) return english
-  if (currentLocale === LANGUAGES.SPANISH) return spanish
-  return spanish
+    currentLocale = 'es'
+  }: {
+    currentLocale: string | undefined
+  }) => {
+    if (currentLocale === LANGUAGES.ENGLISH) return english
+    if (currentLocale === LANGUAGES.SPANISH) return spanish
+    return spanish
 }
 
 export const getI18NExperience = ({
