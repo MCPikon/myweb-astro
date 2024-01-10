@@ -11,7 +11,7 @@ const { currentLocale } = Astro
 const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
 ---
 
-<a data-aos="fade-up" data-aos-anchor-placement="top-bottom" href={getI18NPath(currentLocale, "projects#" + name)} class="relative mx-auto overflow-hidden rounded-xl bg-transparent border border-1 border-primary border-opacity-25 shadow-xl">
+<a data-aos="fade-up" data-aos-anchor-placement="top-bottom" href={getI18NPath(currentLocale, "projects#" + name)} class="relative mx-auto overflow-hidden rounded-xl bg-slate-500/5 border border-1 border-primary border-opacity-25 backdrop-blur-md">
     <div class="bg-transparent">
         <img
         src={imagePath}

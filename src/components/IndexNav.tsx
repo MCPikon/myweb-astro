@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getI18N, getI18NPath } from "@/i18n"
 
-export default function IndexNav(props) {
+export default function IndexNav(props: { currentLocale: string | undefined; }) {
   let currentLocale = props.currentLocale
   const [show, isShow] = useState(false);
   const i18n = getI18N({ currentLocale })
@@ -96,7 +96,7 @@ export default function IndexNav(props) {
                     className="flex justify-center items-center gap-x-2 md:hover:underline"
                     target="_blank"
                     rel="noopener"
-                    href="/cv.pdf"
+                    href={currentLocale == "en" ? "/cv_en.pdf" : "/cv.pdf"}
                   >
                     <svg
                       className="size-12"

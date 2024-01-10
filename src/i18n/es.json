@@ -33,8 +33,5 @@
     "PROJECTS_PAGE_SUBTITLE": "Aquí figuran algunos de los proyectos que he desarrollado, o me encuentro desarrollando actualmente.",
     "PROJECT_ITEM_BADGE": "¡Esta web!",
     "PROJECT_ITEM_GITHUB_BUTTON": "Repositorio",
-    "PROJECT_ITEM_WEBSITE_BUTTON": "Visitar Web",
-    "404_TITLE": "Parece que te has perdido",
-    "404_BODY": "La página a la que estás intentando acceder no existe",
-    "404_GO_BACK_BUTTON": "Volver atrás"
+    "PROJECT_ITEM_WEBSITE_BUTTON": "Visitar Web"
 }

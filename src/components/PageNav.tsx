@@ -1,8 +1,9 @@
 import { isOpen, goBack } from "@/utils/nav";
 import { useStore } from "@nanostores/react";
 import { getI18N, getI18NPath } from "@/i18n"
+import type { ReactElement, JSXElementConstructor, ReactNode, ReactPortal } from "react";
 
-export default function PageNav(props) {
+export default function PageNav(props: { currentLocale: string | undefined; title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) {
   const $isOpen = useStore(isOpen);
   let currentLocale = props.currentLocale
   const i18n = getI18N({ currentLocale })
@@ -14,7 +15,7 @@ export default function PageNav(props) {
           <div className="flex sm:gap-8 gap-4">
             <button
               onClick={goBack}
-              className="px-3 flex items-center w-12 py-2 bg-primary bg-opacity-10 text-primary rounded-xl text-xl"
+              className="px-3 flex items-center w-12 py-2 bg-primary bg-opacity-10 text-primary rounded-xl text-xl transition-all ease-in-out md:hover:bg-opacity-20"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="fill-primary size-6" viewBox="0 0 320 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
             </button>
@@ -24,7 +25,7 @@ export default function PageNav(props) {
             <button
               onClick={() => isOpen.set(!$isOpen)}
               id="menuButton"
-              className="flex items-center gap-4 bg-primary bg-opacity-10 px-4 rounded-xl"
+              className="flex items-center gap-4 bg-primary bg-opacity-10 px-4 rounded-xl transition-all ease-in-out md:hover:bg-opacity-20"
             >
               <svg
                 className="stroke-primary h-6"
@@ -53,6 +54,7 @@ export default function PageNav(props) {
       {$isOpen ? (
         <div
           id="menuItem"
+          data-aos="zoom-in"
           className="absolute z-50 w-full sm:w-96 right-0 top-16 rounded-xl h-auto bg-black bg-opacity-100"
         >
           <div className="flex flex-col justify-center items-center gap-4 px-4 m-4 py-4">
@@ -76,7 +78,7 @@ export default function PageNav(props) {
             </a>
             <a
               className="w-full py-2 bg-primary text-center rounded-xl bg-opacity-10 hover:bg-opacity-5 text-primary font-bold"
-              href="/cv.pdf"
+              href={currentLocale == "en" ? "/cv_en.pdf" : "/cv.pdf"}
               target="_blank"
             >
               {i18n.INDEX_AND_PAGE_NAV_LINK_5}

@@ -1,5 +1,5 @@
-import AOS from "aos";
+import Aos from "aos";
 
 export function aosInit() {
-    AOS.init();
+    Aos.init();
 }

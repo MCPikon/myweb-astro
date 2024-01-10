@@ -4,7 +4,6 @@ import compress from "astro-compress";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import partytown from "@astrojs/partytown";
-
 import robotsTxt from "astro-robots-txt";
 
 // https://astro.build/config

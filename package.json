@@ -1,7 +1,7 @@
 {
   "name": "myweb-astro",
   "type": "module",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
@@ -20,6 +20,7 @@
     "@heroicons/react": "^2.0.18",
     "@nanostores/react": "^0.7.1",
     "@tailwindcss/typography": "^0.5.10",
+    "@types/aos": "^3.0.7",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "animate.css": "^4.1.1",
