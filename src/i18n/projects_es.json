@@ -1,5 +1,22 @@
 [
     {
+        "NAME": "cinemawebback",
+        "TYPE": "API REST",
+        "GITHUB_URL": "https://github.com/MCPikon/cinemawebback",
+        "IMAGE_PATH": "/projects/cinemawebback.webp",
+        "DESCRIPTION": "API REST relacionada con películas, series y sus críticas.",
+        "TECH": ["Java", "Spring Boot", "MongoDB", "JUnit 5", "Mockito", "Swagger UI", "Docker"]
+    },
+    {
+        "NAME": "link_bio",
+        "TYPE": "Sitio Web",
+        "GITHUB_URL": "https://github.com/MCPikon/link_bio",
+        "WEB_URL": "https://mcpikon-links.vercel.app/",
+        "IMAGE_PATH": "/projects/link_bio.webp",
+        "DESCRIPTION": "Web de enlaces personales creada con Python y el framework Reflex.",
+        "TECH": ["Python", "Reflex"]
+    },
+    {
         "NAME": "myweb-astro",
         "TYPE": "Sitio Web",
         "GITHUB_URL": "https://github.com/MCPikon/myweb-astro",
