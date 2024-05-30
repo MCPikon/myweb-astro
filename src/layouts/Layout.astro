@@ -56,7 +56,7 @@ const { currentLocale } = Astro
     type="text/partytown"
     src="https://www.googletagmanager.com/gtag/js?id=G-KBEX4WTCF1">
   </script>
-  <script type="text/partytown">
+  <script type="text/partytown" is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag() {
       dataLayer.push(arguments);
@@ -66,7 +66,7 @@ const { currentLocale } = Astro
   </script>
     <title>{title}</title>
   </head>
-  <body>
+  <body class="antialiased">
     <slot />
 
     <style is:global>

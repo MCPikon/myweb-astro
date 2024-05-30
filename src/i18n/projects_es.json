@@ -1,5 +1,13 @@
 [
     {
+        "NAME": "cinemawebfront",
+        "TYPE": "Sitio Web",
+        "GITHUB_URL": "https://github.com/MCPikon/cinemawebfront",
+        "IMAGE_PATH": "/projects/cinemawebfront.webp",
+        "DESCRIPTION": "Sitio Web de reseñas e info de películas y series.",
+        "TECH": ["Next.js", "ReactJS", "Tailwind CSS", "Typescript"]
+    },
+    {
         "NAME": "cinemawebback",
         "TYPE": "API REST",
         "GITHUB_URL": "https://github.com/MCPikon/cinemawebback",

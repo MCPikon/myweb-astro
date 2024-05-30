@@ -1,6 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import PageNav from "@/components/PageNav";
+import { Image } from "astro:assets";
+import lostGif from "public/404.gif";
 ---
 
 <Layout title="404 | Página no encontrada">
@@ -15,7 +17,7 @@ import PageNav from "@/components/PageNav";
           La página a la que estás intentando acceder no existe
         </p>
         <div class="flex justify-center mt-6">
-          <img class="rounded-xl" src="/404.gif" alt="lost-gif">
+          <Image class="rounded-xl" src={lostGif} alt="lost-gif" height={lostGif.height} width={lostGif.width} loading={"eager"}/>
         </div>
         <div class="flex justify-center mt-6">
           <a href="/" class="px-4 py-2 bg-primary rounded-xl bg-opacity-10 font-semibold transition-all ease-in-out md:hover:bg-opacity-20">Volver al Inicio</a>

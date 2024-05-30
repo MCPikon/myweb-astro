@@ -4,6 +4,7 @@ import GitHubIcon from "./icons/GitHub.astro"
 import WebsiteIcon from "./icons/Website.astro"
 
 import { getI18N } from "@/i18n"
+import { Image } from "astro:assets"
 
 interface Props {
   NAME: string
@@ -21,12 +22,15 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
 ---
 <>
     <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" id={name} class="flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
-        <img
-        class:list={"rounded-xl w-96 transition-all ease-in-out md:hover:scale-110"}
-        src={image}
-        alt={name}
-        transition:name={name}>
-        <img/>
+        <Image
+            class={"rounded-xl w-96 transition-all ease-in-out md:hover:scale-110"}
+            src={image}
+            alt={name}
+            height={150}
+            width={200}
+            loading={"eager"}
+            transition:name={name}
+        />
         <div class="flex flex-col gap-3">
         <div class="">
             <h1 class="sm:text-5xl text-3xl font-bold text-primary">
