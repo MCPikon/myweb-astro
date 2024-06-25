@@ -1,5 +1,13 @@
 [
     {
+        "NAME": "cinemarustback",
+        "TYPE": "REST API",
+        "GITHUB_URL": "https://github.com/MCPikon/cinemarustback",
+        "IMAGE_PATH": "/projects/cinemarustback.webp",
+        "DESCRIPTION": "REST API related to movies, series and its reviews created with Rust and Actix Web.",
+        "TECH": ["Rust", "Actix Web", "MongoDB", "Swagger UI", "Redoc", "Scalar", "Docker"]
+    },
+    {
         "NAME": "cinemawebfront",
         "TYPE": "Website",
         "GITHUB_URL": "https://github.com/MCPikon/cinemawebfront",
@@ -12,7 +20,7 @@
         "TYPE": "REST API",
         "GITHUB_URL": "https://github.com/MCPikon/cinemawebback",
         "IMAGE_PATH": "/projects/cinemawebback.webp",
-        "DESCRIPTION": "REST API related to movies, series and its reviews.",
+        "DESCRIPTION": "REST API related to movies, series and its reviews created with Java and Spring Boot.",
         "TECH": ["Java", "Spring Boot", "MongoDB", "JUnit 5", "Mockito", "Swagger UI", "Docker"]
     },
     {

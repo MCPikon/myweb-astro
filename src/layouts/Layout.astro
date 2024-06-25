@@ -3,7 +3,7 @@ import '@fontsource-variable/onest';
 import "aos/dist/aos.css";
 
 import { SEO } from "astro-seo";
-import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -70,8 +70,6 @@ const { currentLocale } = Astro
     <slot />
 
     <style is:global>
-      * {
-      }
       img {
         content-visibility: auto;
       }
