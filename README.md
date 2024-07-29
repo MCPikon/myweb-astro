@@ -1,9 +1,9 @@
 
 # MyWeb-Astro
 
-[![Astro](https://img.shields.io/badge/Astro-4.5%2B-darkviolet?style=for-the-badge&logo=astro&logoColor=white&labelColor=101010)](https://astro.build/) &nbsp;
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.3%2B-dodgerblue?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=101010)](https://tailwindcss.com/) &nbsp;
-![React](https://img.shields.io/badge/React-18.2.0%2B-steelblue?style=for-the-badge&logo=react&logoColor=white&labelColor=101010) &nbsp;
+[![Astro](https://img.shields.io/badge/Astro-4.12%2B-darkviolet?style=for-the-badge&logo=astro&logoColor=white&labelColor=101010)](https://astro.build/) &nbsp;
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.7%2B-dodgerblue?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=101010)](https://tailwindcss.com/) &nbsp;
+![React](https://img.shields.io/badge/React-18.3.1%2B-steelblue?style=for-the-badge&logo=react&logoColor=white&labelColor=101010) &nbsp;
 [![Vercel](https://img.shields.io/badge/Vercel-static-gray?style=for-the-badge&logo=vercel&logoColor=white&labelColor=101010)](https://vercel.com)
 
 ## 🙋‍♂️ Autor

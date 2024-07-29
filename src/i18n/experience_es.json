@@ -1,6 +1,13 @@
 [
     {
         "JOB": "Desarrollador Java",
+        "TYPE": "Jornada Completa",
+        "COMPANY": "Sensu de Servicios y Desarrollos SL",
+        "DATE": "Julio 2024 - Actualidad",
+        "DESCRIPTION": "Desarrollo con Java 8 para mantenimiento de Proyecto de Banca."
+    },
+    {
+        "JOB": "Desarrollador Java",
         "TYPE": "Becario/Prácticas",
         "COMPANY": "Agrupo Sistemas",
         "DATE": "Abril 2023 - Julio 2023",

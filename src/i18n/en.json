@@ -1,6 +1,6 @@
 {
     "HERO_CONTENT_TITLE": "Hello! I'm Javier Picón ",
-    "HERO_CONTENT_SUBTITLE": "Web Developer",
+    "HERO_CONTENT_SUBTITLE": "Java Developer",
     "HERO_CONTENT_DESCRIPTION": "I'm dedicated to programming mostly in the backend and a little in the frontend.",
     "ABOUT_TITLE": "About me",
     "ABOUT_TEXT_1": "Hi everyone, I'm Javier Picón and I'm currently living in Coslada (Madrid, Spain).",
@@ -20,7 +20,7 @@
     "RECENT_PROJECTS_SUBTITLE": "These are some of the projects I have been working on lately. Each project appears with its detailed description and link to its respective github repo.",
     "RECENT_PROJECTS_HEADER": "Latest Projects",
     "RECENT_PROJECTS_BUTTON": "View all",
-    "FOOTER_JOB_TITLE": "Junior Web Developer",
+    "FOOTER_JOB_TITLE": "Junior Java Developer",
     "FOOTER_MY_LINKS": "Social Links",
     "FOOTER_MADE_BY_TEXT": "Made from Spain with ♥ by ",
     "INDEX_AND_PAGE_NAV_LINK_1": "Home",

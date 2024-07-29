@@ -1,6 +1,13 @@
 [
     {
         "JOB": "Java Developer",
+        "TYPE": "Full-Time",
+        "COMPANY": "Sensu de Servicios y Desarrollos SL",
+        "DATE": "July 2024 - Present",
+        "DESCRIPTION": "Development with Java 8 for the maintenance of a banking project."
+    },
+    {
+        "JOB": "Java Developer",
         "TYPE": "Internship",
         "COMPANY": "Agrupo Sistemas",
         "DATE": "April 2023 - July 2023",

@@ -1,6 +1,6 @@
 {
     "HERO_CONTENT_TITLE": "Hola! Soy Javier Picón ",
-    "HERO_CONTENT_SUBTITLE": "Desarrollador Web",
+    "HERO_CONTENT_SUBTITLE": "Desarrollador Java",
     "HERO_CONTENT_DESCRIPTION": "Me dedico a programar sobre todo en el backend y un poco en el frontend.",
     "ABOUT_TITLE": "Sobre mí",
     "ABOUT_TEXT_1": "Hola a todos, Soy Javier Picón y actualmente vivo en Coslada (Madrid, España).",
@@ -20,7 +20,7 @@
     "RECENT_PROJECTS_SUBTITLE": "Estos son algunos de los proyectos en los que he estado trabajando últimamente. Cada proyecto aparece con su descripción detallada y enlace a su respectivo repositorio.",
     "RECENT_PROJECTS_HEADER": "Últimos Proyectos",
     "RECENT_PROJECTS_BUTTON": "Ver todos",
-    "FOOTER_JOB_TITLE": "Desarrollador Web Junior",
+    "FOOTER_JOB_TITLE": "Desarrollador Java Junior",
     "FOOTER_MY_LINKS": "Mis Redes",
     "FOOTER_MADE_BY_TEXT": "Hecho desde España con ♥ por ",
     "INDEX_AND_PAGE_NAV_LINK_1": "Inicio",
