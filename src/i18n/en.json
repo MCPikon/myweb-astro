@@ -1,7 +1,7 @@
 {
     "HERO_CONTENT_TITLE": "Hello! I'm Javier Picón ",
     "HERO_CONTENT_SUBTITLE": "Java Developer",
-    "HERO_CONTENT_DESCRIPTION": "I'm dedicated to programming mostly in the backend and a little in the frontend.",
+    "HERO_CONTENT_DESCRIPTION": "I'm dedicated to programming mostly on the backend with the Java + Spring Boot stack.",
     "ABOUT_TITLE": "About me",
     "ABOUT_TEXT_1": "Hi everyone, I'm Javier Picón and I'm currently living in Coslada (Madrid, Spain).",
     "ABOUT_TEXT_2": "I studied a Higher Degree in ",
@@ -11,7 +11,7 @@
     "ABOUT_TEXT_6": "Backend",
     "ABOUT_TEXT_7": " especially with ",
     "ABOUT_TEXT_8": "Java and Spring Boot framework.",
-    "ABOUT_TEXT_9": "I'm currently learning Python and some of its frameworks such as Django and Reflex.",
+    "ABOUT_TEXT_9": "I'm currently learning Python with a focus on AI, prompting, and other topics.",
     "ABOUT_SKILLS_TITLE": "Technologies i work with",
     "ABOUT_TOOLS_TITLE": "Tools",
     "EXPERIENCE_TITLE": "Work Experience",

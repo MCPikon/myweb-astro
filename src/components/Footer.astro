@@ -62,6 +62,19 @@ const YEAR = new Date().getFullYear();
       </div>
     </div>
     <hr class="text-primary opacity-10"/>
-    <h1 class="text-secondary text-sm text-center py-4">© {YEAR} - {i18n.FOOTER_MADE_BY_TEXT}<a class="font-bold" href="/">Javier Picón</a></h1>
+    <h1 class="text-secondary text-sm text-center py-4">© <span id="year">YEAR</span> - {i18n.FOOTER_MADE_BY_TEXT}<a class="font-bold" href="/">Javier Picón</a></h1>
   </section>
 </footer>
+
+<script>
+  function updateYear() {
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear().toString();
+    }
+  }
+
+  updateYear();
+
+  document.addEventListener('astro:page-load', updateYear);
+</script>

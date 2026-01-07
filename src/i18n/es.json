@@ -1,7 +1,7 @@
 {
     "HERO_CONTENT_TITLE": "Hola! Soy Javier Picón ",
     "HERO_CONTENT_SUBTITLE": "Desarrollador Java",
-    "HERO_CONTENT_DESCRIPTION": "Me dedico a programar sobre todo en el backend y un poco en el frontend.",
+    "HERO_CONTENT_DESCRIPTION": "Me dedico a programar sobre todo en el backend con el stack Java + Spring Boot.",
     "ABOUT_TITLE": "Sobre mí",
     "ABOUT_TEXT_1": "Hola a todos, Soy Javier Picón y actualmente vivo en Coslada (Madrid, España).",
     "ABOUT_TEXT_2": "He estudiado el Grado Superior en ",
@@ -11,7 +11,7 @@
     "ABOUT_TEXT_6": "Backend",
     "ABOUT_TEXT_7": " sobre todo con ",
     "ABOUT_TEXT_8": "Java y el framework Spring Boot.",
-    "ABOUT_TEXT_9": "Actualmente me encuentro aprendiendo Python y algunos de sus frameworks como Django y Reflex.",
+    "ABOUT_TEXT_9": "Actualmente me encuentro aprendiendo Python enfocado a IA, Prompting y demás.",
     "ABOUT_SKILLS_TITLE": "Tecnologías que manejo",
     "ABOUT_TOOLS_TITLE": "Herramientas",
     "EXPERIENCE_TITLE": "Experiencia Laboral",
