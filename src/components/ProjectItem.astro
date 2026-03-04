@@ -21,7 +21,7 @@ const i18n = getI18N({ currentLocale })
 const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIPTION: description, TECH: tech } = Astro.props
 ---
 <>
-    <div data-aos="fade-up" data-aos-anchor-placement="top-bottom" id={name} class="flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
+    <div id={name} class="reveal flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
         <Image
             class={"rounded-xl w-96 transition-all ease-in-out md:hover:scale-110"}
             src={image}

@@ -33,5 +33,8 @@
     "PROJECTS_PAGE_SUBTITLE": "Aquí figuran algunos de los proyectos que he desarrollado, o me encuentro desarrollando actualmente.",
     "PROJECT_ITEM_BADGE": "¡Esta web!",
     "PROJECT_ITEM_GITHUB_BUTTON": "Repositorio",
-    "PROJECT_ITEM_WEBSITE_BUTTON": "Visitar Web"
+    "PROJECT_ITEM_WEBSITE_BUTTON": "Visitar Web",
+    "NOT_FOUND_TITLE": "Parece que te has perdido",
+    "NOT_FOUND_DESCRIPTION": "La página a la que estás intentando acceder no existe",
+    "NOT_FOUND_BUTTON": "Volver al Inicio"
 }

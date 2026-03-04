@@ -1,9 +1,9 @@
 ---
-import '@fontsource-variable/onest';
+import '@fontsource-variable/ibm-plex-sans';
 import "aos/dist/aos.css";
 
 import { SEO } from "astro-seo";
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -21,7 +21,7 @@ const { currentLocale } = Astro
 <!doctype html>
 <html lang={currentLocale}>
   <head>
-    <ViewTransitions />
+    <ClientRouter />
     <meta charset="UTF-8" />
     <meta name="description" content="Portfolio website by Javier Picón" />
     <meta name="viewport" content="width=device-width" />
@@ -70,6 +70,36 @@ const { currentLocale } = Astro
     <slot />
 
     <style is:global>
+      /* ── Fade-up on scroll ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Zoom in ── */
+      .reveal-zoom {
+        opacity: 0;
+        transform: scale(0.92);
+        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .reveal-zoom.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* ── Delays encadenables ── */
+      .reveal-delay-1 { transition-delay: 100ms; }
+      .reveal-delay-2 { transition-delay: 200ms; }
+      .reveal-delay-3 { transition-delay: 300ms; }
+      .reveal-delay-4 { transition-delay: 400ms; }
+      .reveal-delay-5 { transition-delay: 500ms; }
+
       img {
         content-visibility: auto;
       }
@@ -77,7 +107,7 @@ const { currentLocale } = Astro
         scroll-behavior: smooth;
       }
       body {
-        font-family: "Onest Variable", system-ui, sans-serif;
+        font-family: "IBM Plex Sans Variable", system-ui, sans-serif;
         background-color: rgb(20, 20, 20);
         background-size: 22px 22px;
         overflow-x: hidden;
@@ -116,11 +146,25 @@ const { currentLocale } = Astro
       }
     </style>
     <script>
-      import { aosInit } from "@/utils/aos";
-      
-      aosInit();
+      function setupAnimations() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(e => {
+              if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                // Una vez visible, dejar de observar (como AOS por defecto)
+                observer.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
 
-      document.addEventListener("astro:after-swap", aosInit);
+        document.querySelectorAll('.reveal, .reveal-zoom').forEach(el => observer.observe(el));
+      }
+
+      setupAnimations();
+      document.addEventListener('astro:after-swap', setupAnimations);
     </script>
   </body>
 </html>

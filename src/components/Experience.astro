@@ -6,12 +6,10 @@ const i18n = getI18N({ currentLocale })
 const EXPERIENCE = getI18NExperience({ currentLocale })
 ---
 <section id="experience" class="md:w-2/5 w-5/6 mx-auto m-6 py-24">
-    <h1 data-aos="fade-up" data-aos-anchor-placement="top-bottom" class="mb-8 font-extrabold text-center text-4xl text-transparent bg-clip-text bg-gradient-to-tr from-secondary to-[#616161]">
+    <h1 class="reveal mb-8 font-extrabold text-center text-4xl text-transparent bg-clip-text bg-gradient-to-tr from-secondary to-[#616161]">
         {i18n.EXPERIENCE_TITLE}
     </h1>
-    <div data-aos="fade-up"
-        data-aos-anchor-placement="center-bottom"
-        class="gap-8 px-4 mx-auto">
+    <div class="reveal gap-8 px-4 mx-auto">
         <ol class="relative border-s border-gray-200 dark:border-gray-700">
             {
                 EXPERIENCE &&

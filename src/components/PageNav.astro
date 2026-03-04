@@ -1,0 +1,108 @@
+---
+import { getI18N, getI18NPath } from "@/i18n";
+
+interface Props {
+  currentLocale: string | undefined;
+  title: string;
+}
+
+const { currentLocale, title } = Astro.props;
+const i18n = getI18N({ currentLocale });
+const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
+---
+
+<header class="mt-6 z-50 relative">
+  <div class="flex sm:gap-8 gap-4">
+    <button
+      id="back-button"
+      class="px-3 flex items-center justify-center w-12 py-2 bg-primary/10 text-primary rounded-xl text-xl transition-all md:hover:bg-primary/20"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="fill-primary size-6" viewBox="0 0 320 512">
+        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+      </svg>
+    </button>
+
+    <h1 class="px-3 w-full py-2 bg-primary/10 text-primary rounded-xl text-xl font-extrabold text-center">
+      {title}
+    </h1>
+
+    <button
+      id="page-menu-button"
+      class="flex items-center gap-4 bg-primary/10 px-4 rounded-xl transition-all md:hover:bg-primary/20"
+    >
+      <svg class="stroke-primary h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6H20M4 12H14M4 18H9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="page-menu-item"
+    class="hidden absolute z-50 w-full sm:w-96 right-0 top-16 rounded-xl h-auto bg-black border border-white/10 shadow-2xl transition-all"
+  >
+    <div class="flex flex-col justify-center items-center gap-4 px-4 m-4 py-4">
+      {["", "#about", "#experience"].map((path, idx) => (
+        <a class="nav-link w-full py-2 bg-primary/10 text-center rounded-xl hover:bg-primary/5 text-primary font-bold" 
+           href={getI18NPath(currentLocale, path)}>
+          {idx === 0 ? i18n.INDEX_AND_PAGE_NAV_LINK_1 : idx === 1 ? i18n.INDEX_AND_PAGE_NAV_LINK_3 : i18n.INDEX_AND_PAGE_NAV_LINK_4}
+        </a>
+      ))}
+      <a class="nav-link w-full py-2 bg-primary/10 text-center rounded-xl hover:bg-primary/5 text-primary font-bold" href={cvPath} target="_blank">
+        {i18n.INDEX_AND_PAGE_NAV_LINK_5}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  import { isOpen, goBack } from "@/utils/nav";
+
+  function initPageNav() {
+    const backBtn = document.getElementById('back-button');
+    const menuBtn = document.getElementById('page-menu-button');
+    const menuContent = document.getElementById('page-menu-item');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Limpiar suscripciones previas si fuera necesario o resetear estado al iniciar
+    isOpen.set(false);
+
+    backBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goBack();
+    });
+
+    menuBtn?.addEventListener('click', (e) => {
+      e.stopPropagation(); // Evita que el listener del document lo cierre al instante
+      isOpen.set(!isOpen.get());
+    });
+
+    // Suscripción al store
+    isOpen.subscribe((open) => {
+      if (open) {
+        menuContent?.classList.remove('hidden');
+        menuContent?.animate([
+          { transform: 'scale(0.95)', opacity: 0 },
+          { transform: 'scale(1)', opacity: 1 }
+        ], { duration: 100, easing: 'ease-out' });
+      } else {
+        menuContent?.classList.add('hidden');
+      }
+    });
+
+    // Cerrar al clickar un enlace
+    navLinks.forEach(link => link.addEventListener('click', () => isOpen.set(false)));
+
+    // Cerrar al hacer click fuera
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (isOpen.get() && !menuBtn?.contains(e.target as Node) && !menuContent?.contains(e.target as Node)) {
+        isOpen.set(false);
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+  }
+
+  // Inicializar en carga y en transiciones
+  initPageNav();
+  document.addEventListener('astro:after-swap', initPageNav);
+</script>

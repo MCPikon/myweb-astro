@@ -1,0 +1,273 @@
+---
+import { getI18N, getI18NPath } from "@/i18n"
+
+interface Props {
+  currentLocale: string | undefined;
+}
+
+const { currentLocale } = Astro.props;
+const i18n = getI18N({ currentLocale });
+
+const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
+const langPath = currentLocale === "en" ? "/" : "/en";
+---
+
+<div id="hamburger" class="relative z-50">
+  <div class="fixed right-[-10px] top-[50%] translate-y-[-50%] rotate-[270deg]">
+    <button
+      id="menu-button"
+      aria-expanded="false"
+      aria-controls="menu-content"
+      class="glass-btn font-bold px-4 py-1 rounded-t-xl cursor-pointer transition-all active:scale-95"
+    >
+      <span id="btn-text" class="flex items-center gap-2">
+        <svg id="icon-svg" class="size-4 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
+          <path id="svg-path" d="M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+
+  <div 
+    id="menu-content" 
+    class="fixed inset-0 glass-overlay z-[-10] invisible opacity-0 transition-all duration-500 ease-in-out"
+  >
+    <nav class="h-full flex items-center justify-center">
+      <div class="glass-panel">
+        <ul class="flex flex-col text-4xl font-bold text-center space-y-6 p-10">
+          <li>
+            <a class="nav-link glass-link block px-6 py-2 rounded-2xl" href={getI18NPath(currentLocale, "")}>
+              {i18n.INDEX_AND_PAGE_NAV_LINK_1}
+            </a>
+          </li>
+          <li>
+            <a class="nav-link glass-link block px-6 py-2 rounded-2xl" href={getI18NPath(currentLocale, "projects")}>
+              {i18n.INDEX_NAV_LINK_2}
+            </a>
+          </li>
+          <li>
+            <a class="nav-link glass-link block px-6 py-2 rounded-2xl" href={getI18NPath(currentLocale, "#about")}>
+              {i18n.INDEX_AND_PAGE_NAV_LINK_3}
+            </a>
+          </li>
+          <li>
+            <a class="nav-link glass-link block px-6 py-2 rounded-2xl" href={getI18NPath(currentLocale, "#experience")}>
+              {i18n.INDEX_AND_PAGE_NAV_LINK_4}
+            </a>
+          </li>
+
+          <li class="pt-6 mt-2 border-t border-white/10 flex flex-col gap-4">
+            <a class="nav-link glass-link-sm flex items-center justify-center gap-3 text-2xl px-6 py-2 rounded-2xl" target="_blank" href={cvPath}>
+              <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M14 3v4a1 1 0 0 0 1 1h4m2 14H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2zM12 17v-6m-2.5 3.5L12 17l2.5-2.5"/>
+              </svg>
+              {i18n.INDEX_AND_PAGE_NAV_LINK_5}
+            </a>
+
+            <a class="nav-link glass-link-sm flex items-center justify-center gap-3 text-2xl px-6 py-2 rounded-2xl" href={langPath}>
+              <svg class="size-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 5h7"/><path d="M7 4c0 4.846 0 7 .5 8"/>
+                <path d="M10 8.5c0 2.286 -2 4.5 -3.5 4.5s-2.5 -1.135 -2.5 -2c0 -2 1 -3 3 -3s5 .57 5 2.857c0 1.524 -.667 2.571 -2 3.143"/>
+                <path d="M12 20l4 -9l4 9"/><path d="M19.1 18h-6.2"/>
+              </svg>
+              {i18n.INDEX_NAV_LINK_6}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<style>
+  /* ── Liquid Glass: botón lateral ── */
+  .glass-btn {
+    background: color-mix(in srgb, theme(colors.primary) 35%, transparent);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    border-bottom: none;
+    box-shadow:
+      0 4px 24px color-mix(in srgb, theme(colors.primary) 20%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 30%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+  }
+
+  .glass-btn:hover {
+    background: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    box-shadow:
+      0 6px 32px color-mix(in srgb, theme(colors.primary) 35%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 45%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border-color: color-mix(in srgb, theme(colors.primary) 50%, white);
+  }
+
+  /* ── Overlay del menú ── */
+  .glass-overlay {
+    background: rgba(7, 14, 35, 0.6);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    overflow: hidden;
+  }
+
+  /* ── Panel central de cristal ── */
+  .glass-panel {
+    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 32px;
+    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    box-shadow:
+      0 32px 80px rgba(0, 0, 0, 0.4),
+      0 0 60px color-mix(in srgb, theme(colors.primary) 10%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Reflejo superior tipo cristal */
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 60%, transparent), transparent);
+  }
+
+  /* Brillo lateral izquierdo */
+  .glass-panel::after {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: 0;
+    width: 1px;
+    height: 40%;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, theme(colors.primary) 40%, transparent), transparent);
+  }
+
+  /* ── Links principales ── */
+  .glass-link {
+    color: rgba(255, 255, 255, 0.88);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    transition: all 0.25s ease;
+    position: relative;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .glass-link:hover {
+    color: white;
+    background: color-mix(in srgb, theme(colors.primary) 18%, transparent);
+    border-color: color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    box-shadow:
+      0 8px 24px color-mix(in srgb, theme(colors.primary) 20%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    text-shadow: 0 0 20px color-mix(in srgb, theme(colors.primary) 60%, transparent);
+    transform: translateY(-1px);
+  }
+
+  /* ── Links secundarios (CV / idioma) ── */
+  .glass-link-sm {
+    color: color-mix(in srgb, theme(colors.primary) 60%, white);
+    transition: all 0.25s ease;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .glass-link-sm:hover {
+    color: white;
+    background: color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    box-shadow: 0 4px 16px color-mix(in srgb, theme(colors.primary) 20%, transparent), inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    transform: translateY(-1px);
+  }
+
+  /* ── Estado abierto ── */
+  #menu-content.open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* ── Animación de entrada del panel ── */
+  #menu-content .glass-panel {
+    transform: scale(0.92) translateY(12px);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    opacity: 0;
+  }
+
+  #menu-content.open .glass-panel {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  .rotate-180 {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  function setupMenu() {
+    const btn = document.getElementById('menu-button') as HTMLButtonElement | null;
+    const menu = document.getElementById('menu-content');
+    const panel = menu?.querySelector('.glass-panel');
+    const icon = document.getElementById('icon-svg');
+    const path = document.getElementById('svg-path');
+    const links = document.querySelectorAll('.nav-link');
+
+    const closedPath = "M3 19h18a1.002 1.002 0 0 0 .823-1.569l-9-13c-.373-.539-1.271-.539-1.645 0l-9 13A.999.999 0 0 0 3 19z";
+    const openPath = "M11.178 19.569a.998.998 0 0 0 1.644 0l9-13A.999.999 0 0 0 21 5H3a1.002 1.002 0 0 0-.822 1.569l9 13z";
+
+    const isOpen = () => menu?.classList.contains('open') ?? false;
+
+    const open = () => {
+      menu?.classList.add('open');
+      btn?.setAttribute('aria-expanded', 'true');
+      icon?.classList.add('rotate-180');
+      path?.setAttribute('d', openPath);
+      document.body.style.overflow = 'hidden';
+      // Añadir estado al historial para capturar el botón "atrás" en móvil
+      history.pushState({ menuOpen: true }, '');
+    };
+
+    const close = () => {
+      menu?.classList.remove('open');
+      btn?.setAttribute('aria-expanded', 'false');
+      icon?.classList.remove('rotate-180');
+      path?.setAttribute('d', closedPath);
+      document.body.style.overflow = '';
+    };
+
+    const toggle = () => isOpen() ? close() : open();
+
+    // Botón de abrir/cerrar
+    btn?.addEventListener('click', toggle);
+
+    // Cerrar al pulsar un enlace
+    links.forEach(link => link.addEventListener('click', close));
+
+    // Cerrar al pulsar fuera del panel
+    menu?.addEventListener('click', (e) => {
+      if (panel && !panel.contains(e.target as Node)) close();
+    });
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) close();
+    });
+
+    // Cerrar con el botón "atrás" del navegador/móvil
+    window.addEventListener('popstate', (e) => {
+      if (isOpen()) close();
+    });
+  }
+
+  setupMenu();
+  document.addEventListener('astro:after-swap', setupMenu);
+</script>
