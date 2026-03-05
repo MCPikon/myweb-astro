@@ -66,7 +66,7 @@ const { currentLocale } = Astro
   </script>
     <title>{title}</title>
   </head>
-  <body class="antialiased">
+  <body class="antialiased header-padding-transition">
     <slot />
 
     <style is:global>
@@ -105,6 +105,10 @@ const { currentLocale } = Astro
       }
       html {
         scroll-behavior: smooth;
+        scrollbar-gutter: stable;
+      }
+      body {
+        padding-top: 3.5rem;
       }
       body {
         font-family: "IBM Plex Sans Variable", system-ui, sans-serif;

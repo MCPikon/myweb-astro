@@ -100,9 +100,16 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     };
 
     document.addEventListener('click', handleOutsideClick);
+
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        goBack();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
   }
 
-  // Inicializar en carga y en transiciones
   initPageNav();
   document.addEventListener('astro:after-swap', initPageNav);
 </script>

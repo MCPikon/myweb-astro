@@ -7,51 +7,160 @@ import GitHubIcon from "./icons/GitHub.astro"
 import LinkedinIcon from "./icons/Linkedin.astro"
 ---
 
-<section class="top-5 z-50 mx-auto m-6 w-5/6">
-  <nav class="flex items-center justify-between">
+<section class="z-50 fixed header-section">
+  <nav class="glass-header flex items-center justify-between px-4 py-2 rounded-full nav-content">
     <a
       aria-label={EMAIL}
       href={"mailto:" + EMAIL}
-      class="flex flex-row items-center justify-center"
+      class="flex flex-row items-center justify-center gap-2 px-3 py-2 rounded-xl glass-link-header transition-all email-link"
     >
-      <div
-        class="p-3 flex w-auto h-auto bg-primary rounded-full bg-opacity-10 items-center justify-center"
-      >
+      <div class="p-2 flex bg-primary/10 rounded-lg items-center justify-center icon-container transition-all">
         <MailIcon class="text-primary size-5" />
       </div>
-      <h3 class="hidden pl-4 text-sm text-primary font-bold opacity-80 lg:flex md:flex pointer-events-none">
+      <h3 class="hidden lg:flex text-sm text-white/80 font-medium hover:text-white transition-all email-text">
         {EMAIL}
       </h3>
     </a>
 
-    <h3>
-      <div class="flex flex-1 items-center gap-2 text-primary">
-        <a
-          aria-label="Instagram"
-          target="_blank"
-          href={INSTAGRAM_URL}
-          class="flex flex-row items-center justify-center"
-        >
-          <InstagramIcon class="fill-primary size-5 transition-all ease-in-out md:hover:fill-slate-200" />
-        </a> /
-        <a
-          aria-label="Github"
-          target="_blank"
-          href={GITHUB_URL}
-          class="flex flex-row items-center justify-center"
-        >
-          <GitHubIcon class="fill-primary size-5 transition-all ease-in-out md:hover:fill-slate-200" />
-        </a> /
-        <a
-          aria-label="Linkedin"
-          target="_blank"
-          href={LINKEDIN_URL}
-          class="flex items-center justify-center"
-        >
-          <LinkedinIcon class="fill-primary size-5 transition-all ease-in-out md:hover:fill-slate-200" />
-        </a>
-      </div>
-    </h3>
+    <div class="flex items-center gap-1">
+      <a
+        aria-label="Instagram"
+        target="_blank"
+        href={INSTAGRAM_URL}
+        class="p-2 rounded-lg glass-icon transition-all"
+      >
+        <InstagramIcon class="fill-white/70 size-5 transition-all hover:fill-white" />
+      </a>
+      <a
+        aria-label="Github"
+        target="_blank"
+        href={GITHUB_URL}
+        class="p-2 rounded-lg glass-icon transition-all"
+      >
+        <GitHubIcon class="fill-white/70 size-5 transition-all hover:fill-white" />
+      </a>
+      <a
+        aria-label="Linkedin"
+        target="_blank"
+        href={LINKEDIN_URL}
+        class="p-2 rounded-lg glass-icon transition-all"
+      >
+        <LinkedinIcon class="fill-white/70 size-5 transition-all hover:fill-white" />
+      </a>
+    </div>
   </nav>
-  <hr class="text-[#cac6c6] mt-4 opacity-25" />
 </section>
+
+<script>
+  function setupHeader() {
+    const headerSection = document.querySelector('.header-section');
+    const navContent = document.querySelector('.nav-content');
+    const emailText = document.querySelector('.email-text');
+    const emailLink = document.querySelector('.email-link');
+
+    if (!headerSection || !navContent || !emailText || !emailLink) return;
+
+    // Reset al estado inicial
+    headerSection.classList.remove('scrolled');
+    navContent.classList.remove('scrolled');
+    emailText.style.opacity = '1';
+    emailLink.style.opacity = '1';
+
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        headerSection.classList.add('scrolled');
+        navContent.classList.add('scrolled');
+        emailText.style.opacity = '0';
+        emailLink.style.opacity = '0.4';
+      } else {
+        headerSection.classList.remove('scrolled');
+        navContent.classList.remove('scrolled');
+        emailText.style.opacity = '1';
+        emailLink.style.opacity = '1';
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+  }
+
+  setupHeader();
+  document.addEventListener('astro:after-swap', setupHeader);
+</script>
+
+<style>
+  .header-section {
+    margin: 0.5rem 2rem 1.5rem 2rem;
+    width: calc(100% - 4rem);
+    top: 1.25rem;
+    left: 0;
+    right: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .header-section {
+    transform: translateX(0);
+  }
+
+  .header-section.scrolled {
+    margin: 0;
+    width: 100%;
+    top: 0;
+  }
+
+  .glass-header {
+    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.3),
+      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .glass-header.scrolled {
+    border-radius: 0;
+  }
+
+  .glass-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
+  }
+
+  .email-link {
+    transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .email-text {
+    transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .name-text {
+    transition: opacity 0.4s ease;
+  }
+
+  .glass-link-header:hover {
+    background: color-mix(in srgb, theme(colors.primary) 15%, transparent);
+  }
+
+  .glass-icon {
+    background: transparent;
+    border: 1px solid transparent;
+  }
+
+  .glass-icon:hover {
+    background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
+    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+  }
+</style>
