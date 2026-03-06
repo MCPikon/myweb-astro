@@ -6,6 +6,8 @@ import sitemap from "@astrojs/sitemap";
 import partytown from "@astrojs/partytown";
 import robotsTxt from "astro-robots-txt";
 
+import playformCompress from "@playform/compress";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://javier-picon.vercel.app",
@@ -23,7 +25,7 @@ export default defineConfig({
       'https://javier-picon.vercel.app/sitemap-0.xml',
       'http://javier-picon.vercel.app/sitemap-index.xml',
     ],
-  })],
+  }), playformCompress()],
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

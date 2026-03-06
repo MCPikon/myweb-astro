@@ -20,12 +20,12 @@ const PROJECTS = getI18NProjects({ currentLocale })
     <div class="reveal flex justify-between items-center py-8">
         <h1 class="text-primary text-xl sm:text-3xl font-semibold">{i18n.RECENT_PROJECTS_HEADER}</h1>
         <a
-          class="text-primary px-4 py-2.5 bg-primary rounded-xl bg-opacity-10 transition-all ease-in-out md:hover:bg-opacity-25"
+          class="projects-cta"
           aria-label="projects link"
           href={getI18NPath(currentLocale, "projects")}
         >
-          {i18n.RECENT_PROJECTS_BUTTON}</a
-        >
+          {i18n.RECENT_PROJECTS_BUTTON}
+        </a>
     </div>
     <div class="mx-auto grid grid-cols-1 gap-8 md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 xl:grid xl:grid-cols-3">
       {
@@ -37,3 +37,44 @@ const PROJECTS = getI18NProjects({ currentLocale })
     </div>
   </div>
 </section>
+
+<style>
+  .projects-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 1rem;
+    color: rgb(255 255 255 / 0.88);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.3),
+      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .projects-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
+  }
+
+  .projects-cta:hover {
+    background: color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    border-color: color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    box-shadow: 0 6px 16px color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    color: rgb(255 255 255 / 1);
+  }
+</style>

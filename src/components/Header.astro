@@ -9,18 +9,27 @@ import LinkedinIcon from "./icons/Linkedin.astro"
 
 <section class="z-50 fixed header-section">
   <nav class="glass-header flex items-center justify-between px-4 py-2 rounded-full nav-content">
-    <a
-      aria-label={EMAIL}
-      href={"mailto:" + EMAIL}
-      class="flex flex-row items-center justify-center gap-2 px-3 py-2 rounded-xl glass-link-header transition-all email-link"
-    >
-      <div class="p-2 flex bg-primary/10 rounded-lg items-center justify-center icon-container transition-all">
-        <MailIcon class="text-primary size-5" />
-      </div>
-      <h3 class="hidden lg:flex text-sm text-white/80 font-medium hover:text-white transition-all email-text">
-        {EMAIL}
-      </h3>
-    </a>
+    <div class="flex items-center gap-2">
+      <a
+        aria-label={EMAIL}
+        href={"mailto:" + EMAIL}
+        class="email-link-mobile flex lg:hidden p-2 rounded-lg glass-icon transition-all"
+      >
+        <MailIcon class="mail-icon text-white/70 size-5 transition-all" />
+      </a>
+      <a
+        aria-label={EMAIL}
+        href={"mailto:" + EMAIL}
+        class="email-link-desktop hidden lg:flex flex-row items-center justify-center gap-2 px-3 py-2 rounded-xl glass-link-header transition-all"
+      >
+        <div class="p-2 rounded-lg glass-icon transition-all flex items-center justify-center">
+          <MailIcon class="mail-icon text-white/70 size-5 transition-all" />
+        </div>
+        <h3 class="text-sm text-white/80 font-medium transition-all email-text">
+          {EMAIL}
+        </h3>
+      </a>
+    </div>
 
     <div class="flex items-center gap-1">
       <a
@@ -55,28 +64,20 @@ import LinkedinIcon from "./icons/Linkedin.astro"
   function setupHeader() {
     const headerSection = document.querySelector('.header-section');
     const navContent = document.querySelector('.nav-content');
-    const emailText = document.querySelector('.email-text');
-    const emailLink = document.querySelector('.email-link');
 
-    if (!headerSection || !navContent || !emailText || !emailLink) return;
+    if (!headerSection || !navContent) return;
 
     // Reset al estado inicial
     headerSection.classList.remove('scrolled');
     navContent.classList.remove('scrolled');
-    emailText.style.opacity = '1';
-    emailLink.style.opacity = '1';
 
     const handleScroll = () => {
       if (window.scrollY > 0) {
         headerSection.classList.add('scrolled');
         navContent.classList.add('scrolled');
-        emailText.style.opacity = '0';
-        emailLink.style.opacity = '0.4';
       } else {
         headerSection.classList.remove('scrolled');
         navContent.classList.remove('scrolled');
-        emailText.style.opacity = '1';
-        emailLink.style.opacity = '1';
       }
     };
 
@@ -89,25 +90,37 @@ import LinkedinIcon from "./icons/Linkedin.astro"
 
 <style>
   .header-section {
-    margin: 0.5rem 2rem 1.5rem 2rem;
-    width: calc(100% - 4rem);
+    margin: 0.75rem auto 1.5rem;
+    width: min(1200px, calc(100% - 2rem));
     top: 1.25rem;
-    left: 0;
-    right: 0;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    left: 50%;
+    right: auto;
+    transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      margin 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      top 0.5s cubic-bezier(0.65, 0, 0.35, 1),
+      transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    transform: translateX(-50%);
   }
 
-  .header-section {
-    transform: translateX(0);
+  @media (max-width: 768px) {
+    .header-section {
+      width: calc(100% - 1.5rem);
+      margin: 0.5rem auto 1.25rem;
+    }
   }
 
   .header-section.scrolled {
     margin: 0;
     width: 100%;
     top: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    padding: 0;
   }
 
   .glass-header {
+    width: 100%;
     background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
@@ -125,6 +138,9 @@ import LinkedinIcon from "./icons/Linkedin.astro"
 
   .glass-header.scrolled {
     border-radius: 0;
+    border-color: transparent;
+    width: 100%;
+    margin: 0 auto;
   }
 
   .glass-header::before {
@@ -137,12 +153,9 @@ import LinkedinIcon from "./icons/Linkedin.astro"
     background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
   }
 
-  .email-link {
-    transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
+  .email-link-desktop,
   .email-text {
-    transition: opacity 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: background 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .name-text {
@@ -162,5 +175,17 @@ import LinkedinIcon from "./icons/Linkedin.astro"
     background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
     border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
     box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+  }
+
+  .email-link-desktop:hover .glass-icon {
+    background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
+    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+  }
+
+  .email-link-desktop:hover .mail-icon,
+  .email-link-mobile:hover .mail-icon,
+  .glass-icon:hover .mail-icon {
+    color: rgb(255 255 255 / 1);
   }
 </style>

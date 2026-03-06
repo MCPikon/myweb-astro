@@ -1,245 +1,150 @@
 # AGENTS.md
 
-This document provides guidance for AI coding agents working with this codebase.
+Guidance for AI coding agents collaborating on this Astro + React + Tailwind portfolio.
 
-## Project Overview
+## Context Snapshot
+1. Astro 5.18+, React 18, Tailwind CSS 3.4, nanostores, Vercel deploy target.
+2. Source root `src/`, static files in `public/`, environment uses pnpm.
+3. Supported locales: Spanish (`/`) and English (`/en`).
+4. There are no Cursor or Copilot rule files; follow this document fully.
+5. Project style forbids emojis and favors self-documenting code without inline comments.
 
-This is a personal portfolio website built with **Astro 5.18+**, **React 18**, and **Tailwind CSS 3.4**. It features internationalization (i18n) supporting Spanish (default) and English, deployed on Vercel.
+## Directory Compass
+- `src/pages/`: Astro routes; default locale files live at root, translated routes nested.
+- `src/components/`: Presentation pieces; keep components small and locale-aware.
+- `src/layouts/`: Page shells shared by routes.
+- `src/i18n/`: JSON dictionaries and helper utilities.
+- `src/utils/`: Shared helpers/constants; prefer pure functions.
+- `public/`: Static imagery, favicons, downloads.
+- `astro.config.mjs`, `tsconfig.json`, `tailwind.config.cjs`: Single sources for tooling.
 
-## Build/Lint/Test Commands
+## Package & Tooling Rules
+- Use `pnpm` for everything (`pnpm install`, `pnpm add`, `pnpm remove`).
+- Lockfiles must stay in sync; never switch to npm or yarn.
+- Node 20 LTS baseline; if versions diverge, note it in PR description.
+- Keep dependencies minimal; prefer framework-native features.
 
-### Development
-```bash
-pnpm dev          # Start development server with --host flag
-pnpm start        # Start development server (no host flag)
-```
+## Build, Lint, Test Commands
+- Dev server (preferred) → `pnpm dev --host` to expose on LAN.
+- Alternate dev script → `pnpm start` (no host flag).
+- Production build → `pnpm build`.
+- Production preview → `pnpm preview`.
+- Astro/TypeScript check → `pnpm astro check` (fast static analysis).
+- There is **no configured lint runner** (no ESLint/Prettier configs).
+- There is **no automated test runner** yet; if you must run a single test, align with the user on tooling (recommended default: add Vitest and run `pnpm vitest path/to/file.test.ts --runInBand`).
 
-### Production Build
-```bash
-pnpm build        # Build for production
-pnpm preview      # Preview production build locally
-```
+## Verification Flow
+- Before pushing significant changes, run `pnpm build`; it surfaces TS + Astro template errors.
+- For i18n modifications, verify both `/` and `/en` builds locally.
+- After adding new assets, ensure `pnpm preview` displays them without console errors.
+- If you modify store logic or interactive React islands, test in at least one Chromium-based browser.
 
-### Testing
-**No test framework is currently configured.** There are no test files, test configurations, or testing commands. If you need to run tests, ask the user which testing framework they want to use.
+## Git Hygiene
+- Never commit unless explicitly asked; keep worktree clean.
+- Respect existing untracked files; do not delete user-local data.
+- Favor small, reviewable diffs grouped by purpose.
+- Reference instructions in this document in PR/commit bodies when relevant.
 
-### Linting & Type Checking
-**No linting or formatting tools are currently configured.** There are no ESLint, Prettier, or other linting configurations. However:
-- TypeScript strict mode is enabled (extends `astro/tsconfigs/strict`)
-- Run `pnpm astro check` to perform Astro type checking
-- Run `pnpm build` to check for TypeScript errors during build
+## Import Strategy
+- Import order: Node/third-party → Astro virtual modules (`astro:assets`) → project aliases (`@/...`) → relative paths.
+- Use the `@/` alias for anything under `src/`.
+- Avoid default exports in utilities; named exports clarify tree-shaking.
+- Keep import lists alphabetized within each block.
+- Side-effect imports (`import "./style.css"`) must stay below value imports.
 
-## Code Style Guidelines
+## Formatting & Structure
+- The repo currently lacks a formatter; format code manually and emulate existing spacing.
+- Two spaces inside Astro frontmatter fences around blank lines; single blank line between logic clusters.
+- Keep HTML attributes on new lines only when line length exceeds ~100 characters.
+- JSX/TSX props: multi-line when more than three props.
+- Use single quotes in Tailwind class strings when editing `.astro` files; double quotes in `.ts` and `.tsx` modules.
+- Trailing commas for multi-line arrays/objects; no semicolons in `.astro` frontmatter, but keep them in `.ts`.
 
-### File Organization
-```
-src/
-├── components/     # Reusable Astro components
-├── i18n/          # Internationalization (JSON configs + helpers)
-├── layouts/       # Page layout templates
-├── pages/         # Route pages (file-based routing)
-└── utils/         # Shared utility functions and constants
-```
+## Naming Conventions
+- Files: Astro components PascalCase, React islands PascalCase, utilities camelCase or kebab when default exports not expected.
+- Constants uppercase snake case (e.g., `export const INSTAGRAM_URL`); append type annotations when not obvious.
+- Functions camelCase; asynchronous helpers start with verbs (`fetchProjects`).
+- Stores from nanostores use noun phrases (`themeStore`).
+- CSS classes follow Tailwind utilities; custom classes should be kebab-case.
 
-### Naming Conventions
+## TypeScript Guidance
+- Repo extends `astro/tsconfigs/strict`; keep strictness by annotating complex values.
+- Prefer explicit `interface` declarations for props and data models.
+- Use discriminated unions over boolean flags when state variants exceed two.
+- Replace `any` with `unknown` and narrow via type guards.
+- Optional values default to `undefined`; reserve `null` for DOM interop.
+- Narrow server-only globals with `import.meta.env.SSR` checks when needed.
+- Use `satisfies` to constrain literal objects that feed components or i18n maps.
 
-1. **Files and Directories**:
-   - Astro components: PascalCase (e.g., `ProjectCard.astro`, `HeroContent.astro`)
-   - Pages: lowercase/kebab-case (e.g., `index.astro`, `projects/index.astro`)
-   - Utilities: lowercase (e.g., `nav.ts`, `constants.ts`)
+## Astro & React Component Rules
+- Always open frontmatter with `---` and close before markup.
+- Declare `interface Props` first, derive `const { ... } = Astro.props` immediately after.
+- Use `<Fragment>` only in React islands; rely on semantic wrappers elsewhere.
+- Pass translated strings through `getI18N*` helpers; never hardcode bilingual text.
+- Keep stateful behavior inside `client:load` or `client:visible` islands; Astro templates stay pure.
+- Choose hydration directive intentionally (`client:idle` for low-priority, `client:only="react"` when component is purely React).
 
-2. **Constants**:
-   - Export constants in UPPERCASE_SNAKE_CASE:
-   ```typescript
-   export const INSTAGRAM_URL: string = "https://instagram.com/mcpikon"
-   export const GITHUB_URL: string = "https://github.com/MCPikon"
-   ```
+## Styling & Theming
+- Tailwind is primary: prefer utility classes before authoring custom CSS.
+- Global theme uses dark background `rgb(20,20,20)` and accent colors defined in `tailwind.config.cjs`.
+- When Tailwind lacks a utility, add it to the config safelist rather than inline styles.
+- Keep gradient or texture backgrounds consistent with existing hero sections.
+- Use `@layer components` for reusable class compositions.
+- Animations rely on `.reveal`, `.reveal-zoom`, and `.reveal-delay-*`; preserve these hooks.
 
-3. **Components**:
-   - Use PascalCase for component names
-   - Export components as default or named exports
+## Data, State, and Interactivity
+- Use nanostores for global toggles (e.g., menu state); initialize via `atom(false)`.
+- Keep stores in dedicated modules (`src/stores/...` if created).
+- Derived data should be computed functions, not duplicated state.
+- When reading from `window` or `document`, guard with `typeof window !== "undefined"`.
+- Use `requestAnimationFrame` rather than timeouts for scroll/animation loops.
+- Debounce expensive listeners at 16ms or more.
 
-4. **Functions**:
-   - Use camelCase for function names: `getI18N`, `getI18NPath`, `goBack`
-   - Prefix i18n-related functions with `getI18N`
+## Internationalization Checklist
+- Strings live in `src/i18n/{language}.json` plus specialized `experience_*` and `projects_*` bundles.
+- Use helper functions: `getI18N`, `getI18NExperience`, `getI18NProjects`, `getI18NPath`.
+- Default locale (es) has bare routes; English requires `/en` prefix.
+- When adding pages, export `export const prerender = true` if static.
+- Validate new keys in both languages before merging.
+- Sorting/order should match between languages to simplify lookups.
 
-### Imports
+## Assets & Media
+- Prefer Astro `Image` component from `astro:assets`; supply width/height/alt.
+- Store raw images in `public/` and reference relative paths.
+- Use `loading="eager"` for above-the-fold hero content, `loading="lazy"` elsewhere.
+- Add `aria-hidden="true"` to decorative SVG icons.
+- Keep file sizes under 500KB; compress before committing.
+- For external embeds, lazy load and wrap with fallback text.
 
-1. **Order**: Place imports at the top of the file in this order:
-   - External packages (React, Astro, etc.)
-   - Internal aliases (`@/` prefix)
-   - Relative imports (`./`, `../`)
+## Error Handling & Logging
+- Let Astro surface server errors; avoid swallowing exceptions with empty catch blocks.
+- Validate props before use; bail early with guard clauses.
+- Use optional chaining + nullish coalescing for uncertain data.
+- When adding client-side code, prefer `console.error` with context rather than silent failures.
+- For navigation helpers, ensure fallback routes exist (default to `/`).
 
-2. **Import Example**:
-   ```typescript
-   ---
-   import { getI18N } from "@/i18n"
-   import { Image } from 'astro:assets'
-   
-   const { currentLocale } = Astro
-   const i18n = getI18N({ currentLocale })
-   ---
-   ```
+## Accessibility & Performance
+- Semantic tags (`section`, `nav`, `main`, `footer`) required; include `aria-label` where needed.
+- Provide focus styles for interactive elements; do not disable outlines.
+- Use `prefers-reduced-motion` media queries for heavy animations.
+- Limit DOM depth; flatten wrappers when possible.
+- Preload key fonts/assets via `<link rel="preload">` in layouts.
 
-3. **Path Alias**: Always use `@/` for imports from `src/`:
-   ```typescript
-   import Component from "@/components/Component.astro"
-   import { CONSTANT } from "@/utils/constants"
-   ```
+## Workflow Expectations
+- Reproduce issues locally before editing.
+- Cross-check localized content, responsive breakpoints, and interactive states prior to completion.
+- Document assumptions in PR descriptions.
+- When adding dependencies or commands, update this file and `README` equivalents.
+- Keep this guide near ~150 lines; prune obsolete notes when adding new ones.
 
-### TypeScript
+## When Tooling Is Missing
+- No automated tests exist; clarify with user before inventing frameworks.
+- If linting is requested, align on ESLint/Prettier stack and ensure Astro support.
+- Use manual inspection plus `pnpm build` as the default verification path.
+- Capture reproduction steps or manual test plans in PR summaries.
 
-1. **Strict Mode**: TypeScript strict mode is enabled. All code must pass strict type checking.
-
-2. **Type Annotations**:
-   - Always annotate function parameters and return types when the type is not obvious
-   - Export constants with explicit types: `export const URL: string = "..."`
-   - Use interfaces for component props:
-   ```typescript
-   interface Props {
-     NAME: string
-     TYPE: string
-     IMAGE_PATH: string
-   }
-   const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
-   ```
-
-3. **Avoid `any`**: Do not use `any` type. Use `unknown` or define proper types.
-
-4. **Undefined vs Null**:
-   - Use `undefined` for optional values (not `null`)
-   - Use optional chaining and nullish coalescing operators (`?.`, `??`)
-
-### Astro Components
-
-1. **Frontmatter** (code fence section):
-   ```astro
-   ---
-   import Component from "./Component.astro"
-   
-   interface Props {
-     title: string
-   }
-   
-   const { title } = Astro.props
-   ---
-   ```
-
-2. **Component Props**:
-   - Define interfaces for props at the top of frontmatter
-   - Destructure props immediately after defining the interface
-   - Use `currentLocale` from `Astro` for i18n: `const { currentLocale } = Astro`
-
-3. **Styling**:
-   - Use Tailwind CSS classes for styling
-   - Use `<style>` tags for component-specific CSS when needed
-   - Classes: use utility-first approach with Tailwind
-   - Custom CSS: define in `<style>` tags within `.astro` files
-
-4. **Scripts**:
-   - Use `<script>` tags for client-side JavaScript
-   - Place scripts after the HTML template
-
-### CSS & Styling
-
-1. **Primary Framework**: Tailwind CSS with typography plugin
-
-2. **Custom Colors** (defined in `tailwind.config.cjs`):
-   - `primary`: `#14A1F0`
-   - `secondary`: `#087ec4`
-
-3. **Animations**: Use Tailwind animation utilities or custom keyframes
-
-4. **Dark Theme**: The site uses a dark background (`rgb(20, 20, 20)`)
-
-### Internationalization (i18n)
-
-1. **Supported Locales**: `es` (Spanish, default) and `en` (English)
-
-2. **Default Locale**: Spanish (`es`) - no URL prefix for default locale
-
-3. **URL Structure**:
-   - Spanish (default): `/`, `/projects`
-   - English: `/en/`, `/en/projects`
-
-4. **i18n Helper Functions**:
-   - `getI18N({ currentLocale })` - Get main translations
-   - `getI18NExperience({ currentLocale })` - Get experience translations
-   - `getI18NProjects({ currentLocale })` - Get projects translations
-   - `getI18NPath(currentLocale, path)` - Get locale-specific path
-
-5. **Translation Files**:
-   - Spanish: `src/i18n/es.json`, `experience_es.json`, `projects_es.json`
-   - English: `src/i18n/en.json`, `experience_en.json`, `projects_en.json`
-
-### State Management
-
-- Use **nanostores** for reactive state
-- Import `atom` from `nanostores`:
-  ```typescript
-  import { atom } from "nanostores"
-  export const isOpen = atom(false)
-  ```
-
-### Error Handling
-
-1. **Browser Checks**: Always check for `window` or browser environment:
-   ```typescript
-   if (typeof window !== "undefined") {
-     // Browser-only code
-   }
-   ```
-
-2. **Optional Chaining**: Use optional chaining for potentially undefined values
-
-3. **No Try-Catch in View Components**: Let errors propagate for easier debugging
-
-### Images & Assets
-
-1. **Image Component**: Use Astro's `Image` component from `astro:assets`:
-   ```astro
-   import { Image } from 'astro:assets'
-   <Image src={imagePath} alt={name} width={600} height={400} loading="eager" />
-   ```
-
-2. **Static Assets**: Place in `public/` directory
-
-### Best Practices
-
-1. **DO NOT Add Comments**: This project follows a no-comments policy. Write self-documenting code.
-
-2. **Emojis**: DO NOT use emojis in code unless explicitly requested by the user.
-
-3. **Performance**:
-   - Use `loading="eager"` or `loading="lazy"` appropriately
-   - Images: specify `width` and `height` attributes
-   - Use `content-visibility: auto` for images (already in global styles)
-
-4. **Accessibility**:
-   - Add `aria-hidden="true"` for decorative elements
-   - Use semantic HTML (`section`, `article`, `nav`, etc.)
-   - Add `title` attributes to SVG icons
-
-5. **SEO**:
-   - Use `astro-seo` package for meta tags
-   - Set canonical URLs and Open Graph data
-   - Configure sitemap via `@astrojs/sitemap`
-
-6. **Reveal Animations**: 
-   - Use `.reveal` class for fade-up animations
-   - Use `.reveal-zoom` for zoom-in animations
-   - Add delay classes: `.reveal-delay-1` through `.reveal-delay-5`
-
-## Development Workflow
-
-1. **Package Manager**: This project uses **pnpm**. Always use pnpm commands.
-
-2. **Dependencies**: 
-   - Add new dependencies with: `pnpm add <package>`
-   - Add dev dependencies with: `pnpm add -D <package>`
-
-3. **Git**: Never commit changes unless explicitly requested by the user.
-
-4. **Before Building**: Run `pnpm build` to check for TypeScript errors.
-
-5. **Code Changes**: After making code changes, run the development server to verify everything works before considering the task complete.
+## Support Channels
+- There are no automation rule files; this document is the single source of truth.
+- Mention this file when onboarding new agents.
+- Update timestamps or stack notes when major upgrades land.
+- When uncertain, prefer conservative changes and ask targeted questions.

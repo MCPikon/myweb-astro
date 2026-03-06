@@ -20,6 +20,7 @@
     "@fontsource-variable/onest": "^5.2.11",
     "@heroicons/react": "^2.2.0",
     "@nanostores/react": "^0.7.3",
+    "@playform/compress": "^0.2.1",
     "@tailwindcss/typography": "^0.5.19",
     "@types/aos": "^3.0.7",
     "@types/react": "^18.3.28",

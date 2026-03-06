@@ -47,27 +47,25 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
             );
             })}
         </div>
-        <div class="flex flex-wrap gap-2 justify-center lg:justify-start items-center md:mt-2">
+        <div class="flex flex-wrap gap-3 justify-center lg:justify-start items-center md:mt-2">
             <LinkIcon class="text-slate-300 size-6" />
             <a
-            class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary transition-all ease-in-out md:hover:bg-opacity-20"
+            class="project-item-button"
             target="_blank"
             rel="noopener"
             href={github}
             >
-            <GitHubIcon class="fill-primary size-5" />
-            {" "}
+            <GitHubIcon class="project-item-icon project-item-icon--fill size-5" />
             {i18n.PROJECT_ITEM_GITHUB_BUTTON}
             </a>
             {url && 
                 <a
-                class="flex items-center gap-2 rounded-md font-bold px-3 py-2 bg-primary bg-opacity-10 text-primary transition-all ease-in-out md:hover:bg-opacity-20"
+                class="project-item-button"
                 target="_blank"
                 rel="noopener"
                 href={url}
                 >
-                <WebsiteIcon class="text-primary size-6" />
-                {" "}
+                <WebsiteIcon class="project-item-icon project-item-icon--stroke size-6" />
                 {i18n.PROJECT_ITEM_WEBSITE_BUTTON}
                 </a>
             }
@@ -75,3 +73,57 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
         </div>
     </div>
 </>
+
+<style>
+  .project-item-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    color: rgb(255 255 255 / 0.92);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.3),
+      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .project-item-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
+  }
+
+  .project-item-button:hover {
+    background: color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    border-color: color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    color: rgb(255 255 255 / 1);
+    box-shadow: 0 6px 18px color-mix(in srgb, theme(colors.primary) 20%, transparent);
+  }
+
+  .project-item-icon {
+    color: inherit;
+    display: inline-flex;
+  }
+
+  .project-item-icon--fill {
+    fill: currentColor;
+  }
+
+  .project-item-icon--stroke {
+    stroke: currentColor;
+    fill: none;
+  }
+</style>

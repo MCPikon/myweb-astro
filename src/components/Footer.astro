@@ -16,23 +16,24 @@ const { currentLocale } = Astro.props
 const i18n = getI18N({ currentLocale })
 ---
 
-<footer class="bg-secondary bg-opacity-5">
-  <section class="w-5/6 mx-auto">
+<footer>
+  <div class="footer-glass">
+    <section class="footer-content">
     <div class="flex gap-y-6 sm:flex-row flex-col-reverse justify-between py-8">
-      <div class="flex flex-col gap-y-6">
-        <h1 class="text-primary font-extrabold text-2xl">Javier Picón</h1>
-        <p class="text-slate-400 sm:w-4/6 w-full">
-          {i18n.FOOTER_JOB_TITLE} <span class="text-slate-400/70 italic font-light">(Backend & Frontend)</span>
-        </p>
-      </div>
-      <div class="flex flex-col gap-y-2">
-        <h1 class="text-primary text-xl font-bold ">{i18n.FOOTER_MY_LINKS}</h1>
-        <div class="fill-primary stroke-primary flex sm:justify-end justify-start gap-4 flex-nowrap">
+        <div class="flex flex-col gap-y-6">
+          <h1 class="text-primary font-extrabold text-2xl">Javier Picón</h1>
+          <p class="text-slate-400 sm:w-4/6 w-full">
+            {i18n.FOOTER_JOB_TITLE} <span class="text-slate-400/70 italic font-light">(Backend & Frontend)</span>
+          </p>
+        </div>
+        <div class="flex flex-col gap-y-2">
+          <h1 class="text-primary text-xl font-bold ">{i18n.FOOTER_MY_LINKS}</h1>
+        <div class="footer-links">
             <a
             aria-label="Instagram"
             target="_blank"
             href={INSTAGRAM_URL}
-            class="flex flex-row items-center justify-center"
+            class="footer-link"
           >
             <InstagramIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a>
@@ -40,7 +41,7 @@ const i18n = getI18N({ currentLocale })
             aria-label="Twitter/X"
             target="_blank"
             href={TWITTER_URL}
-            class="flex items-center justify-center"
+             class="footer-link"
           >
             <TwitterIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a> 
@@ -48,7 +49,7 @@ const i18n = getI18N({ currentLocale })
             aria-label="Github"
             target="_blank"
             href={GITHUB_URL}
-            class="flex flex-row items-center justify-center"
+             class="footer-link"
           >
             <GitHubIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a> 
@@ -56,16 +57,17 @@ const i18n = getI18N({ currentLocale })
             aria-label="Linkedin"
             target="_blank"
             href={LINKEDIN_URL}
-            class="flex items-center justify-center"
+             class="footer-link"
           >
             <LinkedinIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
           </a>
         </div>
       </div>
     </div>
-    <hr class="text-primary opacity-10"/>
+    <hr class="footer-divider" />
     <h1 class="text-secondary text-sm text-center py-4">© <span id="year">YEAR</span> - {i18n.FOOTER_MADE_BY_TEXT}<a class="font-bold" href="/">Javier Picón</a></h1>
-  </section>
+    </section>
+  </div>
 </footer>
 
 <script>
@@ -80,3 +82,95 @@ const i18n = getI18N({ currentLocale })
 
   document.addEventListener('astro:page-load', updateYear);
 </script>
+
+<style>
+  .footer-glass {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 3rem auto 0;
+    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    border: 1px solid transparent;
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.3),
+      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border-radius: 1.5rem 1.5rem 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
+  }
+
+  .footer-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 1.25rem;
+  }
+
+  .footer-divider {
+    border: none;
+    height: 1px;
+    background: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    opacity: 0.35;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-link {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .footer-link:hover {
+    background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
+    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+  }
+
+  .footer-link svg {
+    transition: color 0.3s ease, fill 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .footer-glass {
+      width: calc(100% - 1.5rem);
+    }
+
+    .footer-content {
+      padding: 2rem 1.25rem 1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-glass {
+      width: calc(100% - 1rem);
+      margin-top: 2.5rem;
+    }
+
+    .footer-content {
+      padding: 1.75rem 1rem 1rem;
+    }
+  }
+</style>
