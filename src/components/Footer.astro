@@ -87,12 +87,12 @@ const i18n = getI18N({ currentLocale })
   .footer-glass {
     width: min(1200px, calc(100% - 2rem));
     margin: 3rem auto 0;
-    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
     border: 1px solid transparent;
     box-shadow:
       0 16px 48px rgba(0, 0, 0, 0.3),
-      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
@@ -108,7 +108,7 @@ const i18n = getI18N({ currentLocale })
     left: 12%;
     right: 12%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
   }
 
   .footer-content {
@@ -120,7 +120,7 @@ const i18n = getI18N({ currentLocale })
   .footer-divider {
     border: none;
     height: 1px;
-    background: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 25%, transparent);
     opacity: 0.35;
   }
 
@@ -144,9 +144,9 @@ const i18n = getI18N({ currentLocale })
   }
 
   .footer-link:hover {
-    background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
-    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .footer-link svg {

@@ -52,34 +52,31 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
 </header>
 
 <script>
-  import { isOpen, goBack } from "@/utils/nav";
+  import { goBack } from "@/utils/nav";
 
-  let dropdownHideTimeout: number | undefined;
+  /** @type {number | undefined} */
+  let dropdownHideTimeout;
+
+  /** @type {(() => void) | null} */
+  let cleanupPageNav = null;
 
   function initPageNav() {
+    cleanupPageNav?.();
+
     const backBtn = document.getElementById('back-button');
     const menuBtn = document.getElementById('page-menu-button');
     const menuContent = document.getElementById('page-menu-item');
     const navLinks = document.querySelectorAll('.nav-link');
+    let isMenuOpen = false;
 
-    // Limpiar suscripciones previas si fuera necesario o resetear estado al iniciar
-    isOpen.set(false);
+    if (!backBtn || !menuBtn || !menuContent) return;
 
-    backBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      goBack();
-    });
+    const setMenuOpen = (open) => {
+      if (open === isMenuOpen) return;
 
-    menuBtn?.addEventListener('click', (e) => {
-      e.stopPropagation(); // Evita que el listener del document lo cierre al instante
-      isOpen.set(!isOpen.get());
-    });
+      isMenuOpen = open;
 
-    // Suscripción al store
-    isOpen.subscribe((open) => {
-      if (!menuContent) return;
-
-      if (open) {
+      if (isMenuOpen) {
         if (dropdownHideTimeout) {
           window.clearTimeout(dropdownHideTimeout);
           dropdownHideTimeout = undefined;
@@ -87,34 +84,69 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
 
         menuContent.classList.remove('hidden');
         requestAnimationFrame(() => menuContent.classList.add('page-nav-dropdown--visible'));
-      } else {
-        menuContent.classList.remove('page-nav-dropdown--visible');
-        dropdownHideTimeout = window.setTimeout(() => {
-          menuContent.classList.add('hidden');
-          dropdownHideTimeout = undefined;
-        }, 250);
+        return;
       }
-    });
 
-    // Cerrar al clickar un enlace
-    navLinks.forEach(link => link.addEventListener('click', () => isOpen.set(false)));
+      menuContent.classList.remove('page-nav-dropdown--visible');
+      dropdownHideTimeout = window.setTimeout(() => {
+        menuContent.classList.add('hidden');
+        dropdownHideTimeout = undefined;
+      }, 250);
+    };
 
-    // Cerrar al hacer click fuera
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (isOpen.get() && !menuBtn?.contains(e.target as Node) && !menuContent?.contains(e.target as Node)) {
-        isOpen.set(false);
+    setMenuOpen(false);
+
+    const handleBackClick = (e) => {
+      e.stopPropagation();
+      goBack();
+    };
+
+    const handleMenuClick = (e) => {
+      e.stopPropagation();
+      setMenuOpen(!isMenuOpen);
+    };
+
+    const handleLinkClick = () => {
+      setMenuOpen(false);
+    };
+
+    const handleOutsideClick = (e) => {
+      const target = e.target;
+
+      if (isMenuOpen && target instanceof Node && !menuBtn.contains(target) && !menuContent.contains(target)) {
+        setMenuOpen(false);
       }
     };
 
-    document.addEventListener('click', handleOutsideClick);
-
-    const handleEscapeKey = (e: KeyboardEvent) => {
+    const handleEscapeKey = (e) => {
       if (e.key === 'Escape') {
+        if (isMenuOpen) {
+          setMenuOpen(false);
+          return;
+        }
+
         goBack();
       }
     };
 
+    backBtn.addEventListener('click', handleBackClick);
+    menuBtn.addEventListener('click', handleMenuClick);
+    navLinks.forEach((link) => link.addEventListener('click', handleLinkClick));
+    document.addEventListener('click', handleOutsideClick);
     document.addEventListener('keydown', handleEscapeKey);
+
+    cleanupPageNav = () => {
+      backBtn.removeEventListener('click', handleBackClick);
+      menuBtn.removeEventListener('click', handleMenuClick);
+      navLinks.forEach((link) => link.removeEventListener('click', handleLinkClick));
+      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('keydown', handleEscapeKey);
+
+      if (dropdownHideTimeout) {
+        window.clearTimeout(dropdownHideTimeout);
+        dropdownHideTimeout = undefined;
+      }
+    };
   }
 
   initPageNav();
@@ -137,14 +169,14 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
 
   .page-nav-shell {
     width: 100%;
-    background: linear-gradient(120deg, color-mix(in srgb, theme(colors.primary) 12%, transparent), rgba(15, 15, 15, 0.65));
+    background: linear-gradient(120deg, color-mix(in srgb, var(--color-primary) 12%, transparent), rgba(15, 15, 15, 0.65));
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
     box-shadow:
       0 16px 48px rgba(0, 0, 0, 0.35),
-      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 35%, transparent),
+      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 35%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
@@ -160,7 +192,7 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 60%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 60%, transparent), transparent);
   }
 
   .page-nav-icon {
@@ -171,14 +203,15 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     align-items: center;
     justify-content: center;
     background: color-mix(in srgb, rgba(255, 255, 255, 0.06), transparent);
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    cursor: pointer;
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .page-nav-icon:hover {
-    background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
-    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .page-nav-icon svg {
@@ -201,8 +234,8 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     gap: 0.65rem;
     padding: 0.35rem 1.5rem;
     border-radius: 9999px;
-    background: color-mix(in srgb, theme(colors.primary) 18%, transparent);
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 45%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
     color: rgb(255 255 255 / 0.92);
     text-transform: uppercase;
     font-size: clamp(0.85rem, 1.4vw, 1rem);
@@ -213,14 +246,13 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 9999px;
-    background: color-mix(in srgb, theme(colors.primary) 80%, white 10%);
-    box-shadow: 0 0 12px color-mix(in srgb, theme(colors.primary) 60%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 80%, white 10%);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--color-primary) 60%, transparent);
   }
 
   .page-nav-dropdown {
     padding: 1rem 0;
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
-    background: rgba(8, 8, 8, 0.95);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
     backdrop-filter: blur(20px);
     opacity: 0;
     transform: translateY(-0.75rem) scale(0.98);

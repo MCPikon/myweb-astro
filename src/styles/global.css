@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    /* Colors */
+    --color-primary: #14a1f0;
+    --color-secondary: #087ec4;
+
+    /* Animations */
+    --animate-text: text 5s ease infinite;
+    --animate-roam: roam 20s infinite ease-in-out alternate;
+    --animate-roam1: roam 10s infinite ease-in-out alternate;
+
+    /* Keyframes */
+    @keyframes text {
+        0%,
+        100% {
+            background-size: 200% 200%;
+            background-position: left center;
+        }
+        50% {
+            background-size: 200% 200%;
+            background-position: right center;
+        }
+    }
+
+    @keyframes roam {
+        0% {
+            transform: rotate(0deg) translateX(-600px) translateY(-60px);
+        }
+        100% {
+            transform: rotate(360deg) translateX(400px) translateY(600px);
+        }
+    }
+
+    @keyframes roam1 {
+        0% {
+            transform: rotate(0deg) translateX(-900px) translateY(-20px);
+        }
+        100% {
+            transform: rotate(360deg) translateX(20px);
+        }
+    }
+}

@@ -26,9 +26,49 @@ const i18n = getI18N({ currentLocale });
           <Image class="rounded-xl" src={lostGif} alt="lost-gif" height={lostGif.height} width={lostGif.width} loading={"eager"}/>
         </div>
         <div class="flex justify-center mt-6">
-          <a href={currentLocale === 'es' ? '/' : `/${currentLocale}/`} class="px-4 py-2 bg-primary rounded-xl bg-opacity-10 font-semibold transition-all ease-in-out md:hover:bg-opacity-20">{i18n.NOT_FOUND_BUTTON}</a>
+          <a href={currentLocale === 'es' ? '/' : `/${currentLocale}/`} class="lost-button px-4 py-2 bg-primary rounded-xl bg-opacity-10 font-semibold transition-all ease-in-out md:hover:bg-opacity-20">{i18n.NOT_FOUND_BUTTON}</a>
         </div>
       </div>
     </section>
   </main>
+  <style>
+    .lost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 1rem;
+      color: rgb(255 255 255 / 0.88);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+      box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.3),
+        0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+        inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .lost-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
+    }
+
+    .lost-button:hover {
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+      border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+      box-shadow: 0 6px 16px color-mix(in srgb, var(--color-primary) 20%, transparent);
+      color: rgb(255 255 255 / 1);
+    }
+  </style>
 </Layout>

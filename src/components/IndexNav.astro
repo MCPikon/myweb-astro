@@ -13,7 +13,7 @@ const langPath = currentLocale === "en" ? "/" : "/en";
 ---
 
 <div id="hamburger" class="relative z-50">
-  <div class="fixed right-[-10px] top-[50%] translate-y-[-50%] rotate-[270deg]">
+  <div class="fixed -right-2.5 top-[50%] translate-y-[-50%] rotate-270">
     <button
       id="menu-button"
       aria-expanded="false"
@@ -30,7 +30,7 @@ const langPath = currentLocale === "en" ? "/" : "/en";
 
   <div 
     id="menu-content" 
-    class="fixed inset-0 glass-overlay z-[-10] invisible opacity-0 transition-all duration-500 ease-in-out"
+    class="fixed inset-0 glass-overlay -z-10 invisible opacity-0 transition-all duration-500 ease-in-out"
   >
     <nav class="h-full flex items-center justify-center">
       <div class="glass-panel">
@@ -83,14 +83,14 @@ const langPath = currentLocale === "en" ? "/" : "/en";
 <style>
   /* ── Liquid Glass: botón lateral ── */
   .glass-btn {
-    background: color-mix(in srgb, theme(colors.primary) 35%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 35%, transparent);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
     border-bottom: none;
     box-shadow:
-      0 4px 24px color-mix(in srgb, theme(colors.primary) 20%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 30%, transparent),
+      0 4px 24px color-mix(in srgb, var(--color-primary) 20%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 30%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.08);
     color: white;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
@@ -98,12 +98,12 @@ const langPath = currentLocale === "en" ? "/" : "/en";
   }
 
   .glass-btn:hover {
-    background: color-mix(in srgb, theme(colors.primary) 25%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 25%, transparent);
     box-shadow:
-      0 6px 32px color-mix(in srgb, theme(colors.primary) 35%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 45%, transparent),
+      0 6px 32px color-mix(in srgb, var(--color-primary) 35%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 45%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    border-color: color-mix(in srgb, theme(colors.primary) 50%, white);
+    border-color: color-mix(in srgb, var(--color-primary) 50%, white);
   }
 
   /* ── Overlay del menú ── */
@@ -116,15 +116,15 @@ const langPath = currentLocale === "en" ? "/" : "/en";
 
   /* ── Panel central de cristal ── */
   .glass-panel {
-    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     border-radius: 32px;
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
     box-shadow:
       0 32px 80px rgba(0, 0, 0, 0.4),
-      0 0 60px color-mix(in srgb, theme(colors.primary) 10%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      0 0 60px color-mix(in srgb, var(--color-primary) 10%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
@@ -138,7 +138,7 @@ const langPath = currentLocale === "en" ? "/" : "/en";
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 60%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 60%, transparent), transparent);
   }
 
   /* Brillo lateral izquierdo */
@@ -149,7 +149,7 @@ const langPath = currentLocale === "en" ? "/" : "/en";
     left: 0;
     width: 1px;
     height: 40%;
-    background: linear-gradient(180deg, transparent, color-mix(in srgb, theme(colors.primary) 40%, transparent), transparent);
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--color-primary) 40%, transparent), transparent);
   }
 
   /* ── Links principales ── */
@@ -160,32 +160,34 @@ const langPath = currentLocale === "en" ? "/" : "/en";
     position: relative;
     background: transparent;
     border: 1px solid transparent;
+    cursor: pointer;
   }
 
   .glass-link:hover {
     color: white;
-    background: color-mix(in srgb, theme(colors.primary) 18%, transparent);
-    border-color: color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 18%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
     box-shadow:
-      0 8px 24px color-mix(in srgb, theme(colors.primary) 20%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 30%, transparent);
-    text-shadow: 0 0 20px color-mix(in srgb, theme(colors.primary) 60%, transparent);
+      0 8px 24px color-mix(in srgb, var(--color-primary) 20%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 30%, transparent);
+    text-shadow: 0 0 20px color-mix(in srgb, var(--color-primary) 60%, transparent);
     transform: translateY(-1px);
   }
 
   /* ── Links secundarios (CV / idioma) ── */
   .glass-link-sm {
-    color: color-mix(in srgb, theme(colors.primary) 60%, white);
+    color: color-mix(in srgb, var(--color-primary) 60%, white);
     transition: all 0.25s ease;
     background: transparent;
     border: 1px solid transparent;
+    cursor: pointer;
   }
 
   .glass-link-sm:hover {
     color: white;
-    background: color-mix(in srgb, theme(colors.primary) 15%, transparent);
-    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
-    box-shadow: 0 4px 16px color-mix(in srgb, theme(colors.primary) 20%, transparent), inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 20%, transparent), inset 0 1px 0 color-mix(in srgb, var(--color-primary) 20%, transparent);
     transform: translateY(-1px);
   }
 

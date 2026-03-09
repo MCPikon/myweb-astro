@@ -23,12 +23,14 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
 <>
     <div id={name} class="reveal flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
         <Image
-            class={"rounded-xl w-96 transition-all ease-in-out md:hover:scale-110"}
+            class={"h-auto w-full max-w-md rounded-xl transition-all ease-in-out md:hover:scale-110 lg:w-96"}
             src={image}
             alt={name}
-            height={150}
-            width={200}
-            loading={"eager"}
+            width={384}
+            height={216}
+            widths={[384, 512, 768]}
+            sizes="(min-width: 1024px) 384px, (min-width: 768px) 512px, 100vw"
+            loading="lazy"
             transition:name={name}
         />
         <div class="flex flex-col gap-3">
@@ -41,7 +43,7 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
         <div class="flex gap-3 justify-center lg:justify-start flex-wrap">
             {tech.map((techItem) => {
             return (
-                <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary bg-opacity-10">
+                <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary/10">
                 {techItem}
                 </span>
             );
@@ -83,13 +85,13 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
     border-radius: 1rem;
     font-weight: 600;
     letter-spacing: 0.04em;
-    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
     color: rgb(255 255 255 / 0.92);
     box-shadow:
       0 16px 48px rgba(0, 0, 0, 0.3),
-      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
@@ -103,14 +105,14 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
     left: 20%;
     right: 20%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
   }
 
   .project-item-button:hover {
-    background: color-mix(in srgb, theme(colors.primary) 15%, transparent);
-    border-color: color-mix(in srgb, theme(colors.primary) 30%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
     color: rgb(255 255 255 / 1);
-    box-shadow: 0 6px 18px color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--color-primary) 20%, transparent);
   }
 
   .project-item-icon {

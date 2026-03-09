@@ -9,14 +9,21 @@ const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })
 ---
 <div class="reveal mx-auto py-4 lg:py-4">
-    <div class="w-40 text-center mx-auto">
-      <Image class="rounded-full text-center" src={pfp} alt="Javier Picón" loading="eager" />
+    <div class="mx-auto w-28 text-center sm:w-32 md:w-40">
+      <Image
+        class="h-auto w-full rounded-full text-center"
+        src={pfp}
+        alt="Javier Picón"
+        loading="eager"
+        widths={[112, 128, 160, 320]}
+        sizes="(min-width: 768px) 160px, (min-width: 640px) 128px, 112px"
+      />
     </div>
     <div class="text-center">
-      <h1 class="py-4 tracking-tight text-gray-300 flex items-center gap-2 justify-center">
-        {i18n.HERO_CONTENT_TITLE}<span><Image class="size-6" loading={"eager"} src={wavingHand} alt="waving hand emoji" height={wavingHand.height} width={wavingHand.width}/></span>
+      <h1 class="py-4 text-gray-300 flex items-center gap-2 justify-center">
+        {i18n.HERO_CONTENT_TITLE}<span><Image class="size-5 sm:size-6" loading="eager" src={wavingHand} alt="waving hand emoji" widths={[20, 24, 32]} sizes="(min-width: 640px) 24px, 20px" /></span>
       </h1>
-      <p class="text-3xl font-bold text-secondary text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-300 sm:text-3xl md:text-5xl pb-2">
+      <p class="pb-2 text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-cyan-300 sm:text-3xl md:text-5xl">
       {i18n.HERO_CONTENT_SUBTITLE}
       </p>
       <p class="w-5/6 mx-auto mt-2 text-gray-100 font-medium">{i18n.HERO_CONTENT_DESCRIPTION}</p>

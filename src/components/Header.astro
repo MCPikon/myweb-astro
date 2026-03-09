@@ -61,27 +61,48 @@ import LinkedinIcon from "./icons/Linkedin.astro"
 </section>
 
 <script>
+  /** @type {(() => void) | null} */
+  let cleanupHeader = null;
+
   function setupHeader() {
     const headerSection = document.querySelector('.header-section');
     const navContent = document.querySelector('.nav-content');
 
     if (!headerSection || !navContent) return;
 
-    // Reset al estado inicial
-    headerSection.classList.remove('scrolled');
-    navContent.classList.remove('scrolled');
+    cleanupHeader?.();
 
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        headerSection.classList.add('scrolled');
-        navContent.classList.add('scrolled');
-      } else {
-        headerSection.classList.remove('scrolled');
-        navContent.classList.remove('scrolled');
-      }
+    let lastScrolledState = window.scrollY > 0;
+    let ticking = false;
+
+    /** @param {boolean} isScrolled */
+    const syncScrolledState = (isScrolled) => {
+      if (isScrolled === lastScrolledState) return;
+
+      lastScrolledState = isScrolled;
+      headerSection.classList.toggle('scrolled', isScrolled);
+      navContent.classList.toggle('scrolled', isScrolled);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    headerSection.classList.toggle('scrolled', lastScrolledState);
+    navContent.classList.toggle('scrolled', lastScrolledState);
+
+    const handleScroll = () => {
+      if (ticking) return;
+
+      ticking = true;
+
+      window.requestAnimationFrame(() => {
+        syncScrolledState(window.scrollY > 0);
+        ticking = false;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    cleanupHeader = () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }
 
   setupHeader();
@@ -100,12 +121,19 @@ import LinkedinIcon from "./icons/Linkedin.astro"
       top 0.5s cubic-bezier(0.65, 0, 0.35, 1),
       transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
     transform: translateX(-50%);
+    will-change: width, top, transform;
   }
 
   @media (max-width: 768px) {
     .header-section {
       width: calc(100% - 1.5rem);
       margin: 0.5rem auto 1.25rem;
+      transition:
+        width 0.42s cubic-bezier(0.65, 0, 0.35, 1),
+        margin 0.42s cubic-bezier(0.65, 0, 0.35, 1),
+        top 0.42s cubic-bezier(0.65, 0, 0.35, 1),
+        transform 0.42s cubic-bezier(0.65, 0, 0.35, 1);
+      will-change: width, top, transform;
     }
   }
 
@@ -121,19 +149,36 @@ import LinkedinIcon from "./icons/Linkedin.astro"
 
   .glass-header {
     width: 100%;
-    background: color-mix(in srgb, theme(colors.primary) 8%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid color-mix(in srgb, theme(colors.primary) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
     box-shadow:
       0 16px 48px rgba(0, 0, 0, 0.3),
-      0 0 40px color-mix(in srgb, theme(colors.primary) 8%, transparent),
-      inset 0 1px 0 color-mix(in srgb, theme(colors.primary) 25%, transparent),
+      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
     border-radius: 9999px;
-    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition:
+      border-radius 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      background 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      border-color 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      box-shadow 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    will-change: border-radius;
+  }
+
+  @media (max-width: 768px) {
+    .glass-header {
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      transition:
+        border-radius 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        background 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        border-color 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        box-shadow 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
   }
 
   .glass-header.scrolled {
@@ -150,7 +195,7 @@ import LinkedinIcon from "./icons/Linkedin.astro"
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, theme(colors.primary) 50%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
   }
 
   .email-link-desktop,
@@ -163,7 +208,7 @@ import LinkedinIcon from "./icons/Linkedin.astro"
   }
 
   .glass-link-header:hover {
-    background: color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .glass-icon {
@@ -172,15 +217,15 @@ import LinkedinIcon from "./icons/Linkedin.astro"
   }
 
   .glass-icon:hover {
-    background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
-    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .email-link-desktop:hover .glass-icon {
-    background: color-mix(in srgb, theme(colors.primary) 12%, transparent);
-    border-color: color-mix(in srgb, theme(colors.primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, theme(colors.primary) 15%, transparent);
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .email-link-desktop:hover .mail-icon,

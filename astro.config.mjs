@@ -1,27 +1,19 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
 import robotsTxt from "astro-robots-txt";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://javier-picon.vercel.app",
   prefetch: true,
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
     compress(),
     sitemap(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
     robotsTxt({
       sitemap: [
         "https://javier-picon.vercel.app/sitemap-0.xml",
