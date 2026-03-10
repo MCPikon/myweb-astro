@@ -13,20 +13,19 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
 
 <header class="page-nav-header relative z-30">
   <div class="page-nav-shell flex items-center gap-3">
-    <button id="back-button" class="page-nav-icon" type="button">
+    <button id="back-button" class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]" type="button">
       <svg xmlns="http://www.w3.org/2000/svg" class="size-5 fill-white/80" viewBox="0 0 320 512">
         <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
       </svg>
     </button>
 
     <h1 class="page-nav-title">
-      <span class="page-nav-title-chip">
-        <span class="page-nav-title-dot" aria-hidden="true"></span>
+      <span class="page-nav-title-chip text-white/90">
         {title}
       </span>
     </h1>
 
-    <button id="page-menu-button" class="page-nav-icon" type="button">
+    <button id="page-menu-button" class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]" type="button">
       <svg class="size-5 stroke-white/80" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6H20M4 12H14M4 18H9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
@@ -35,154 +34,58 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
 
   <div
     id="page-menu-item"
-    class="page-nav-dropdown hidden absolute z-50 w-full sm:w-96 right-0 top-full mt-4 rounded-3xl h-auto bg-black border border-white/10 shadow-2xl transition-all"
+    class="page-nav-dropdown hidden absolute z-50 w-full sm:w-96 right-0 top-full mt-2 sm:mt-3 rounded-2xl h-auto transition-all"
   >
-    <div class="flex flex-col justify-center items-center gap-4 px-4 m-4 py-4">
+    <div class="flex flex-col justify-center items-center gap-3 px-3 m-3 py-3 sm:gap-4 sm:px-4 sm:m-4 sm:py-4">
       {["", "#about", "#experience"].map((path, idx) => (
-        <a class="nav-link w-full py-2 bg-primary/10 text-center rounded-xl hover:bg-primary/5 text-primary font-bold" 
+        <a class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold" 
            href={getI18NPath(currentLocale, path)}>
           {idx === 0 ? i18n.INDEX_AND_PAGE_NAV_LINK_1 : idx === 1 ? i18n.INDEX_AND_PAGE_NAV_LINK_3 : i18n.INDEX_AND_PAGE_NAV_LINK_4}
         </a>
       ))}
-      <a class="nav-link w-full py-2 bg-primary/10 text-center rounded-xl hover:bg-primary/5 text-primary font-bold" href={cvPath} target="_blank">
+      <a class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold" href={cvPath} target="_blank">
         {i18n.INDEX_AND_PAGE_NAV_LINK_5}
       </a>
     </div>
   </div>
 </header>
-
 <script>
-  import { goBack } from "@/utils/nav";
+  import { initPageNav } from '@/utils/pageNav'
 
-  /** @type {number | undefined} */
-  let dropdownHideTimeout;
-
-  /** @type {(() => void) | null} */
-  let cleanupPageNav = null;
-
-  function initPageNav() {
-    cleanupPageNav?.();
-
-    const backBtn = document.getElementById('back-button');
-    const menuBtn = document.getElementById('page-menu-button');
-    const menuContent = document.getElementById('page-menu-item');
-    const navLinks = document.querySelectorAll('.nav-link');
-    let isMenuOpen = false;
-
-    if (!backBtn || !menuBtn || !menuContent) return;
-
-    const setMenuOpen = (open) => {
-      if (open === isMenuOpen) return;
-
-      isMenuOpen = open;
-
-      if (isMenuOpen) {
-        if (dropdownHideTimeout) {
-          window.clearTimeout(dropdownHideTimeout);
-          dropdownHideTimeout = undefined;
-        }
-
-        menuContent.classList.remove('hidden');
-        requestAnimationFrame(() => menuContent.classList.add('page-nav-dropdown--visible'));
-        return;
-      }
-
-      menuContent.classList.remove('page-nav-dropdown--visible');
-      dropdownHideTimeout = window.setTimeout(() => {
-        menuContent.classList.add('hidden');
-        dropdownHideTimeout = undefined;
-      }, 250);
-    };
-
-    setMenuOpen(false);
-
-    const handleBackClick = (e) => {
-      e.stopPropagation();
-      goBack();
-    };
-
-    const handleMenuClick = (e) => {
-      e.stopPropagation();
-      setMenuOpen(!isMenuOpen);
-    };
-
-    const handleLinkClick = () => {
-      setMenuOpen(false);
-    };
-
-    const handleOutsideClick = (e) => {
-      const target = e.target;
-
-      if (isMenuOpen && target instanceof Node && !menuBtn.contains(target) && !menuContent.contains(target)) {
-        setMenuOpen(false);
-      }
-    };
-
-    const handleEscapeKey = (e) => {
-      if (e.key === 'Escape') {
-        if (isMenuOpen) {
-          setMenuOpen(false);
-          return;
-        }
-
-        goBack();
-      }
-    };
-
-    backBtn.addEventListener('click', handleBackClick);
-    menuBtn.addEventListener('click', handleMenuClick);
-    navLinks.forEach((link) => link.addEventListener('click', handleLinkClick));
-    document.addEventListener('click', handleOutsideClick);
-    document.addEventListener('keydown', handleEscapeKey);
-
-    cleanupPageNav = () => {
-      backBtn.removeEventListener('click', handleBackClick);
-      menuBtn.removeEventListener('click', handleMenuClick);
-      navLinks.forEach((link) => link.removeEventListener('click', handleLinkClick));
-      document.removeEventListener('click', handleOutsideClick);
-      document.removeEventListener('keydown', handleEscapeKey);
-
-      if (dropdownHideTimeout) {
-        window.clearTimeout(dropdownHideTimeout);
-        dropdownHideTimeout = undefined;
-      }
-    };
-  }
-
-  initPageNav();
-  document.addEventListener('astro:after-swap', initPageNav);
+  initPageNav()
+  document.addEventListener('astro:after-swap', initPageNav)
 </script>
 
 <style>
   .page-nav-header {
     width: min(1200px, calc(100% - 2rem));
-    margin: 0.5rem auto 0.75rem;
+    margin: 0.35rem auto 0.6rem;
     padding: 0;
   }
 
   @media (max-width: 768px) {
     .page-nav-header {
       width: calc(100% - 1.5rem);
-      margin-top: 0.35rem;
+      margin: 0.2rem auto 0.5rem;
     }
   }
 
   .page-nav-shell {
     width: 100%;
-    background: linear-gradient(120deg, color-mix(in srgb, var(--color-primary) 12%, transparent), rgba(15, 15, 15, 0.65));
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
-    box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.35),
-      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
-      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 35%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
     border-radius: 9999px;
-    padding: 0.75rem 1.5rem;
-    gap: 0.75rem;
+    padding: 0.55rem 1.1rem;
+    gap: 0.6rem;
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.3),
+      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   }
 
   .page-nav-shell::before {
@@ -192,20 +95,18 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 60%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 45%, transparent), transparent);
   }
 
   .page-nav-icon {
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 0.9rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: color-mix(in srgb, rgba(255, 255, 255, 0.06), transparent);
     cursor: pointer;
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .page-nav-icon:hover {
@@ -231,33 +132,48 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
-    padding: 0.35rem 1.5rem;
-    border-radius: 9999px;
-    background: color-mix(in srgb, var(--color-primary) 18%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+    gap: 0.55rem;
+    padding: 0;
+    border-radius: 0;
     color: rgb(255 255 255 / 0.92);
     text-transform: uppercase;
-    font-size: clamp(0.85rem, 1.4vw, 1rem);
-    letter-spacing: 0.15em;
-  }
-
-  .page-nav-title-dot {
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 9999px;
-    background: color-mix(in srgb, var(--color-primary) 80%, white 10%);
-    box-shadow: 0 0 12px color-mix(in srgb, var(--color-primary) 60%, transparent);
+    font-size: clamp(0.82rem, 1.6vw, 0.95rem);
+    letter-spacing: 0.12em;
   }
 
   .page-nav-dropdown {
-    padding: 1rem 0;
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
-    backdrop-filter: blur(20px);
+    padding: 0.75rem 0;
     opacity: 0;
     transform: translateY(-0.75rem) scale(0.98);
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.32),
+      0 0 32px color-mix(in srgb, var(--color-primary) 10%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 22%, transparent);
+  }
+
+  @media (max-width: 768px) {
+    .page-nav-shell {
+      padding: 0.45rem 0.85rem;
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+    }
+
+    .page-nav-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.7rem;
+    }
+
+    .page-nav-title-chip {
+      font-size: clamp(0.78rem, 3vw, 0.92rem);
+      letter-spacing: 0.1em;
+    }
   }
 
   .page-nav-dropdown--visible {

@@ -143,6 +143,43 @@ Guidance for AI coding agents collaborating on this Astro + React + Tailwind por
 - Use manual inspection plus `pnpm build` as the default verification path.
 - Capture reproduction steps or manual test plans in PR summaries.
 
+## Frontend Design Principles
+
+Before building any UI component, page, or visual element, commit to a clear aesthetic direction:
+
+- **Purpose first**: Understand what problem the interface solves and who uses it before writing a single class.
+- **Pick a bold tone**: Brutally minimal, retro-futuristic, editorial, brutalist, art-deco, soft/pastel, industrial — choose one and execute it with precision. Intentionality matters more than intensity.
+- **Differentiation**: Identify the one thing a user will remember about this interface.
+
+### Typography
+- Choose fonts that are beautiful, unique, and context-appropriate. Never default to Arial, Inter, Roboto, or system fonts.
+- Pair a distinctive display font with a refined body font.
+- Load custom fonts via `<link rel="preload">` in layouts and declare them in `tailwind.config.cjs`.
+
+### Color & Theme
+- Commit to a cohesive palette with CSS variables. Dominant colors with sharp accents outperform timid, evenly-distributed ones.
+- The existing dark base (`rgb(20,20,20)`) is the canvas; build on it deliberately.
+- Never use clichéd purple-gradient-on-white schemes.
+
+### Motion & Animation
+- Prioritize CSS-only animations for `.astro` components; use the Motion library inside React islands.
+- One well-orchestrated page-load sequence (staggered `animation-delay`) creates more impact than scattered micro-interactions.
+- Respect `prefers-reduced-motion`; wrap heavy animations accordingly.
+- Leverage existing `.reveal`, `.reveal-zoom`, and `.reveal-delay-*` hooks before inventing new ones.
+
+### Spatial Composition
+- Favor asymmetry, overlap, and grid-breaking elements over predictable layouts.
+- Use generous negative space OR controlled density — never an indecisive middle ground.
+
+### Backgrounds & Visual Depth
+- Avoid flat solid backgrounds; create atmosphere with gradient meshes, noise textures, geometric patterns, or layered transparencies.
+- Apply dramatic shadows, decorative borders, or grain overlays when they serve the aesthetic direction.
+
+### Anti-Patterns to Avoid
+- Generic AI aesthetics: Space Grotesk, Inter, purple gradients, cookie-cutter card grids.
+- Inconsistent aesthetics across pages; every component should feel like it belongs to the same design system.
+- Inline styles for theming — always extend `tailwind.config.cjs` or use `@layer components`.
+
 ## Support Channels
 - There are no automation rule files; this document is the single source of truth.
 - Mention this file when onboarding new agents.

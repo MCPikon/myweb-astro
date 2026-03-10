@@ -7,8 +7,12 @@ import GitHubIcon from "./icons/GitHub.astro"
 import LinkedinIcon from "./icons/Linkedin.astro"
 ---
 
-<section class="z-50 fixed header-section">
-  <nav class="glass-header flex items-center justify-between px-4 py-2 rounded-full nav-content">
+<section
+  class='header-section fixed left-1/2 right-auto top-5 z-50 mx-auto mt-3 mb-6 w-[min(1200px,calc(100%-2rem))] -translate-x-1/2 transition-[width,margin,top,transform] duration-[500ms] ease-[cubic-bezier(0.65,0,0.35,1)] max-md:mt-2 max-md:mb-5 max-md:w-[calc(100%-1.5rem)] max-md:duration-[420ms]'
+>
+  <nav
+    class='glass-header nav-content relative flex w-full items-center justify-between overflow-hidden rounded-full px-4 py-2 transition-[border-radius,background,border-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] max-md:duration-[420ms]'
+  >
     <div class="flex items-center gap-2">
       <a
         aria-label={EMAIL}
@@ -61,94 +65,25 @@ import LinkedinIcon from "./icons/Linkedin.astro"
 </section>
 
 <script>
-  /** @type {(() => void) | null} */
-  let cleanupHeader = null;
+  import { initHeaderScroll } from '@/utils/headerScroll'
 
-  function setupHeader() {
-    const headerSection = document.querySelector('.header-section');
-    const navContent = document.querySelector('.nav-content');
-
-    if (!headerSection || !navContent) return;
-
-    cleanupHeader?.();
-
-    let lastScrolledState = window.scrollY > 0;
-    let ticking = false;
-
-    /** @param {boolean} isScrolled */
-    const syncScrolledState = (isScrolled) => {
-      if (isScrolled === lastScrolledState) return;
-
-      lastScrolledState = isScrolled;
-      headerSection.classList.toggle('scrolled', isScrolled);
-      navContent.classList.toggle('scrolled', isScrolled);
-    };
-
-    headerSection.classList.toggle('scrolled', lastScrolledState);
-    navContent.classList.toggle('scrolled', lastScrolledState);
-
-    const handleScroll = () => {
-      if (ticking) return;
-
-      ticking = true;
-
-      window.requestAnimationFrame(() => {
-        syncScrolledState(window.scrollY > 0);
-        ticking = false;
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    cleanupHeader = () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }
-
-  setupHeader();
-  document.addEventListener('astro:after-swap', setupHeader);
+  initHeaderScroll()
 </script>
 
 <style>
   .header-section {
-    margin: 0.75rem auto 1.5rem;
-    width: min(1200px, calc(100% - 2rem));
-    top: 1.25rem;
-    left: 50%;
-    right: auto;
-    transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1),
-      margin 0.5s cubic-bezier(0.65, 0, 0.35, 1),
-      top 0.5s cubic-bezier(0.65, 0, 0.35, 1),
-      transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-    transform: translateX(-50%);
     will-change: width, top, transform;
-  }
-
-  @media (max-width: 768px) {
-    .header-section {
-      width: calc(100% - 1.5rem);
-      margin: 0.5rem auto 1.25rem;
-      transition:
-        width 0.42s cubic-bezier(0.65, 0, 0.35, 1),
-        margin 0.42s cubic-bezier(0.65, 0, 0.35, 1),
-        top 0.42s cubic-bezier(0.65, 0, 0.35, 1),
-        transform 0.42s cubic-bezier(0.65, 0, 0.35, 1);
-      will-change: width, top, transform;
-    }
   }
 
   .header-section.scrolled {
     margin: 0;
     width: 100%;
     top: 0;
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
     padding: 0;
   }
 
+
   .glass-header {
-    width: 100%;
     background: color-mix(in srgb, var(--color-primary) 8%, transparent);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
@@ -158,14 +93,6 @@ import LinkedinIcon from "./icons/Linkedin.astro"
       0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-    border-radius: 9999px;
-    transition:
-      border-radius 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-      background 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-      border-color 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-      box-shadow 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     will-change: border-radius;
   }
 
@@ -173,19 +100,12 @@ import LinkedinIcon from "./icons/Linkedin.astro"
     .glass-header {
       backdrop-filter: blur(24px) saturate(160%);
       -webkit-backdrop-filter: blur(24px) saturate(160%);
-      transition:
-        border-radius 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-        background 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-        border-color 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-        box-shadow 0.42s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
   }
 
   .glass-header.scrolled {
     border-radius: 0;
     border-color: transparent;
-    width: 100%;
-    margin: 0 auto;
   }
 
   .glass-header::before {
@@ -214,6 +134,13 @@ import LinkedinIcon from "./icons/Linkedin.astro"
   .glass-icon {
     background: transparent;
     border: 1px solid transparent;
+  }
+
+  .glass-icon svg {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    shape-rendering: geometricPrecision;
   }
 
   .glass-icon:hover {
