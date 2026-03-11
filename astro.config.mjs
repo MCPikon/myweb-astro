@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import compress from "astro-compress";
 import sitemap from "@astrojs/sitemap";
 import robotsTxt from "astro-robots-txt";
@@ -11,6 +11,13 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  fonts: [
+    {
+      name: "IBM Plex Sans",
+      cssVariable: "--font-ibm-plex-sans",
+      provider: fontProviders.google(),
+    },
+  ],
   integrations: [
     compress(),
     sitemap(),

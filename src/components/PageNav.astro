@@ -8,14 +8,26 @@ interface Props {
 
 const { currentLocale, title } = Astro.props;
 const i18n = getI18N({ currentLocale });
-const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
+const cvLang = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
+const cvPath =
+  "https://gppfcbvhaqtribpz.public.blob.vercel-storage.com" + cvLang;
 ---
 
 <header class="page-nav-header relative z-30">
   <div class="page-nav-shell flex items-center gap-3">
-    <button id="back-button" class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]" type="button">
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-5 fill-white/80" viewBox="0 0 320 512">
-        <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+    <button
+      id="back-button"
+      class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]"
+      type="button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-5 fill-white/80"
+        viewBox="0 0 320 512"
+      >
+        <path
+          d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+        ></path>
       </svg>
     </button>
 
@@ -25,9 +37,21 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
       </span>
     </h1>
 
-    <button id="page-menu-button" class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]" type="button">
-      <svg class="size-5 stroke-white/80" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 6H20M4 12H14M4 18H9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+    <button
+      id="page-menu-button"
+      class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]"
+      type="button"
+    >
+      <svg
+        class="size-5 stroke-white/80"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 6H20M4 12H14M4 18H9"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
       </svg>
     </button>
   </div>
@@ -36,24 +60,38 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     id="page-menu-item"
     class="page-nav-dropdown hidden absolute z-50 w-full sm:w-96 right-0 top-full mt-2 sm:mt-3 rounded-2xl h-auto transition-all"
   >
-    <div class="flex flex-col justify-center items-center gap-3 px-3 m-3 py-3 sm:gap-4 sm:px-4 sm:m-4 sm:py-4">
-      {["", "#about", "#experience"].map((path, idx) => (
-        <a class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold" 
-           href={getI18NPath(currentLocale, path)}>
-          {idx === 0 ? i18n.INDEX_AND_PAGE_NAV_LINK_1 : idx === 1 ? i18n.INDEX_AND_PAGE_NAV_LINK_3 : i18n.INDEX_AND_PAGE_NAV_LINK_4}
-        </a>
-      ))}
-      <a class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold" href={cvPath} target="_blank">
+    <div
+      class="flex flex-col justify-center items-center gap-3 px-3 m-3 py-3 sm:gap-4 sm:px-4 sm:m-4 sm:py-4"
+    >
+      {
+        ["", "#about", "#experience"].map((path, idx) => (
+          <a
+            class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold"
+            href={getI18NPath(currentLocale, path)}
+          >
+            {idx === 0
+              ? i18n.INDEX_AND_PAGE_NAV_LINK_1
+              : idx === 1
+                ? i18n.INDEX_AND_PAGE_NAV_LINK_3
+                : i18n.INDEX_AND_PAGE_NAV_LINK_4}
+          </a>
+        ))
+      }
+      <a
+        class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold"
+        href={cvPath}
+        target="_blank"
+      >
         {i18n.INDEX_AND_PAGE_NAV_LINK_5}
       </a>
     </div>
   </div>
 </header>
 <script>
-  import { initPageNav } from '@/utils/pageNav'
+  import { initPageNav } from "@/utils/pageNav";
 
-  initPageNav()
-  document.addEventListener('astro:after-swap', initPageNav)
+  initPageNav();
+  document.addEventListener("astro:after-swap", initPageNav);
 </script>
 
 <style>
@@ -89,13 +127,18 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
   }
 
   .page-nav-shell::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 45%, transparent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 45%, transparent),
+      transparent
+    );
   }
 
   .page-nav-icon {
@@ -112,11 +155,15 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
   .page-nav-icon:hover {
     background: color-mix(in srgb, var(--color-primary) 12%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .page-nav-icon svg {
-    transition: color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+    transition:
+      color 0.3s ease,
+      fill 0.3s ease,
+      stroke 0.3s ease;
   }
 
   .page-nav-title {
@@ -146,7 +193,9 @@ const cvPath = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
     opacity: 0;
     transform: translateY(-0.75rem) scale(0.98);
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
     background: color-mix(in srgb, var(--color-primary) 8%, transparent);
     backdrop-filter: blur(32px) saturate(180%);
     -webkit-backdrop-filter: blur(32px) saturate(180%);
