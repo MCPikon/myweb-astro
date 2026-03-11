@@ -7,7 +7,6 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://javier-picon.vercel.app",
-  prefetch: true,
   vite: {
     plugins: [tailwindcss()],
   },

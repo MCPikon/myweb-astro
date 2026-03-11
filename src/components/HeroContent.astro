@@ -1,57 +1,80 @@
 ---
 import { Image } from "astro:assets";
-import pfp from "public/pfp.webp"
-import wavingHand from "public/waving_hand.png"
+import pfp from "public/pfp.webp";
+import wavingHand from "public/waving_hand.png";
 
-import { getI18N } from "@/i18n"
+import { getI18N } from "@/i18n";
 
-const { currentLocale } = Astro
-const i18n = getI18N({ currentLocale })
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
+
 <div class="reveal mx-auto py-4 lg:py-4">
-    <div class="mx-auto w-28 text-center sm:w-32 md:w-40">
-      <Image
-        class="h-auto w-full rounded-full text-center"
-        src={pfp}
-        alt="Javier Picón"
-        loading="eager"
-        widths={[112, 128, 160, 320]}
-        sizes="(min-width: 768px) 160px, (min-width: 640px) 128px, 112px"
-      />
-    </div>
-    <div class="text-center">
-      <h1 class="py-4 text-gray-300 flex items-center gap-2 justify-center">
-        {i18n.HERO_CONTENT_TITLE}<span><Image class="size-5 sm:size-6" loading="eager" src={wavingHand} alt="waving hand emoji" widths={[20, 24, 32]} sizes="(min-width: 640px) 24px, 20px" /></span>
-      </h1>
-      <p class="pb-2 text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-cyan-300 sm:text-3xl md:text-5xl">
+  <div class="mx-auto w-28 text-center sm:w-32 md:w-40">
+    <Image
+      class="h-auto w-full rounded-full text-center"
+      src={pfp}
+      alt="Javier Picón"
+      loading="eager"
+      widths={[112, 128, 160, 320]}
+      sizes="(min-width: 768px) 160px, (min-width: 640px) 128px, 112px"
+    />
+  </div>
+  <div class="text-center">
+    <h1 class="py-4 text-gray-300 flex items-center gap-2 justify-center">
+      {i18n.HERO_CONTENT_TITLE}<span
+        ><Image
+          class="size-5 sm:size-6 animate-wave-content inline-block origin-bottom"
+          loading="eager"
+          src={wavingHand}
+          alt="waving hand emoji"
+          widths={[20, 24, 32]}
+          sizes="(min-width: 640px) 24px, 20px"
+        /></span
+      >
+    </h1>
+    <p
+      class="pb-2 text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-cyan-300 sm:text-3xl md:text-5xl"
+    >
       {i18n.HERO_CONTENT_SUBTITLE}
-      </p>
-      <p class="w-5/6 mx-auto mt-2 text-gray-100 font-medium">{i18n.HERO_CONTENT_DESCRIPTION}</p>
-      <div>
-        <svg viewBox="0 0 24 24" class="animate-bounce stroke-primary h-12 flex justify-center w-full mt-8" height="1em" fill="none" xmlns="http://www.w3.org/2000/svg"
-          ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
-            id="SVGRepo_tracerCarrier"
+    </p>
+    <p class="w-5/6 mx-auto mt-2 text-gray-100 font-medium">
+      {i18n.HERO_CONTENT_DESCRIPTION}
+    </p>
+    <div>
+      <svg
+        viewBox="0 0 24 24"
+        class="animate-bounce stroke-primary h-12 flex justify-center w-full mt-8"
+        height="1em"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+          <path
+            d="M19 9L14 14.1599C13.7429 14.4323 13.4329 14.6493 13.089 14.7976C12.7451 14.9459 12.3745 15.0225 12 15.0225C11.6255 15.0225 11.2549 14.9459 10.9109 14.7976C10.567 14.6493 10.2571 14.4323 10 14.1599L5 9"
+            stroke-width="1.5"
             stroke-linecap="round"
-            stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-            <path
-              d="M19 9L14 14.1599C13.7429 14.4323 13.4329 14.6493 13.089 14.7976C12.7451 14.9459 12.3745 15.0225 12 15.0225C11.6255 15.0225 11.2549 14.9459 10.9109 14.7976C10.567 14.6493 10.2571 14.4323 10 14.1599L5 9"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </g></svg
-        >
-      </div>
+            stroke-linejoin="round"></path>
+        </g></svg
+      >
     </div>
   </div>
+</div>
 <style is:inline>
-    :root {
-      --color: #087ec4;
+  :root {
+    --color: #087ec4;
+  }
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
     }
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    to {
+      transform: rotate(360deg);
     }
-    .animate-spin-slow {
-      animation: spin-slow 8s linear infinite;
-    }
-  </style>
+  }
+  .animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+  }
+</style>

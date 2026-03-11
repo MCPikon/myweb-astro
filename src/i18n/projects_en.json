@@ -20,8 +20,8 @@
         "TYPE": "REST API",
         "GITHUB_URL": "https://github.com/MCPikon/cinemawebback",
         "IMAGE_PATH": "/projects/cinemawebback.webp",
-        "DESCRIPTION": "REST API related to movies, series and its reviews created with Java and Spring Boot.",
-        "TECH": ["Java", "Spring Boot", "MongoDB", "JUnit 5", "Mockito", "Swagger UI", "Docker"]
+        "DESCRIPTION": "REST API related to movies, series, and reviews, built with Java 17, Spring Boot 3, and MongoDB.",
+        "TECH": ["Java 17", "Spring Boot 3", "MongoDB", "JUnit 5", "Mockito", "Swagger UI", "Docker"]
     },
     {
         "NAME": "link_bio",
