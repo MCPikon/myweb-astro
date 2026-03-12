@@ -52,6 +52,8 @@ const langPath = currentLocale === "en" ? "/" : "/en";
             <a
               class="nav-link glass-link block px-6 py-2 rounded-2xl"
               href={getI18NPath(currentLocale, "")}
+              title="home"
+              aria-label={i18n.INDEX_AND_PAGE_NAV_LINK_1}
             >
               {i18n.INDEX_AND_PAGE_NAV_LINK_1}
             </a>
@@ -60,6 +62,8 @@ const langPath = currentLocale === "en" ? "/" : "/en";
             <a
               class="nav-link glass-link block px-6 py-2 rounded-2xl"
               href={getI18NPath(currentLocale, "projects")}
+              title="projects"
+              aria-label={i18n.INDEX_NAV_LINK_2}
             >
               {i18n.INDEX_NAV_LINK_2}
             </a>
@@ -68,6 +72,8 @@ const langPath = currentLocale === "en" ? "/" : "/en";
             <a
               class="nav-link glass-link block px-6 py-2 rounded-2xl"
               href={getI18NPath(currentLocale, "#about")}
+              title="about"
+              aria-label={i18n.INDEX_AND_PAGE_NAV_LINK_3}
             >
               {i18n.INDEX_AND_PAGE_NAV_LINK_3}
             </a>
@@ -76,6 +82,8 @@ const langPath = currentLocale === "en" ? "/" : "/en";
             <a
               class="nav-link glass-link block px-6 py-2 rounded-2xl"
               href={getI18NPath(currentLocale, "#experience")}
+              title="experience"
+              aria-label={i18n.INDEX_AND_PAGE_NAV_LINK_4}
             >
               {i18n.INDEX_AND_PAGE_NAV_LINK_4}
             </a>
@@ -86,6 +94,8 @@ const langPath = currentLocale === "en" ? "/" : "/en";
               class="nav-link glass-link-sm flex items-center justify-center gap-3 text-2xl px-6 py-2 rounded-2xl"
               target="_blank"
               href={cvPath}
+              title="cv"
+              aria-label={i18n.INDEX_AND_PAGE_NAV_LINK_5}
             >
               <svg
                 class="size-6 shrink-0 transform-gpu [vector-effect:non-scaling-stroke] [shape-rendering:geometricPrecision]"
@@ -111,6 +121,8 @@ const langPath = currentLocale === "en" ? "/" : "/en";
             <a
               class="nav-link glass-link-sm flex items-center justify-center gap-3 text-2xl px-6 py-2 rounded-2xl"
               href={langPath}
+              title="language"
+              aria-label={i18n.INDEX_NAV_LINK_6}
             >
               <svg
                 class="size-6 shrink-0 transform-gpu [vector-effect:non-scaling-stroke]"

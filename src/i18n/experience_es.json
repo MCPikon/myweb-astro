@@ -1,16 +1,16 @@
 [
-    {
-        "JOB": "Desarrollador Backend",
-        "TYPE": "Jornada Completa",
-        "COMPANY": "Sensu de Servicios y Desarrollos SL",
-        "DATE": "Julio 2024 - Actualidad",
-        "DESCRIPTION": "Desarrollo de microservicios y procesos batch con Java (Spring Boot) para banca, garantizando alta disponibilidad. Implementación de IA Generativa mediante APIs en Python (RAG/Gemini/Vertex AI) para procesamiento inteligente de documentos. Gestión de Oracle y despliegues en GCP/AWS con Docker y Kubernetes. Gestión del ciclo de vida con Jira y Redmine."
-    },
-    {
-        "JOB": "Desarrollador Java",
-        "TYPE": "Becario/Prácticas",
-        "COMPANY": "Agrupo Sistemas",
-        "DATE": "Abril 2023 - Julio 2023",
-        "DESCRIPTION": "Testing unitario e integración con Java 19 y Spring Boot. Colaboración en proyecto de Presencia Digital bajo entorno AWS."
-    }
+  {
+    "JOB": "Desarrollador Backend",
+    "TYPE": "Jornada Completa",
+    "COMPANY": "Sensu de Servicios y Desarrollos SL",
+    "DATE": "Julio 2024 - Actualidad",
+    "DESCRIPTION": "Desarrollo de microservicios y procesos batch con Java (Spring Boot) para banca, garantizando alta disponibilidad. Implementación de IA Generativa mediante APIs en Python (RAG/Gemini/Vertex AI) para procesamiento inteligente de documentos. Gestión de Oracle y despliegues en GCP/AWS con Docker y Kubernetes. Gestión del ciclo de vida con Jira y Redmine."
+  },
+  {
+    "JOB": "Desarrollador Java",
+    "TYPE": "Becario/Prácticas",
+    "COMPANY": "Agrupo Sistemas",
+    "DATE": "Abril 2023 - Julio 2023",
+    "DESCRIPTION": "Testing unitario e integración con Java 19 y Spring Boot. Colaboración en proyecto de Presencia Digital bajo entorno AWS."
+  }
 ]

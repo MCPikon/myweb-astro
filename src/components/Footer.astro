@@ -4,75 +4,100 @@ import TwitterIcon from "./icons/Twitter.astro";
 import GitHubIcon from "./icons/GitHub.astro";
 import LinkedinIcon from "./icons/Linkedin.astro";
 
-import { INSTAGRAM_URL, TWITTER_URL, GITHUB_URL, LINKEDIN_URL } from "@/utils/constants";
+import {
+  INSTAGRAM_URL,
+  TWITTER_URL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "@/utils/constants";
 
-import { getI18N } from "@/i18n"
+import { getI18N } from "@/i18n";
 
 interface Props {
   currentLocale: string;
 }
 
-const { currentLocale } = Astro.props
-const i18n = getI18N({ currentLocale })
+const { currentLocale } = Astro.props;
+const i18n = getI18N({ currentLocale });
 ---
 
 <footer>
   <div class="footer-glass">
     <section class="footer-content">
-    <div class="flex gap-y-6 sm:flex-row flex-col-reverse justify-between py-8">
+      <div
+        class="flex gap-y-6 sm:flex-row flex-col-reverse justify-between py-8"
+      >
         <div class="flex flex-col gap-y-6">
           <h1 class="text-primary font-extrabold text-2xl">Javier Picón</h1>
           <p class="text-slate-400 sm:w-4/6 w-full">
-            {i18n.FOOTER_JOB_TITLE} <span class="text-slate-400/70 italic font-light">(Backend & Frontend)</span>
+            {i18n.FOOTER_JOB_TITLE}
+            <span class="text-slate-400/70 italic font-light"
+              >(Java/Spring & Gen AI)</span
+            >
           </p>
         </div>
         <div class="flex flex-col gap-y-2">
-          <h1 class="text-primary text-xl font-bold ">{i18n.FOOTER_MY_LINKS}</h1>
-        <div class="footer-links">
+          <h1 class="text-primary text-xl md:text-center pb-1.5 font-bold">
+            {i18n.FOOTER_MY_LINKS}
+          </h1>
+          <div class="footer-links md:gap-0.5">
             <a
-            aria-label="Instagram"
-            target="_blank"
-            href={INSTAGRAM_URL}
-            class="footer-link"
-          >
-            <InstagramIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
-          </a>
-          <a
-            aria-label="Twitter/X"
-            target="_blank"
-            href={TWITTER_URL}
-             class="footer-link"
-          >
-            <TwitterIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
-          </a> 
-          <a
-            aria-label="Github"
-            target="_blank"
-            href={GITHUB_URL}
-             class="footer-link"
-          >
-            <GitHubIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
-          </a> 
-          <a
-            aria-label="Linkedin"
-            target="_blank"
-            href={LINKEDIN_URL}
-             class="footer-link"
-          >
-            <LinkedinIcon class="fill-gray-200 size-6 transition-all ease-in-out md:hover:fill-secondary" />
-          </a>
+              aria-label="Instagram"
+              target="_blank"
+              href={INSTAGRAM_URL}
+              class="footer-link"
+            >
+              <InstagramIcon
+                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
+              />
+            </a>
+            <a
+              aria-label="Twitter/X"
+              target="_blank"
+              href={TWITTER_URL}
+              class="footer-link"
+            >
+              <TwitterIcon
+                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
+              />
+            </a>
+            <a
+              aria-label="Github"
+              target="_blank"
+              href={GITHUB_URL}
+              class="footer-link"
+            >
+              <GitHubIcon
+                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
+              />
+            </a>
+            <a
+              aria-label="Linkedin"
+              target="_blank"
+              href={LINKEDIN_URL}
+              class="footer-link"
+            >
+              <LinkedinIcon
+                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
+              />
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <hr class="footer-divider" />
-    <h1 class="text-secondary text-sm text-center py-4">© <span id="year">YEAR</span> - {i18n.FOOTER_MADE_BY_TEXT}<a class="font-bold" href="/">Javier Picón</a></h1>
+      <hr class="footer-divider" />
+      <h1 class="text-secondary text-sm text-center py-4">
+        © <span id="year">YEAR</span> - {i18n.FOOTER_MADE_BY_TEXT}<a
+          class="font-bold"
+          href="/">Javier Picón</a
+        >
+      </h1>
     </section>
   </div>
 </footer>
 
 <script>
   function updateYear() {
-    const yearElement = document.getElementById('year');
+    const yearElement = document.getElementById("year");
     if (yearElement) {
       yearElement.textContent = new Date().getFullYear().toString();
     }
@@ -80,7 +105,7 @@ const i18n = getI18N({ currentLocale })
 
   updateYear();
 
-  document.addEventListener('astro:page-load', updateYear);
+  document.addEventListener("astro:page-load", updateYear);
 </script>
 
 <style>
@@ -102,13 +127,18 @@ const i18n = getI18N({ currentLocale })
   }
 
   .footer-glass::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 12%;
     right: 12%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 50%, transparent),
+      transparent
+    );
   }
 
   .footer-content {
@@ -127,7 +157,6 @@ const i18n = getI18N({ currentLocale })
   .footer-links {
     display: flex;
     justify-content: flex-start;
-    gap: 0.75rem;
     flex-wrap: wrap;
   }
 
@@ -146,11 +175,14 @@ const i18n = getI18N({ currentLocale })
   .footer-link:hover {
     background: color-mix(in srgb, var(--color-primary) 12%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .footer-link svg {
-    transition: color 0.3s ease, fill 0.3s ease;
+    transition:
+      color 0.3s ease,
+      fill 0.3s ease;
   }
 
   @media (max-width: 768px) {

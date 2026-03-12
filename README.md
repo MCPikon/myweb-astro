@@ -1,4 +1,3 @@
-
 # MyWeb-Astro
 
 [![Astro](https://img.shields.io/badge/Astro-4.12%2B-darkviolet?style=for-the-badge&logo=astro&logoColor=white&labelColor=101010)](https://astro.build/) &nbsp;
@@ -8,7 +7,7 @@
 
 ## 🙋‍♂️ Autor
 
-* [Javier Picón](https://github.com/MCPikon)
+- [Javier Picón](https://github.com/MCPikon)
 
 ## ✨ Descripción
 
@@ -16,7 +15,7 @@ Esta es mi web portfolio personal creada con Astro, React y Tailwind CSS.
 
 ## 🔍 Vista Previa
 
-![MyWeb-Astro Preview 2023-12-30](https://raw.githubusercontent.com/MCPikon/myweb-astro/main/public/image.jpeg)
+![MyWeb-Astro Preview 2026-03-12](/public/image.jpeg)
 
 > [!NOTE]
 > Puedes visitar el sitio web [aquí](https://javier-picon.vercel.app).
@@ -34,7 +33,7 @@ cd ./Portfolio-website
 
 2. Instala las dependencias:
 
-* Este proyecto usa pnpm para instalar y administrar las dependencias.
+- Este proyecto usa pnpm para instalar y administrar las dependencias.
 
 ```bash
 # Instalar pnpm globalmente si no lo tienes instalado:
@@ -53,9 +52,9 @@ pnpm start
 
 ## 🛠 Tecnologías
 
-* [Astro](https://astro.build/)
-* [Tailwind CSS](https://tailwindcss.com/)
-* [React](https://react.dev/)
+- [Astro](https://astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React](https://react.dev/)
 
 ## 📄 Licencia
 

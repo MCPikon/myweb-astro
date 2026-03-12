@@ -21,7 +21,7 @@ import PROJECTS from "@/i18n/projects_es.json";
       <div class="grid grid-cols-1 items-center w-full gap-4 mt-24">
         {
           PROJECTS?.map((project, index) => (
-            <ProjectItem {...project}/>
+            <ProjectItem {...project} PRIORITY={index === 0 || index === 1}/>
             <hr class={index < PROJECTS.length-1 ? "opacity-10 mt-8 mb-8" : "opacity-0 mt-8 mb-8"}/>
           ))
         }

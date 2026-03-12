@@ -1,79 +1,108 @@
 ---
-import LinkIcon from "./icons/Link.astro"
-import GitHubIcon from "./icons/GitHub.astro"
-import WebsiteIcon from "./icons/Website.astro"
+import LinkIcon from "./icons/Link.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+import WebsiteIcon from "./icons/Website.astro";
 
-import { getI18N } from "@/i18n"
-import { Image } from "astro:assets"
+import { getI18N } from "@/i18n";
+import { Image } from "astro:assets";
 
 interface Props {
-  NAME: string
-  GITHUB_URL: string
-  WEB_URL?: string
-  IMAGE_PATH: string
-  DESCRIPTION: string
-  TECH: string[]
+  NAME: string;
+  GITHUB_URL: string;
+  WEB_URL?: string;
+  IMAGE_PATH: string;
+  DESCRIPTION: string;
+  TECH: string[];
+  PRIORITY?: boolean;
 }
 
-const { currentLocale } = Astro
-const i18n = getI18N({ currentLocale })
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 
-const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIPTION: description, TECH: tech } = Astro.props
+const {
+  NAME: name,
+  GITHUB_URL: github,
+  WEB_URL: url,
+  IMAGE_PATH: image,
+  DESCRIPTION: description,
+  TECH: tech,
+  PRIORITY: priority,
+} = Astro.props;
 ---
+
 <>
-    <div id={name} class="reveal flex lg:flex-row flex-col text-center lg:text-start items-center gap-8">
-        <Image
-            class={"h-auto w-full max-w-md rounded-xl transition-all ease-in-out md:hover:scale-110 lg:w-96"}
-            src={image}
-            alt={name}
-            width={384}
-            height={216}
-            widths={[384, 512, 768]}
-            sizes="(min-width: 1024px) 384px, (min-width: 768px) 512px, 100vw"
-            loading="lazy"
-            transition:name={name}
-        />
-        <div class="flex flex-col gap-3">
-        <div class="">
-            <h1 class="sm:text-5xl text-3xl font-bold text-primary">
-            {name} {name == "myweb-astro" && <span class="ms-3 whitespace-nowrap text-lg align-middle bg-blue-700 text-blue-100 px-2.5 py-0.5 rounded-md">{i18n.PROJECT_ITEM_BADGE}</span>}
-            </h1>
-            <p class="text-gray-400 py-1">{description}</p>
-        </div>
-        <div class="flex gap-3 justify-center lg:justify-start flex-wrap">
-            {tech.map((techItem) => {
+  <div
+    id={name}
+    class="reveal flex lg:flex-row flex-col text-center lg:text-start items-center gap-8"
+  >
+    <Image
+      class={"h-auto w-full max-w-md rounded-xl transition-all ease-in-out md:hover:scale-110 lg:w-96"}
+      src={image}
+      alt={name}
+      width={384}
+      height={216}
+      widths={[384, 512, 768]}
+      sizes="(min-width: 1024px) 384px, (min-width: 768px) 512px, 100vw"
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : "auto"}
+      transition:name={name}
+    />
+    <div class="flex flex-col gap-3">
+      <div class="">
+        <h1 class="sm:text-5xl text-3xl font-bold text-primary">
+          {name}
+          {
+            name == "myweb-astro" && (
+              <span class="ms-3 whitespace-nowrap text-lg align-middle bg-blue-700 text-blue-100 px-2.5 py-0.5 rounded-md">
+                {i18n.PROJECT_ITEM_BADGE}
+              </span>
+            )
+          }
+        </h1>
+        <p class="text-gray-400 py-1">{description}</p>
+      </div>
+      <div class="flex gap-3 justify-center lg:justify-start flex-wrap">
+        {
+          tech.map((techItem) => {
             return (
-                <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary/10">
+              <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary/10">
                 {techItem}
-                </span>
+              </span>
             );
-            })}
-        </div>
-        <div class="flex flex-wrap gap-3 justify-center lg:justify-start items-center md:mt-2">
-            <LinkIcon class="text-slate-300 size-6" />
+          })
+        }
+      </div>
+      <div
+        class="flex flex-wrap gap-3 justify-center lg:justify-start items-center md:mt-2"
+      >
+        <LinkIcon class="text-slate-300 size-6" />
+        <a
+          class="project-item-button"
+          target="_blank"
+          rel="noopener"
+          href={github}
+        >
+          <GitHubIcon
+            class="project-item-icon project-item-icon--fill size-5"
+          />
+          {i18n.PROJECT_ITEM_GITHUB_BUTTON}
+        </a>
+        {
+          url && (
             <a
-            class="project-item-button"
-            target="_blank"
-            rel="noopener"
-            href={github}
+              class="project-item-button"
+              target="_blank"
+              rel="noopener"
+              href={url}
             >
-            <GitHubIcon class="project-item-icon project-item-icon--fill size-5" />
-            {i18n.PROJECT_ITEM_GITHUB_BUTTON}
+              <WebsiteIcon class="project-item-icon project-item-icon--stroke size-6" />
+              {i18n.PROJECT_ITEM_WEBSITE_BUTTON}
             </a>
-            {url && 
-                <a
-                class="project-item-button"
-                target="_blank"
-                rel="noopener"
-                href={url}
-                >
-                <WebsiteIcon class="project-item-icon project-item-icon--stroke size-6" />
-                {i18n.PROJECT_ITEM_WEBSITE_BUTTON}
-                </a>
-            }
-        </div>
-        </div>
+          )
+        }
+      </div>
     </div>
+  </div>
 </>
 
 <style>
@@ -99,20 +128,26 @@ const { NAME: name, GITHUB_URL: github, WEB_URL: url, IMAGE_PATH: image, DESCRIP
   }
 
   .project-item-button::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 20%;
     right: 20%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 50%, transparent),
+      transparent
+    );
   }
 
   .project-item-button:hover {
     background: color-mix(in srgb, var(--color-primary) 15%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
     color: rgb(255 255 255 / 1);
-    box-shadow: 0 6px 18px color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow: 0 6px 18px
+      color-mix(in srgb, var(--color-primary) 20%, transparent);
   }
 
   .project-item-icon {
