@@ -1,28 +1,160 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import PageNav from "@/components/PageNav";
-import { Image } from "astro:assets";
-import lostGif from "public/404.gif";
+import Layout from "@/layouts/Layout.astro"
+import PageNav from "@/components/PageNav.astro"
+import { Image } from "astro:assets"
+import lostWebp from "public/404.webp"
+import { getI18N } from "@/i18n"
+
+const supportedLocales = ['en', 'es']
+const segments = Astro.url.pathname.split('/').filter(Boolean)
+const currentLocale = supportedLocales.find(l => l === segments[0]) ?? 'es'
+const i18n = getI18N({ currentLocale })
+const lostImageId = `lost-image-${currentLocale}`
+const lostWebpWidths = [320, 480, 640, 960, lostWebp.width].filter(
+  (width, index, list) => width <= lostWebp.width && list.indexOf(width) === index
+)
 ---
 
-<Layout title="404 | Página no encontrada">
+<Layout title={i18n.NOT_FOUND_TITLE}>
   <main class="w-5/6 mx-auto relative" transition:persist>
-    <PageNav currentLocale="es" title="Parece que te has perdido" client:load />
-    <section data-aos="zoom-in" data-aos-anchor-placement="top-bottom">
-      <div class="text-primary mt-36">
+    <PageNav currentLocale={currentLocale} title={i18n.NOT_FOUND_TITLE} />
+    <section class="reveal-zoom">
+      <div class="text-primary mt-20 sm:mt-28 lg:mt-36">
         <h1 class="text-9xl font-semibold flex justify-center items-center">
           404
         </h1>
         <p class="text-center font-semibold">
-          La página a la que estás intentando acceder no existe
+          {i18n.NOT_FOUND_DESCRIPTION}
         </p>
         <div class="flex justify-center mt-6">
-          <Image class="rounded-xl" src={lostGif} alt="lost-gif" height={lostGif.height} width={lostGif.width} loading={"eager"}/>
+          <div class='relative inline-block'>
+            <Image
+              class='rounded-xl lost-image'
+              src={lostWebp}
+              alt="lost-gif"
+              height={lostWebp.height}
+              width={lostWebp.width}
+              widths={lostWebpWidths}
+              sizes="(min-width: 1024px) 420px, (min-width: 640px) 60vw, 90vw"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              data-image-id={lostImageId}
+            />
+            <div class='lost-skeleton' data-skeleton-id={lostImageId}></div>
+          </div>
         </div>
         <div class="flex justify-center mt-6">
-          <a href="/" class="px-4 py-2 bg-primary rounded-xl bg-opacity-10 font-semibold transition-all ease-in-out md:hover:bg-opacity-20">Volver al Inicio</a>
+          <a href={currentLocale === 'es' ? '/' : `/${currentLocale}/`} class="lost-button px-4 py-2 bg-primary rounded-xl bg-opacity-10 font-semibold transition-all ease-in-out md:hover:bg-opacity-20">{i18n.NOT_FOUND_BUTTON}</a>
         </div>
       </div>
     </section>
   </main>
+  <style>
+    .lost-image {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .lost-image.is-loaded {
+      opacity: 1;
+    }
+
+    .lost-skeleton {
+      position: absolute;
+      inset: 0;
+      max-width: 90vw;
+      width: 100%;
+      border-radius: 0.75rem;
+      background: linear-gradient(110deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.04) 65%);
+      background-size: 200% 100%;
+      animation: skeleton-sheen 1.4s ease infinite;
+      z-index: 0;
+    }
+
+    .lost-skeleton.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    @keyframes skeleton-sheen {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lost-skeleton {
+        animation: none;
+      }
+    }
+
+    .lost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 1rem;
+      color: rgb(255 255 255 / 0.88);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+      box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.3),
+        0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+        inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .lost-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
+    }
+
+    .lost-button:hover {
+      background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+      border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+      box-shadow: 0 6px 16px color-mix(in srgb, var(--color-primary) 20%, transparent);
+      color: rgb(255 255 255 / 1);
+    }
+  </style>
+
+  <script>
+    const image = document.querySelector('.lost-image')
+    const imageElement = image instanceof HTMLImageElement ? image : null
+    const imageId = imageElement?.getAttribute('data-image-id')
+    const skeleton = imageId
+      ? document.querySelector(`[data-skeleton-id="${imageId}"]`)
+      : null
+
+    const markLoaded = () => {
+      imageElement?.classList.add('is-loaded')
+      skeleton?.classList.add('is-hidden')
+    }
+
+    if (imageElement) {
+      if (imageElement.complete) {
+        markLoaded()
+      } else {
+        imageElement.addEventListener('load', markLoaded, { once: true })
+        imageElement.addEventListener('error', markLoaded, { once: true })
+      }
+    }
+  </script>
 </Layout>

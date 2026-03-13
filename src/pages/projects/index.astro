@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PageNav from "@/components/PageNav";
+import PageNav from "@/components/PageNav.astro";
 import Footer from "@/components/Footer.astro";
 import ProjectItem from "@/components/ProjectItem.astro";
 
@@ -10,7 +10,7 @@ import PROJECTS from "@/i18n/projects_es.json";
 
 <Layout title="Proyectos | Javier Picón">
   <main class="relative w-5/6 mx-auto" transition:persist>
-    <PageNav title="/proyectos" currentLocale="es" client:load/>
+    <PageNav title="/proyectos" currentLocale="es"/>
     <section>
       <h1 class="text-primary text-3xl font-extrabold mt-24 text-center sm:text-start">
         {i18n.PROJECTS_PAGE_TITLE}
@@ -21,12 +21,12 @@ import PROJECTS from "@/i18n/projects_es.json";
       <div class="grid grid-cols-1 items-center w-full gap-4 mt-24">
         {
           PROJECTS?.map((project, index) => (
-            <ProjectItem {...project}/>
+            <ProjectItem {...project} PRIORITY={index === 0 || index === 1}/>
             <hr class={index < PROJECTS.length-1 ? "opacity-10 mt-8 mb-8" : "opacity-0 mt-8 mb-8"}/>
           ))
         }
       </div>
     </section>
   </main>
-  <Footer />
+  <Footer currentLocale="es"/>
 </Layout>

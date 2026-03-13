@@ -6,34 +6,18 @@ import About from "@/components/About.astro";
 import Experience from "@/components/Experience.astro";
 import Project from "@/components/Project.astro";
 import Footer from "@/components/Footer.astro";
-import IndexNav from "@/components/IndexNav";
+import IndexNav from "@/components/IndexNav.astro";
 ---
 
 <Layout title="Javier Picón | Porfolio">
   <main class="relative">
-    <IndexNav currentLocale="es" client:load />
+    <IndexNav currentLocale="es" />
     <Header transition:animate="fade" />
     <Hero />
     <About />
     <Experience />
     <Project />
-    <Footer />
+    <Footer currentLocale="es"/>
   </main>
 </Layout>
-
-<style>
-  * {
-    transition: all 2s ease-in-out;
-  }
-  .smooth-scroll {
-	scroll-behavior: smooth;
-  }
-  .custom {
-    height: 100%;
-    width: 100%;
-  }
-  .animate__animated.animate__fadeInRightBig {
-  --animate-duration: 0s;
-  }
-</style>
 

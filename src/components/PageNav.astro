@@ -1,0 +1,233 @@
+---
+import { getI18N, getI18NPath } from "@/i18n";
+
+interface Props {
+  currentLocale: string | undefined;
+  title: string;
+}
+
+const { currentLocale, title } = Astro.props;
+const i18n = getI18N({ currentLocale });
+const cvLang = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
+const cvPath =
+  "https://gppfcbvhaqtribpz.public.blob.vercel-storage.com" + cvLang;
+---
+
+<header class="page-nav-header relative z-30">
+  <div class="page-nav-shell flex items-center gap-3">
+    <button
+      id="back-button"
+      class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]"
+      type="button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="size-5 fill-white/80"
+        viewBox="0 0 320 512"
+      >
+        <path
+          d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+        ></path>
+      </svg>
+    </button>
+
+    <h1 class="page-nav-title">
+      <span class="page-nav-title-chip text-white/90">
+        {title}
+      </span>
+    </h1>
+
+    <button
+      id="page-menu-button"
+      class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]"
+      type="button"
+    >
+      <svg
+        class="size-5 stroke-white/80"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 6H20M4 12H14M4 18H9"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="page-menu-item"
+    class="page-nav-dropdown hidden absolute z-50 w-full sm:w-96 right-0 top-full mt-2 sm:mt-3 rounded-2xl h-auto transition-all"
+  >
+    <div
+      class="flex flex-col justify-center items-center gap-3 px-3 m-3 py-3 sm:gap-4 sm:px-4 sm:m-4 sm:py-4"
+    >
+      {
+        ["", "#about", "#experience"].map((path, idx) => (
+          <a
+            class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold"
+            href={getI18NPath(currentLocale, path)}
+          >
+            {idx === 0
+              ? i18n.INDEX_AND_PAGE_NAV_LINK_1
+              : idx === 1
+                ? i18n.INDEX_AND_PAGE_NAV_LINK_3
+                : i18n.INDEX_AND_PAGE_NAV_LINK_4}
+          </a>
+        ))
+      }
+      <a
+        class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold"
+        href={cvPath}
+        target="_blank"
+      >
+        {i18n.INDEX_AND_PAGE_NAV_LINK_5}
+      </a>
+    </div>
+  </div>
+</header>
+<script>
+  import { initPageNav } from "@/utils/pageNav";
+
+  initPageNav();
+  document.addEventListener("astro:after-swap", initPageNav);
+</script>
+
+<style>
+  .page-nav-header {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0.35rem auto 0.6rem;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .page-nav-header {
+      width: calc(100% - 1.5rem);
+      margin: 0.2rem auto 0.5rem;
+    }
+  }
+
+  .page-nav-shell {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    padding: 0.55rem 1.1rem;
+    gap: 0.6rem;
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.3),
+      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .page-nav-shell::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 45%, transparent),
+      transparent
+    );
+  }
+
+  .page-nav-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .page-nav-icon:hover {
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
+  }
+
+  .page-nav-icon svg {
+    transition:
+      color 0.3s ease,
+      fill 0.3s ease,
+      stroke 0.3s ease;
+  }
+
+  .page-nav-title {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .page-nav-title-chip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0;
+    border-radius: 0;
+    color: rgb(255 255 255 / 0.92);
+    text-transform: uppercase;
+    font-size: clamp(0.82rem, 1.6vw, 0.95rem);
+    letter-spacing: 0.12em;
+  }
+
+  .page-nav-dropdown {
+    padding: 0.75rem 0;
+    opacity: 0;
+    transform: translateY(-0.75rem) scale(0.98);
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.32),
+      0 0 32px color-mix(in srgb, var(--color-primary) 10%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 22%, transparent);
+  }
+
+  @media (max-width: 768px) {
+    .page-nav-shell {
+      padding: 0.45rem 0.85rem;
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+    }
+
+    .page-nav-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.7rem;
+    }
+
+    .page-nav-title-chip {
+      font-size: clamp(0.78rem, 3vw, 0.92rem);
+      letter-spacing: 0.1em;
+    }
+  }
+
+  .page-nav-dropdown--visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+</style>

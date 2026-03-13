@@ -1,23 +1,16 @@
 [
-    {
-        "JOB": "Desarrollador Java",
-        "TYPE": "Jornada Completa",
-        "COMPANY": "Sensu de Servicios y Desarrollos SL",
-        "DATE": "Julio 2024 - Actualidad",
-        "DESCRIPTION": "Desarrollo en Java 8 con Spring Boot para mantenimiento y evolutivos de proyectos para sector de Banca"
-    },
-    {
-        "JOB": "Desarrollador Java",
-        "TYPE": "Becario/Prácticas",
-        "COMPANY": "Agrupo Sistemas",
-        "DATE": "Abril 2023 - Julio 2023",
-        "DESCRIPTION": "Desarrollo y Unit Testing con Mockito, Junit y Sonar de Proyecto de Presencia Digital con Spring Boot, Java 19 y Amazon Web Services"
-    },
-    {
-        "JOB": "Desarrollador Web",
-        "TYPE": "Becario/Prácticas",
-        "COMPANY": "DevAcademy España",
-        "DATE": "Marzo 2022 - Junio 2022",
-        "DESCRIPTION": "Prácticas del Grado Superior en Desarrollo de Aplicaciones Web en el que realicé el desarrollo de Proyecto de Automatización de RRSS con Java, Angular y NodeJS"
-    }
+  {
+    "JOB": "Desarrollador Backend",
+    "TYPE": "Jornada Completa",
+    "COMPANY": "Sensu de Servicios y Desarrollos SL",
+    "DATE": "Julio 2024 - Actualidad",
+    "DESCRIPTION": "Desarrollo de microservicios y procesos batch con Java (Spring Boot) para banca, garantizando alta disponibilidad. Implementación de IA Generativa mediante APIs en Python (RAG/Gemini/Vertex AI) para procesamiento inteligente de documentos. Gestión de Oracle y despliegues en GCP/AWS con Docker y Kubernetes. Gestión del ciclo de vida con Jira y Redmine."
+  },
+  {
+    "JOB": "Desarrollador Java",
+    "TYPE": "Becario/Prácticas",
+    "COMPANY": "Agrupo Sistemas",
+    "DATE": "Abril 2023 - Julio 2023",
+    "DESCRIPTION": "Testing unitario e integración con Java 19 y Spring Boot. Colaboración en proyecto de Presencia Digital bajo entorno AWS."
+  }
 ]

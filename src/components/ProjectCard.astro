@@ -12,52 +12,117 @@ const { currentLocale } = Astro
 const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
 ---
 
-<a data-aos="fade-up" data-aos-anchor-placement="top-bottom" href={getI18NPath(currentLocale, "projects#" + name)} class="relative mx-auto overflow-hidden rounded-xl bg-slate-500/5 border border-1 border-primary border-opacity-25 backdrop-blur-md">
-    <div class="bg-transparent">
-        <Image
-            src={imagePath}
-            class="object-cover bg-cover w-full h-full rounded-t-xl transition-all ease-in-out md:hover:scale-105"
-            alt={name}
-            width={200}
-            height={150}
-            loading={"eager"}
-            transition:name={name}
-        />
+<a
+  href={getI18NPath(currentLocale, "projects#" + name)}
+  class="reveal group project-card relative w-full flex flex-col overflow-hidden rounded-2xl transition-all duration-500"
+>
+  <!-- Shimmer sweep -->
+  <div class="absolute inset-0 z-10 translate-x-[-150%] bg-linear-to-r from-transparent via-primary/10 to-transparent transition-transform duration-1000 group-hover:translate-x-[150%]"></div>
+
+  <!-- Imagen -->
+  <div class="relative w-full overflow-hidden">
+    <Image
+      src={imagePath}
+      class="object-cover w-full h-full aspect-video rounded-t-2xl transition-all duration-700 ease-in-out group-hover:scale-105"
+      alt={name}
+      width={640}
+      height={360}
+      widths={[320, 480, 640, 960]}
+      sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+      loading="lazy"
+      transition:name={name}
+    />
+    <!-- Degradado de transición imagen → info -->
+    <div class="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-black/30 to-transparent"></div>
+  </div>
+
+  <!-- Info -->
+  <div class="card-info relative z-20 py-4 px-4">
+    <!-- Reflejo superior -->
+    <div class="card-info-shine"></div>
+
+    <div class="flex items-center justify-between">
+      <div>
+        <h3 class="text-xl font-bold text-white tracking-tight">
+          {name}
+        </h3>
+        <p class="text-sm card-type">
+          {type}
+        </p>
+      </div>
+
+      <div class="card-arrow p-2 rounded-full transition-all duration-300 group-hover:scale-110">
+        <svg
+          class="fill-primary size-6 transition-colors group-hover:fill-white"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.2929 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z"/>
+        </svg>
+      </div>
     </div>
-    <div class="z-20 py-4 px-2 rounded-b-xl bg-opacity-75">
-        <div class="flex items-center justify-between">
-        <div>
-            <h1 class="text-xl ms-2 font-bold text-white">
-            {name}
-            </h1>
-            <p class="mb-1 ms-2 text-sm text-white text-opacity-80">
-            {type}
-            </p>
-        </div>
-        <button aria-label={name} class="p-2 mr-2 bg-primary rounded-full bg-opacity-10">
-            <svg
-            class="fill-primary size-6"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            >
-            <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-            <>
-                <g id="SVGRepo_bgCarrier" stroke-width="0" />
-                <g id="SVGRepo_iconCarrier">
-                <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z"
-                />
-                </g>
-            </>
-            </svg>
-        </button>
-        </div>
-    </div>
+  </div>
 </a>
+
+<style>
+  /* ── Card wrapper ── */
+  .project-card {
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .project-card:hover {
+    background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.4),
+      0 0 40px color-mix(in srgb, var(--color-primary) 12%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-primary) 35%, transparent),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* ── Franja info inferior ── */
+  .card-info {
+    background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    overflow: hidden;
+  }
+
+  /* Reflejo superior de la franja (igual que glass-panel::before del menú) */
+  .card-info-shine {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 50%, transparent),
+      transparent
+    );
+  }
+
+  /* ── Texto tipo ── */
+  .card-type {
+    color: color-mix(in srgb, var(--color-primary) 70%, white);
+  }
+
+  /* ── Botón flecha ── */
+  .card-arrow {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+
+  .project-card:hover .card-arrow {
+    background: var(--color-primary);
+    border-color: color-mix(in srgb, var(--color-primary) 80%, transparent);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+</style>

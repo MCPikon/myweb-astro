@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Colors */
+  --color-primary: #14a1f0;
+  --color-secondary: #087ec4;
+
+  /* Animations */
+  --animate-text: text 5s ease infinite;
+  --animate-roam: roam 20s infinite ease-in-out alternate;
+  --animate-roam1: roam 10s infinite ease-in-out alternate;
+  --animate-wave: wave 0.5s ease-in-out alternate;
+  --animate-wave-content: wave-content 2s ease-in-out infinite;
+
+  /* Keyframes */
+  @keyframes text {
+    0%,
+    100% {
+      background-size: 200% 200%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 200%;
+      background-position: right center;
+    }
+  }
+
+  @keyframes roam {
+    0% {
+      transform: rotate(0deg) translateX(-600px) translateY(-60px);
+    }
+    100% {
+      transform: rotate(360deg) translateX(400px) translateY(600px);
+    }
+  }
+
+  @keyframes roam1 {
+    0% {
+      transform: rotate(0deg) translateX(-900px) translateY(-20px);
+    }
+    100% {
+      transform: rotate(360deg) translateX(20px);
+    }
+  }
+
+  @keyframes wave {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(-15deg);
+    }
+    40% {
+      transform: rotate(15deg);
+    }
+    60% {
+      transform: rotate(-10deg);
+    }
+    80% {
+      transform: rotate(10deg);
+    }
+  }
+
+  @keyframes wave-content {
+    0% {
+      transform: rotate(0deg);
+    }
+    15% {
+      transform: rotate(-15deg);
+    }
+    30% {
+      transform: rotate(15deg);
+    }
+    45% {
+      transform: rotate(-10deg);
+    }
+    60% {
+      transform: rotate(10deg);
+    }
+    75%,
+    100% {
+      transform: rotate(0deg);
+    } /* 25% del tiempo en reposo */
+  }
+}

@@ -1,94 +1,141 @@
 [
-    {
-        "NAME": "cinemarustback",
-        "TYPE": "REST API",
-        "GITHUB_URL": "https://github.com/MCPikon/cinemarustback",
-        "IMAGE_PATH": "/projects/cinemarustback.webp",
-        "DESCRIPTION": "REST API related to movies, series and its reviews created with Rust and Actix Web.",
-        "TECH": ["Rust", "Actix Web", "MongoDB", "Swagger UI", "Redoc", "Scalar", "Docker"]
-    },
-    {
-        "NAME": "cinemawebfront",
-        "TYPE": "Website",
-        "GITHUB_URL": "https://github.com/MCPikon/cinemawebfront",
-        "IMAGE_PATH": "/projects/cinemawebfront.webp",
-        "DESCRIPTION": "Movie and series reviews and info website.",
-        "TECH": ["Next.js", "ReactJS", "Tailwind CSS", "Typescript"]
-    },
-    {
-        "NAME": "cinemawebback",
-        "TYPE": "REST API",
-        "GITHUB_URL": "https://github.com/MCPikon/cinemawebback",
-        "IMAGE_PATH": "/projects/cinemawebback.webp",
-        "DESCRIPTION": "REST API related to movies, series and its reviews created with Java and Spring Boot.",
-        "TECH": ["Java", "Spring Boot", "MongoDB", "JUnit 5", "Mockito", "Swagger UI", "Docker"]
-    },
-    {
-        "NAME": "link_bio",
-        "TYPE": "Website",
-        "GITHUB_URL": "https://github.com/MCPikon/link_bio",
-        "WEB_URL": "https://mcpikon-links.vercel.app/",
-        "IMAGE_PATH": "/projects/link_bio.webp",
-        "DESCRIPTION": "Personal links website created with Python and Reflex framework.",
-        "TECH": ["Python", "Reflex"]
-    },
-    {
-        "NAME": "myweb-astro",
-        "TYPE": "Website",
-        "GITHUB_URL": "https://github.com/MCPikon/myweb-astro",
-        "WEB_URL": "https://javier-picon.vercel.app/",
-        "IMAGE_PATH": "/projects/myweb-astro.webp",
-        "DESCRIPTION": "This web page, a portfolio created with Astro, React and TailwindCSS.",
-        "TECH": ["Astro", "React", "HTML", "JavaScript", "CSS", "Tailwind CSS", "Node.js"]
-    },
-    {
-        "NAME": "FridayPyBot",
-        "TYPE": "Telegram Bot",
-        "GITHUB_URL": "https://github.com/MCPikon/FridayPyBot",
-        "DESCRIPTION": "A Telegram bot with multiple utilities created with Python and the python-telegram-bot module.",
-        "IMAGE_PATH": "/projects/fridaypybot.webp",
-        "TECH": ["Python", "python-telegram-bot"]
-
-    },
-    {
-        "NAME": "gestionTareasFront",
-        "TYPE": "Website",
-        "GITHUB_URL": "https://github.com/MCPikon/gestionTareasFront",
-        "DESCRIPTION": "Task management website built with Angular and Bootstrap 5.",
-        "IMAGE_PATH": "/projects/gestiontareasfront.webp",
-        "TECH": ["Angular 13", "Bootstrap 5", "Typescript"]
-    },
-    {
-        "NAME": "gestionTareasBack",
-        "TYPE": "API",
-        "GITHUB_URL": "https://github.com/MCPikon/gestionTareasBack",
-        "DESCRIPTION": "Web task management API built with Java and Spring Boot/Security.",
-        "IMAGE_PATH": "/projects/gestiontareasback.webp",
-        "TECH": ["Java 17", "Spring Boot", "Spring Security"]
-    },
-    {
-        "NAME": "weatherAPI_project",
-        "TYPE": "Script",
-        "GITHUB_URL": "https://github.com/MCPikon/weatherAPI_project",
-        "DESCRIPTION": "Python script connected to the OpenWeatherMap API that displays the weather of the city given by parameter.",
-        "IMAGE_PATH": "/projects/weatherapi_project.webp",
-        "TECH": ["Python", "OpenWeatherMap API"]
-    },
-    {
-        "NAME": "ProyectoFinal-TiendaOnline",
-        "TYPE": "Website",
-        "GITHUB_URL": "https://github.com/MCPikon/ProyectoFinal-TiendaOnline",
-        "DESCRIPTION": "Final Project of Web Application Development Degree - Online Video Game Store made with Java and Spring Boot.",
-        "IMAGE_PATH": "/projects/proyectofinal-tiendaonline.webp",
-        "TECH": ["Java", "Spring Boot", "Hibernate", "Bootstrap 5", "MySQL", "JavaScript", "JQuery"]
-    },
-    {
-        "NAME": "TestBuzzfeed",
-        "TYPE": "Website",
-        "GITHUB_URL": "https://github.com/MCPikon/TestBuzzfeed",
-        "WEB_URL": "https://mcpikon.github.io/TestBuzzfeed/",
-        "DESCRIPTION": "Buzzfeed quiz with the theme of the anime Jujutsu Kaisen.",
-        "IMAGE_PATH": "/projects/testbuzzfeed.webp",
-        "TECH": ["HTML", "CSS", "JavaScript", "Bootstrap 5"]
-    }
+  {
+    "NAME": "feelsdetector",
+    "TYPE": "Website",
+    "GITHUB_URL": "https://github.com/MCPikon/feelsdetector",
+    "IMAGE_PATH": "/projects/feelsdetector.webp",
+    "DESCRIPTION": "Text sentiment analyzer created with HuggingFace, FastAPI, Streamlit and Redis.",
+    "TECH": [
+      "Python",
+      "Docker",
+      "Docker Compose",
+      "FastAPI",
+      "Redis",
+      "Hugging Face",
+      "Streamlit"
+    ]
+  },
+  {
+    "NAME": "cinemarustback",
+    "TYPE": "REST API",
+    "GITHUB_URL": "https://github.com/MCPikon/cinemarustback",
+    "IMAGE_PATH": "/projects/cinemarustback.webp",
+    "DESCRIPTION": "REST API related to movies, series and its reviews created with Rust and Actix Web.",
+    "TECH": [
+      "Rust",
+      "Actix Web",
+      "MongoDB",
+      "Swagger UI",
+      "Redoc",
+      "Scalar",
+      "Docker"
+    ]
+  },
+  {
+    "NAME": "cinemawebfront",
+    "TYPE": "Website",
+    "GITHUB_URL": "https://github.com/MCPikon/cinemawebfront",
+    "IMAGE_PATH": "/projects/cinemawebfront.webp",
+    "DESCRIPTION": "Movie and series reviews and info website.",
+    "TECH": ["Next.js", "ReactJS", "Tailwind CSS", "Typescript"]
+  },
+  {
+    "NAME": "cinemawebback",
+    "TYPE": "REST API",
+    "GITHUB_URL": "https://github.com/MCPikon/cinemawebback",
+    "IMAGE_PATH": "/projects/cinemawebback.webp",
+    "DESCRIPTION": "REST API related to movies, series, and reviews, built with Java 17, Spring Boot 3, and MongoDB.",
+    "TECH": [
+      "Java 17",
+      "Spring Boot 3",
+      "MongoDB",
+      "JUnit 5",
+      "Mockito",
+      "Swagger UI",
+      "Docker"
+    ]
+  },
+  {
+    "NAME": "link_bio",
+    "TYPE": "Website",
+    "GITHUB_URL": "https://github.com/MCPikon/link_bio",
+    "WEB_URL": "https://mcpikon-links.vercel.app/",
+    "IMAGE_PATH": "/projects/link_bio.webp",
+    "DESCRIPTION": "Personal links website created with Python and Reflex framework.",
+    "TECH": ["Python", "Reflex"]
+  },
+  {
+    "NAME": "myweb-astro",
+    "TYPE": "Website",
+    "GITHUB_URL": "https://github.com/MCPikon/myweb-astro",
+    "WEB_URL": "https://javier-picon.vercel.app/",
+    "IMAGE_PATH": "/projects/myweb-astro.webp",
+    "DESCRIPTION": "This web page, a portfolio created with Astro, React and TailwindCSS.",
+    "TECH": [
+      "Astro",
+      "React",
+      "HTML",
+      "JavaScript",
+      "CSS",
+      "Tailwind CSS",
+      "Node.js"
+    ]
+  },
+  {
+    "NAME": "FridayPyBot",
+    "TYPE": "Telegram Bot",
+    "GITHUB_URL": "https://github.com/MCPikon/FridayPyBot",
+    "DESCRIPTION": "A Telegram bot with multiple utilities created with Python and the python-telegram-bot module.",
+    "IMAGE_PATH": "/projects/fridaypybot.webp",
+    "TECH": ["Python", "python-telegram-bot"]
+  },
+  {
+    "NAME": "gestionTareasFront",
+    "TYPE": "Website",
+    "GITHUB_URL": "https://github.com/MCPikon/gestionTareasFront",
+    "DESCRIPTION": "Task management website built with Angular and Bootstrap 5.",
+    "IMAGE_PATH": "/projects/gestiontareasfront.webp",
+    "TECH": ["Angular 13", "Bootstrap 5", "Typescript"]
+  },
+  {
+    "NAME": "gestionTareasBack",
+    "TYPE": "API",
+    "GITHUB_URL": "https://github.com/MCPikon/gestionTareasBack",
+    "DESCRIPTION": "Web task management API built with Java and Spring Boot/Security.",
+    "IMAGE_PATH": "/projects/gestiontareasback.webp",
+    "TECH": ["Java 17", "Spring Boot", "Spring Security"]
+  },
+  {
+    "NAME": "weatherAPI_project",
+    "TYPE": "Script",
+    "GITHUB_URL": "https://github.com/MCPikon/weatherAPI_project",
+    "DESCRIPTION": "Python script connected to the OpenWeatherMap API that displays the weather of the city given by parameter.",
+    "IMAGE_PATH": "/projects/weatherapi_project.webp",
+    "TECH": ["Python", "OpenWeatherMap API"]
+  },
+  {
+    "NAME": "ProyectoFinal-TiendaOnline",
+    "TYPE": "Website",
+    "GITHUB_URL": "https://github.com/MCPikon/ProyectoFinal-TiendaOnline",
+    "DESCRIPTION": "Final Project of Web Application Development Degree - Online Video Game Store made with Java and Spring Boot.",
+    "IMAGE_PATH": "/projects/proyectofinal-tiendaonline.webp",
+    "TECH": [
+      "Java",
+      "Spring Boot",
+      "Hibernate",
+      "Bootstrap 5",
+      "MySQL",
+      "JavaScript",
+      "JQuery"
+    ]
+  },
+  {
+    "NAME": "TestBuzzfeed",
+    "TYPE": "Website",
+    "GITHUB_URL": "https://github.com/MCPikon/TestBuzzfeed",
+    "WEB_URL": "https://mcpikon.github.io/TestBuzzfeed/",
+    "DESCRIPTION": "Buzzfeed quiz with the theme of the anime Jujutsu Kaisen.",
+    "IMAGE_PATH": "/projects/testbuzzfeed.webp",
+    "TECH": ["HTML", "CSS", "JavaScript", "Bootstrap 5"]
+  }
 ]

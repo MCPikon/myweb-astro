@@ -1,23 +1,16 @@
 [
     {
-        "JOB": "Java Developer",
+        "JOB": "Backend Developer",
         "TYPE": "Full-Time",
         "COMPANY": "Sensu de Servicios y Desarrollos SL",
         "DATE": "July 2024 - Present",
-        "DESCRIPTION": "Java 8 development with Spring Boot for project maintenance and evolutionary projects for the banking sector"
+        "DESCRIPTION": "Built microservices and batch processes with Java (Spring Boot) for banking, ensuring high availability. Implemented Generative AI solutions via Python APIs (RAG/Gemini/Vertex AI) for intelligent document processing. Managed Oracle data and deployments in GCP/AWS with Docker and Kubernetes. Led lifecycle management with Jira and Redmine."
     },
     {
         "JOB": "Java Developer",
         "TYPE": "Internship",
         "COMPANY": "Agrupo Sistemas",
         "DATE": "April 2023 - July 2023",
-        "DESCRIPTION": "Development and Unit Testing with Mockito, Junit and Sonar of a Digital Presence Project with Spring Boot, Java 19 and Amazon Web Services"
-    },
-    {
-        "JOB": "Web Developer",
-        "TYPE": "Internship",
-        "COMPANY": "DevAcademy España",
-        "DATE": "March 2022 - June 2022",
-        "DESCRIPTION": "Internship for the Higher Degree in Web Application Development in which I developed the RRSS Automation Project with Java, Angular and NodeJS"
+        "DESCRIPTION": "Unit and integration testing with Java 19 and Spring Boot. Collaboration on a Digital Presence project in an AWS environment."
     }
 ]
