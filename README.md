@@ -1,8 +1,9 @@
 # MyWeb-Astro
 
-[![Astro](https://img.shields.io/badge/Astro-4.12%2B-darkviolet?style=for-the-badge&logo=astro&logoColor=white&labelColor=101010)](https://astro.build/) &nbsp;
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.7%2B-dodgerblue?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=101010)](https://tailwindcss.com/) &nbsp;
-![React](https://img.shields.io/badge/React-18.3.1%2B-steelblue?style=for-the-badge&logo=react&logoColor=white&labelColor=101010) &nbsp;
+[![Astro](https://img.shields.io/badge/Astro-6.0.3-darkviolet?style=for-the-badge&logo=astro&logoColor=white&labelColor=101010)](https://astro.build/) &nbsp;
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.2.1-dodgerblue?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=101010)](https://tailwindcss.com/) &nbsp;
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=for-the-badge&logo=typescript&logoColor=white&labelColor=101010)](https://www.typescriptlang.org/) &nbsp;
+[![pnpm](https://img.shields.io/badge/pnpm-8.12-pink?style=for-the-badge&logo=pnpm&logoColor=white&labelColor=101010)](https://pnpm.io/) &nbsp;
 [![Vercel](https://img.shields.io/badge/Vercel-static-gray?style=for-the-badge&logo=vercel&logoColor=white&labelColor=101010)](https://vercel.com)
 
 ## 🙋‍♂️ Autor
@@ -11,50 +12,77 @@
 
 ## ✨ Descripción
 
-Esta es mi web portfolio personal creada con Astro, React y Tailwind CSS.
+Portfolio personal estático construido con **Astro**, **Tailwind CSS** y **TypeScript**. La web está disponible en **español** y **inglés**, usando un sistema de internacionalización basado en JSON.
 
-## 🔍 Vista Previa
+## 🔍 Vista previa
 
 ![MyWeb-Astro Preview 2026-03-12](/public/image.jpeg)
 
 > [!NOTE]
 > Puedes visitar el sitio web [aquí](https://javier-picon.vercel.app).
 
-## 📦 Instalación
+---
 
-Para poder ejecutar el proyecto en local hay que hacer lo siguiente:
+## 🚀 Desarrollo local
 
-1. Clona el repositorio y entra a la carpeta del proyecto:
+1. Clona el repositorio y entra al proyecto:
 
 ```bash
 git clone https://github.com/MCPikon/myweb-astro.git
-cd ./Portfolio-website
+cd myweb-astro
 ```
 
-2. Instala las dependencias:
-
-- Este proyecto usa pnpm para instalar y administrar las dependencias.
+2. Instala las dependencias (usa `pnpm`):
 
 ```bash
-# Instalar pnpm globalmente si no lo tienes instalado:
-npm install -g pnpm
-# Instala las dependencias:
+npm install -g pnpm  # solo si no tienes pnpm instalado
 pnpm install
 ```
 
-3. Arranca el proyecto:
+3. Inicia el servidor de desarrollo (recomendado):
 
 ```bash
-pnpm start
+pnpm dev --host
 ```
 
-4. Abre tu navegador y entra a [http://localhost:4321](http://localhost:4321) para ver la web en ejecución.
+4. Abre tu navegador en:
 
-## 🛠 Tecnologías
+```txt
+http://localhost:4321
+```
 
-- [Astro](https://astro.build/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [React](https://react.dev/)
+### Comandos útiles
+
+- Construir para producción: `pnpm build`
+- Vista previa de producción: `pnpm preview`
+- Chequeo estático (Astro): `pnpm astro check`
+
+---
+
+## 🧱 Estructura importante
+
+- `src/pages/` → rutas del sitio (incluye `/en` para inglés)
+- `src/i18n/` → archivos JSON de traducciones y helpers
+- `src/components/` → componentes reutilizables
+- `src/layouts/` → layouts compartidos
+- `public/` → imágenes y activos estáticos
+
+---
+
+## 🛠 Dependencias clave
+
+- `astro` (6.x)
+- `tailwindcss` (4.x)
+- `typescript` (5.x)
+- `astro-seo`, `astro-sitemap`, `astro-robots-txt`, `astro-compress`
+
+---
+
+## ☁️ Despliegue
+
+El proyecto está preparado para desplegarse en **Vercel** usando los ajustes por defecto de Astro.
+
+---
 
 ## 📄 Licencia
 
@@ -62,6 +90,6 @@ Este proyecto es de código abierto y está disponible bajo la [Licencia 2.0 de 
 
 ---
 
-Iconos sacados de [FontAwesome](https://fontawesome.com/) y [SVG Repo](https://www.svgrepo.com/).
+Iconos extraidos de [Devicon](https://devicon.dev/) y [SVG Repo](https://www.svgrepo.com/).
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build)
