@@ -1,7 +1,7 @@
 {
   "name": "myweb-astro",
   "type": "module",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
