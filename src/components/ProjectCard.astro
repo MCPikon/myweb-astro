@@ -17,13 +17,13 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
   class="reveal group project-card relative w-full flex flex-col overflow-hidden rounded-2xl transition-all duration-500"
 >
   <!-- Shimmer sweep -->
-  <div class="absolute inset-0 z-10 translate-x-[-150%] bg-linear-to-r from-transparent via-primary/10 to-transparent transition-transform duration-1000 group-hover:translate-x-[150%]"></div>
+  <div class="card-shimmer absolute inset-0 z-10 translate-x-[-150%] bg-linear-to-r from-transparent via-primary/10 to-transparent transition-transform duration-1000 group-hover:translate-x-[150%]"></div>
 
   <!-- Imagen -->
-  <div class="relative w-full overflow-hidden">
+  <div class="relative w-full aspect-video overflow-hidden">
     <Image
       src={imagePath}
-      class="object-cover w-full h-full aspect-video rounded-t-2xl transition-all duration-700 ease-in-out group-hover:scale-105"
+      class="block object-cover w-full h-full rounded-t-2xl transition-transform duration-700 ease-in-out group-hover:scale-105"
       alt={name}
       width={640}
       height={360}
@@ -124,5 +124,35 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
     background: var(--color-primary);
     border-color: color-mix(in srgb, var(--color-primary) 80%, transparent);
     box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .project-card {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+    }
+
+    .card-shimmer {
+      display: none;
+    }
+
+    .project-card:hover {
+      transform: none;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+    }
+
+    .project-card:hover .card-arrow {
+      box-shadow: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .card-arrow,
+    .card-shimmer,
+    .project-card img {
+      transition: none;
+    }
   }
 </style>
