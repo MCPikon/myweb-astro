@@ -36,7 +36,7 @@ const {
     class="reveal flex lg:flex-row flex-col text-center lg:text-start items-center gap-8"
   >
     <Image
-      class={"h-auto w-full max-w-md rounded-xl transition-all ease-in-out md:hover:scale-110 lg:w-96"}
+      class={"project-item-image h-auto w-full max-w-md rounded-xl transition-all ease-in-out md:hover:scale-110 lg:w-96"}
       src={image}
       alt={name}
       width={384}
@@ -162,5 +162,9 @@ const {
   .project-item-icon--stroke {
     stroke: currentColor;
     fill: none;
+  }
+
+  .project-item-image {
+    content-visibility: visible;
   }
 </style>
