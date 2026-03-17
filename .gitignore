@@ -27,3 +27,10 @@ pnpm-debug.log*
 .firebase
 .firebaserc
 firebase.json
+
+# AI
+.github/
+.opencode/
+.agents/
+.claude/
+skills-lock.json

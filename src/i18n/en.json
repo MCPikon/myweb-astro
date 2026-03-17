@@ -37,5 +37,7 @@
   "PROJECT_ITEM_WEBSITE_BUTTON": "View Website",
   "NOT_FOUND_TITLE": "Seems like you get lost",
   "NOT_FOUND_DESCRIPTION": "The page you are trying to access does not exist",
-  "NOT_FOUND_BUTTON": "Go back to Home"
+  "NOT_FOUND_BUTTON": "Go back to Home",
+  "THEME_TOGGLE_TO_LIGHT": "Switch to light mode",
+  "THEME_TOGGLE_TO_DARK": "Switch to dark mode"
 }

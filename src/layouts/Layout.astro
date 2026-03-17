@@ -24,6 +24,20 @@ const { currentLocale } = Astro;
 <!doctype html>
 <html lang={currentLocale}>
   <head>
+    <script>
+      (() => {
+        const applyTheme = () => {
+          const storedTheme = localStorage.getItem("theme");
+          const theme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : "dark";
+          const root = document.documentElement;
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+        };
+
+        applyTheme();
+        document.addEventListener("astro:after-swap", applyTheme);
+      })();
+    </script>
     <ClientRouter />
     <Font cssVariable="--font-ibm-plex-sans" preload />
     <meta charset="UTF-8" />
@@ -115,15 +129,31 @@ const { currentLocale } = Astro;
       html {
         scroll-behavior: smooth;
         scrollbar-gutter: stable;
+        background-color: var(--color-bg);
       }
       body {
         padding-top: 3.5rem;
       }
       body {
         font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
-        background-color: rgb(20, 20, 20);
+        background-color: var(--color-bg);
+        color: var(--color-text);
         background-size: 22px 22px;
         overflow-x: hidden;
+      }
+
+      :global(html.theme-transition),
+      :global(html.theme-transition *) {
+        transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+        transition-duration: 280ms;
+        transition-timing-function: ease;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        :global(html.theme-transition),
+        :global(html.theme-transition *) {
+          transition-duration: 0ms;
+        }
       }
 
       body .cursor {
@@ -132,9 +162,9 @@ const { currentLocale } = Astro;
         height: 15px;
         width: 15px;
         border-radius: 36px;
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: var(--color-cursor);
         box-shadow:
-          0 0 24px 0 #0000001a,
+          0 0 24px 0 var(--color-shadow),
           0 1px 0 0 #0000;
         pointer-events: none;
         transition: all 200ms ease-out;
@@ -147,7 +177,7 @@ const { currentLocale } = Astro;
       }
 
       ::-webkit-scrollbar-track {
-        background-color: #141414;
+        background-color: var(--color-scrollbar-track);
         -webkit-border-radius: 10px;
         border-radius: 10px;
       }
@@ -155,7 +185,7 @@ const { currentLocale } = Astro;
       ::-webkit-scrollbar-thumb {
         -webkit-border-radius: 10px;
         border-radius: 10px;
-        background: #087ec4;
+        background: var(--color-scrollbar-thumb);
       }
     </style>
     <script>

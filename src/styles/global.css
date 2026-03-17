@@ -1,6 +1,44 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+:root {
+  --color-bg: rgb(20, 20, 20);
+  --color-bg-elevated: rgb(24, 24, 24);
+  --color-text: rgb(245, 245, 245);
+  --color-text-muted: rgb(200, 200, 200);
+  --color-text-strong: rgb(255, 255, 255);
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-shadow: rgba(0, 0, 0, 0.35);
+  --color-overlay: rgba(7, 14, 35, 0.6);
+  --color-scrollbar-track: #141414;
+  --color-scrollbar-thumb: #087ec4;
+  --color-cursor: rgba(255, 255, 255, 0.75);
+  --color-glass-bg: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  --color-glass-border: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  --color-glass-shadow: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  --color-glass-highlight: rgba(0, 0, 0, 0.1);
+  --color-text-shadow: rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="light"] {
+  --color-bg: rgb(244, 245, 247);
+  --color-bg-elevated: rgb(255, 255, 255);
+  --color-text: rgb(17, 23, 36);
+  --color-text-muted: rgba(17, 23, 36, 0.72);
+  --color-text-strong: rgb(10, 14, 24);
+  --color-border: rgba(17, 23, 36, 0.12);
+  --color-shadow: rgba(8, 12, 24, 0.18);
+  --color-overlay: rgba(240, 243, 250, 0.8);
+  --color-scrollbar-track: #e6e9ef;
+  --color-scrollbar-thumb: #087ec4;
+  --color-cursor: rgba(8, 12, 24, 0.4);
+  --color-glass-bg: color-mix(in srgb, var(--color-primary) 14%, white);
+  --color-glass-border: color-mix(in srgb, var(--color-primary) 25%, white);
+  --color-glass-shadow: color-mix(in srgb, var(--color-primary) 14%, transparent);
+  --color-glass-highlight: rgba(17, 23, 36, 0.08);
+  --color-text-shadow: rgba(17, 23, 36, 0.18);
+}
+
 @theme {
   /* Colors */
   --color-primary: #14a1f0;
