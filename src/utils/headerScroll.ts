@@ -1,6 +1,24 @@
 export const initHeaderScroll = () => {
   let cleanupHeader = () => {}
 
+  const ensureSentinel = () => {
+    const existing = document.querySelector('[data-header-sentinel]')
+    if (existing) return existing as HTMLElement
+
+    const sentinel = document.createElement('span')
+    sentinel.dataset.headerSentinel = 'true'
+    sentinel.setAttribute('aria-hidden', 'true')
+    sentinel.style.position = 'absolute'
+    sentinel.style.top = '0'
+    sentinel.style.left = '0'
+    sentinel.style.width = '1px'
+    sentinel.style.height = '1px'
+    sentinel.style.pointerEvents = 'none'
+    sentinel.style.opacity = '0'
+    document.body.prepend(sentinel)
+    return sentinel
+  }
+
   const setupHeader = () => {
     const headerSection = document.querySelector('.header-section')
     const navContent = document.querySelector('.nav-content')
@@ -9,12 +27,10 @@ export const initHeaderScroll = () => {
 
     cleanupHeader()
 
-    let lastScrolledState = window.scrollY > 0
-    let ticking = false
+    const sentinel = ensureSentinel()
+    let lastScrolledState = false
 
-    const syncScrolledState = () => {
-      const isScrolled = window.scrollY > 0
-
+    const updateState = (isScrolled: boolean) => {
       if (isScrolled === lastScrolledState) return
 
       lastScrolledState = isScrolled
@@ -22,24 +38,17 @@ export const initHeaderScroll = () => {
       navContent.classList.toggle('scrolled', isScrolled)
     }
 
-    headerSection.classList.toggle('scrolled', lastScrolledState)
-    navContent.classList.toggle('scrolled', lastScrolledState)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        updateState(!entry.isIntersecting)
+      },
+      { threshold: 0 },
+    )
 
-    const handleScroll = () => {
-      if (ticking) return
-
-      ticking = true
-
-      window.requestAnimationFrame(() => {
-        syncScrolledState()
-        ticking = false
-      })
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    observer.observe(sentinel)
 
     cleanupHeader = () => {
-      window.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
     }
   }
 

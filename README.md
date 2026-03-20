@@ -12,7 +12,7 @@
 
 ## ✨ Descripción
 
-Portfolio personal estático construido con **Astro**, **Tailwind CSS** y **TypeScript**. La web está disponible en **español** y **inglés**, usando un sistema de internacionalización basado en JSON.
+Portfolio personal estático construido con **Astro**, **Tailwind CSS** y **TypeScript**. La web está disponible en **español** y **inglés**, usando un sistema de internacionalización basado en JSON. Dispone tanto de tema **claro** como **oscuro**, ligado a la preferencia del usuario.
 
 ## 🔍 Vista previa
 

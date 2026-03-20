@@ -13,18 +13,18 @@ const i18n = getI18N({ currentLocale });
   <div class="reveal gap-8 py-8 px-4 mx-auto">
     <div class="mt-4 md:mt-0">
       <h2
-        class="mb-4 text-4xl tracking-tight font-extrabold text-primary bg-clip-text bg-linear-to-r from-primary to-cyan-300 sm:text-3xl md:text-5xl pb-2 text-center"
+        class="mb-4 text-4xl tracking-tight font-extrabold text-(--color-about-title) sm:text-3xl md:text-5xl pb-2 text-center"
       >
         {i18n.ABOUT_TITLE}
       </h2>
       <p
-        class="mb-6 font-light text-[color:var(--color-text-muted)] md:text-lg text-center sm:w-5/6 w-full mx-auto"
+        class="mb-6 font-light text-(--color-text-muted) md:text-lg text-center sm:w-5/6 w-full mx-auto"
       >
         {i18n.ABOUT_TEXT_1}
         <br />
         {i18n.ABOUT_TEXT_2}
         <span
-          class="font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-teal-500"
+          class="font-bold text-transparent bg-clip-text bg-linear-to-r from-(--color-about-text-3-from) to-(--color-about-text-3-to)"
           >{i18n.ABOUT_TEXT_3}</span
         >{i18n.ABOUT_TEXT_4}
         <br />
@@ -42,7 +42,7 @@ const i18n = getI18N({ currentLocale });
       <div class="container mx-auto">
         <div class="reveal reveal-delay-1">
           <h1
-            class="text-2xl text-transparent bg-clip-text bg-cyan-200 font-extrabold py-3 text-center"
+            class="text-2xl text-transparent bg-clip-text bg-linear-to-r from-(--color-skills-title-from) to-(--color-skills-title-to) font-extrabold py-3 text-center"
           >
             {i18n.ABOUT_SKILLS_TITLE}
           </h1>
@@ -138,7 +138,7 @@ const i18n = getI18N({ currentLocale });
       </div>
       <div class="reveal reveal-delay-2">
         <h1
-          class="mt-8 text-2xl text-transparent bg-clip-text bg-blue-200 font-extrabold py-3 text-center"
+          class="mt-8 text-2xl text-transparent bg-clip-text bg-linear-to-r from-(--color-tools-title-from) to-(--color-tools-title-to) font-extrabold py-3 text-center"
         >
           {i18n.ABOUT_TOOLS_TITLE}
         </h1>

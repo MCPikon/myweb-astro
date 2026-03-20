@@ -21,7 +21,9 @@ const i18n = getI18N({ currentLocale });
     />
   </div>
   <div class="text-center">
-    <h1 class="py-4 text-[color:var(--color-text-muted)] flex items-center gap-2 justify-center">
+    <h1
+      class="py-4 text-(--color-text-muted) flex items-center gap-2 justify-center"
+    >
       {i18n.HERO_CONTENT_TITLE}<span
         ><Image
           class="size-5 sm:size-6 animate-wave-content inline-block origin-bottom"
@@ -34,11 +36,11 @@ const i18n = getI18N({ currentLocale });
       >
     </h1>
     <p
-      class="pb-2 text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-cyan-300 sm:text-3xl md:text-5xl"
+      class="pb-2 text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-(--color-hero-content-subtitle-from) to-(--color-hero-content-subtitle-to) sm:text-3xl md:text-5xl"
     >
       {i18n.HERO_CONTENT_SUBTITLE}
     </p>
-    <p class="w-5/6 mx-auto mt-2 text-[color:var(--color-text)] font-medium">
+    <p class="w-5/6 mx-auto mt-2 text-(--color-text) font-medium">
       {i18n.HERO_CONTENT_DESCRIPTION}
     </p>
     <div>

@@ -1,23 +1,28 @@
 ---
 import { getI18N } from "@/i18n";
-import { EMAIL, INSTAGRAM_URL, GITHUB_URL, LINKEDIN_URL } from "@/utils/constants";
+import {
+  EMAIL,
+  INSTAGRAM_URL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "@/utils/constants";
 
-import MailIcon from "./icons/Mail.astro"
-import InstagramIcon from "./icons/Instagram.astro"
-import GitHubIcon from "./icons/GitHub.astro"
-import LinkedinIcon from "./icons/Linkedin.astro"
+import MailIcon from "./icons/Mail.astro";
+import InstagramIcon from "./icons/Instagram.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+import LinkedinIcon from "./icons/Linkedin.astro";
 
-const { currentLocale } = Astro
-const i18n = getI18N({ currentLocale }) as Record<string, string>
-const themeToggleToLight = i18n['THEME_TOGGLE_TO_LIGHT'] ?? ''
-const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale }) as Record<string, string>;
+const themeToggleToLight = i18n["THEME_TOGGLE_TO_LIGHT"] ?? "";
+const themeToggleToDark = i18n["THEME_TOGGLE_TO_DARK"] ?? "";
 ---
 
 <section
-  class='header-section fixed left-1/2 right-auto top-5 z-50 mx-auto mt-3 mb-6 w-[min(1200px,calc(100%-2rem))] -translate-x-1/2 transition-[width,margin,top,transform] duration-[500ms] ease-[cubic-bezier(0.65,0,0.35,1)] max-md:mt-2 max-md:mb-5 max-md:w-[calc(100%-1.5rem)] max-md:duration-[420ms]'
+  class="header-section fixed left-1/2 right-auto top-5 z-50 mx-auto mt-3 mb-6 w-[min(1200px,calc(100%-2rem))] -translate-x-1/2 transition-[width,margin,top,transform] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] max-md:mt-2 max-md:mb-5 max-md:w-[calc(100%-1.5rem)] max-md:duration-420"
 >
   <nav
-    class='glass-header nav-content relative flex w-full items-center justify-between overflow-hidden rounded-full px-4 py-2 transition-[border-radius,background,border-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] max-md:duration-[420ms]'
+    class="glass-header nav-content relative flex w-full items-center justify-between overflow-hidden rounded-full px-4 py-2 transition-[border-radius,background,border-color,box-shadow] duration-600 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] max-md:duration-420"
   >
     <div class="flex items-center gap-2">
       <a
@@ -25,17 +30,25 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
         href={"mailto:" + EMAIL}
         class="email-link-mobile flex lg:hidden p-2 rounded-lg glass-icon transition-all"
       >
-        <MailIcon class='mail-icon text-[color:var(--color-text-muted)] size-5 transition-all' />
+        <MailIcon
+          class="mail-icon text-(--color-text-muted) size-5 transition-all"
+        />
       </a>
       <a
         aria-label={EMAIL}
         href={"mailto:" + EMAIL}
         class="email-link-desktop hidden lg:flex flex-row items-center justify-center gap-2 px-3 py-2 rounded-xl glass-link-header transition-all"
       >
-        <div class="p-2 rounded-lg glass-icon transition-all flex items-center justify-center">
-          <MailIcon class='mail-icon text-[color:var(--color-text-muted)] size-5 transition-all' />
+        <div
+          class="p-2 rounded-lg glass-icon transition-all flex items-center justify-center"
+        >
+          <MailIcon
+            class="mail-icon text-(--color-text-muted) size-5 transition-all"
+          />
         </div>
-        <h3 class='text-sm text-[color:var(--color-text-muted)] font-medium transition-all email-text'>
+        <h3
+          class="text-sm text-(--color-text-muted) font-medium transition-all email-text"
+        >
           {EMAIL}
         </h3>
       </a>
@@ -44,14 +57,14 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
     <div class="flex items-center gap-1">
       <button
         type="button"
-        class='theme-toggle p-2 rounded-lg glass-icon transition-all'
+        class="theme-toggle p-2 rounded-lg glass-icon transition-all"
         aria-pressed="false"
         aria-label={themeToggleToLight}
         data-label-light={themeToggleToLight}
         data-label-dark={themeToggleToDark}
       >
         <svg
-          class='theme-icon theme-icon-sun size-5'
+          class="theme-icon theme-icon-sun size-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -71,7 +84,7 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
           <path d="M17.66 6.34l1.41-1.41"></path>
         </svg>
         <svg
-          class='theme-icon theme-icon-moon size-5'
+          class="theme-icon theme-icon-moon size-5"
           viewBox="0 0 24 24"
           fill="currentColor"
           aria-hidden="true"
@@ -89,7 +102,9 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
         href={INSTAGRAM_URL}
         class="p-2 rounded-lg glass-icon transition-all"
       >
-        <InstagramIcon class='fill-[var(--color-text-muted)] size-5 transition-all hover:fill-[var(--color-text-strong)]' />
+        <InstagramIcon
+          class="fill-(--color-text-muted) size-5 transition-all hover:fill-(--color-text-strong)"
+        />
       </a>
       <a
         aria-label="Github"
@@ -97,7 +112,9 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
         href={GITHUB_URL}
         class="p-2 rounded-lg glass-icon transition-all"
       >
-        <GitHubIcon class='fill-[var(--color-text-muted)] size-5 transition-all hover:fill-[var(--color-text-strong)]' />
+        <GitHubIcon
+          class="fill-(--color-text-muted) size-5 transition-all hover:fill-(--color-text-strong)"
+        />
       </a>
       <a
         aria-label="Linkedin"
@@ -105,65 +122,84 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
         href={LINKEDIN_URL}
         class="p-2 rounded-lg glass-icon transition-all"
       >
-        <LinkedinIcon class='fill-[var(--color-text-muted)] size-5 transition-all hover:fill-[var(--color-text-strong)]' />
+        <LinkedinIcon
+          class="fill-(--color-text-muted) size-5 transition-all hover:fill-(--color-text-strong)"
+        />
       </a>
     </div>
   </nav>
 </section>
 
 <script>
-  import { initHeaderScroll } from '@/utils/headerScroll'
+  import { initHeaderScroll } from "@/utils/headerScroll";
 
   const setThemeState = (toggle: HTMLButtonElement, theme: string) => {
-    const isLight = theme === "light"
-    toggle.setAttribute("aria-pressed", String(isLight))
+    const isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
     toggle.setAttribute(
       "aria-label",
       isLight
-        ? toggle.dataset.labelDark ?? ""
-        : toggle.dataset.labelLight ?? "",
-    )
-  }
+        ? (toggle.dataset.labelDark ?? "")
+        : (toggle.dataset.labelLight ?? ""),
+    );
+  };
 
-  let themeTransitionTimeout: number | undefined
-
-  const addThemeTransition = (root: HTMLElement) => {
-    root.classList.add("theme-transition")
-    if (themeTransitionTimeout) {
-      window.clearTimeout(themeTransitionTimeout)
-    }
-    themeTransitionTimeout = window.setTimeout(() => {
-      root.classList.remove("theme-transition")
-    }, 320)
-  }
+  type ThemeController = (
+    nextTheme: string,
+    options?: { persist?: boolean; animate?: boolean },
+  ) => string;
 
   const setupThemeToggle = () => {
     const toggle = document.querySelector(
       ".theme-toggle",
-    ) as HTMLButtonElement | null
+    ) as HTMLButtonElement | null;
+    if (!toggle) return;
+    if (toggle.dataset.themeToggleReady === "true") return;
+    toggle.dataset.themeToggleReady = "true";
 
-    if (!toggle) return
-    if (toggle.dataset.themeToggleReady === "true") return
-    toggle.dataset.themeToggleReady = "true"
-
-    const root = document.documentElement
-    const initialTheme = root.dataset.theme ?? "dark"
-    setThemeState(toggle, initialTheme)
+    const root = document.documentElement;
+    const initialTheme = root.dataset.theme ?? "dark";
+    setThemeState(toggle, initialTheme); // ← ya lo tienes, sincroniza al montar ✓
 
     toggle.addEventListener("click", () => {
-      const currentTheme = root.dataset.theme ?? "dark"
-      const nextTheme = currentTheme === "dark" ? "light" : "dark"
-      addThemeTransition(root)
-      root.dataset.theme = nextTheme
-      root.style.colorScheme = nextTheme
-      localStorage.setItem("theme", nextTheme)
-      setThemeState(toggle, nextTheme)
-    })
-  }
+      const themeController = (
+        window as Window &
+          typeof globalThis & {
+            __applyPreferredTheme?: ThemeController;
+          }
+      ).__applyPreferredTheme;
+      const currentTheme = root.dataset.theme ?? "dark";
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      if (themeController) {
+        themeController(nextTheme, { persist: true, animate: true });
+      } else {
+        root.dataset.theme = nextTheme;
+        root.style.colorScheme = nextTheme;
+        localStorage.setItem("theme", nextTheme);
+      }
+      setThemeState(toggle, nextTheme);
+    });
+  };
 
-  initHeaderScroll()
-  setupThemeToggle()
-  document.addEventListener("astro:after-swap", setupThemeToggle)
+  const syncThemeToggle = (event: Event) => {
+    const toggle = document.querySelector(
+      ".theme-toggle",
+    ) as HTMLButtonElement | null;
+    if (!toggle) return;
+    const theme =
+      event instanceof CustomEvent && typeof event.detail?.theme === "string"
+        ? event.detail.theme
+        : (document.documentElement.dataset.theme ?? "dark");
+    setThemeState(toggle, theme);
+  };
+
+  initHeaderScroll();
+  setupThemeToggle();
+  if (document.documentElement.dataset.themeToggleEventsReady !== "true") {
+    document.documentElement.dataset.themeToggleEventsReady = "true";
+    document.addEventListener("astro:after-swap", setupThemeToggle);
+    document.addEventListener("theme:sync", syncThemeToggle);
+  }
 </script>
 
 <style>
@@ -177,7 +213,6 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
     top: 0;
     padding: 0;
   }
-
 
   .glass-header {
     background: var(--color-glass-bg);
@@ -205,18 +240,25 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
   }
 
   .glass-header::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 50%, transparent),
+      transparent
+    );
   }
 
   .email-link-desktop,
   .email-text {
-    transition: background 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition:
+      background 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      color 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .name-text {
@@ -242,13 +284,15 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
   .glass-icon:hover {
     background: color-mix(in srgb, var(--color-primary) 12%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .email-link-desktop:hover .glass-icon {
     background: color-mix(in srgb, var(--color-primary) 12%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .email-link-desktop:hover .mail-icon,
@@ -271,11 +315,13 @@ const themeToggleToDark = i18n['THEME_TOGGLE_TO_DARK'] ?? ''
   }
 
   .theme-icon {
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
   }
 
-  :global(html.theme-transition[data-theme="dark"]) .theme-icon-moon,
-  :global(html.theme-transition[data-theme="light"]) .theme-icon-sun {
+  :global(html.theme-transition-fallback[data-theme="dark"]) .theme-icon-moon,
+  :global(html.theme-transition-fallback[data-theme="light"]) .theme-icon-sun {
     animation: theme-icon-pop 320ms ease;
   }
 
