@@ -2,11 +2,11 @@
 import { getI18N, getI18NPath } from "@/i18n";
 
 interface Props {
-  currentLocale: string | undefined;
   title: string;
 }
 
-const { currentLocale, title } = Astro.props;
+const { title } = Astro.props;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 const cvLang = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
 const cvPath =
@@ -15,14 +15,10 @@ const cvPath =
 
 <header class="page-nav-header relative z-30">
   <div class="page-nav-shell flex items-center gap-3">
-    <button
-      id="back-button"
-      class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]"
-      type="button"
-    >
+    <button id="back-button" class="page-nav-icon" type="button">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="size-5 fill-white/80"
+        class="size-5"
         viewBox="0 0 320 512"
       >
         <path
@@ -32,18 +28,14 @@ const cvPath =
     </button>
 
     <h1 class="page-nav-title">
-      <span class="page-nav-title-chip text-white/90">
+      <span class="page-nav-title-chip">
         {title}
       </span>
     </h1>
 
-    <button
-      id="page-menu-button"
-      class="page-nav-icon bg-white/5 border border-sky-200/18 shadow-[0_6px_18px_rgba(0,0,0,0.2)]"
-      type="button"
-    >
+    <button id="page-menu-button" class="page-nav-icon" type="button">
       <svg
-        class="size-5 stroke-white/80"
+        class="size-5"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -66,7 +58,7 @@ const cvPath =
       {
         ["", "#about", "#experience"].map((path, idx) => (
           <a
-            class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold"
+            class="nav-link page-nav-link w-full py-2 text-center rounded-xl font-bold"
             href={getI18NPath(currentLocale, path)}
           >
             {idx === 0
@@ -78,7 +70,7 @@ const cvPath =
         ))
       }
       <a
-        class="nav-link w-full py-2 bg-sky-400/10 text-center rounded-xl hover:bg-sky-400/15 text-sky-200 font-bold"
+        class="nav-link page-nav-link w-full py-2 text-center rounded-xl font-bold"
         href={cvPath}
         target="_blank"
       >
@@ -115,15 +107,15 @@ const cvPath =
     border-radius: 9999px;
     padding: 0.55rem 1.1rem;
     gap: 0.6rem;
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    background: var(--color-glass-bg);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border: 1px solid var(--color-glass-border);
     box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.3),
-      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      0 16px 48px var(--color-shadow),
+      0 0 40px var(--color-glass-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      inset 0 -1px 0 var(--color-glass-highlight);
   }
 
   .page-nav-shell::before {
@@ -149,6 +141,9 @@ const cvPath =
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: 0 6px 18px var(--color-shadow);
     transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
@@ -164,6 +159,13 @@ const cvPath =
       color 0.3s ease,
       fill 0.3s ease,
       stroke 0.3s ease;
+    color: var(--color-text-muted);
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  .page-nav-icon:hover svg {
+    color: var(--color-text-strong);
   }
 
   .page-nav-title {
@@ -182,7 +184,7 @@ const cvPath =
     gap: 0.55rem;
     padding: 0;
     border-radius: 0;
-    color: rgb(255 255 255 / 0.92);
+    color: var(--color-text-strong);
     text-transform: uppercase;
     font-size: clamp(0.82rem, 1.6vw, 0.95rem);
     letter-spacing: 0.12em;
@@ -196,14 +198,25 @@ const cvPath =
     transition:
       opacity 0.25s ease,
       transform 0.25s ease;
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    background: var(--color-glass-bg);
     backdrop-filter: blur(32px) saturate(180%);
     -webkit-backdrop-filter: blur(32px) saturate(180%);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border: 1px solid var(--color-glass-border);
     box-shadow:
-      0 16px 40px rgba(0, 0, 0, 0.32),
-      0 0 32px color-mix(in srgb, var(--color-primary) 10%, transparent),
+      0 16px 40px var(--color-shadow),
+      0 0 32px var(--color-glass-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 22%, transparent);
+  }
+
+  .page-nav-link {
+    color: var(--color-text-muted);
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    transition: all 0.25s ease;
+  }
+
+  .page-nav-link:hover {
+    color: var(--color-text-strong);
+    background: color-mix(in srgb, var(--color-primary) 16%, transparent);
   }
 
   @media (max-width: 768px) {

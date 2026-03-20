@@ -12,7 +12,7 @@
 
 ## ✨ Descripción
 
-Portfolio personal estático construido con **Astro**, **Tailwind CSS** y **TypeScript**. La web está disponible en **español** y **inglés**, usando un sistema de internacionalización basado en JSON.
+Portfolio personal estático construido con **Astro**, **Tailwind CSS** y **TypeScript**. La web está disponible en **español** y **inglés**, usando un sistema de internacionalización basado en JSON. Dispone tanto de tema **claro** como **oscuro**, ligado a la preferencia del usuario.
 
 ## 🔍 Vista previa
 
@@ -42,7 +42,7 @@ pnpm install
 3. Inicia el servidor de desarrollo (recomendado):
 
 ```bash
-pnpm dev --host
+pnpm dev
 ```
 
 4. Abre tu navegador en:
@@ -55,7 +55,7 @@ http://localhost:4321
 
 - Construir para producción: `pnpm build`
 - Vista previa de producción: `pnpm preview`
-- Chequeo estático (Astro): `pnpm astro check`
+- Chequeo estático (Astro): `pnpm check`
 
 ---
 

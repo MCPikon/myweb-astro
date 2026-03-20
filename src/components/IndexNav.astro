@@ -1,11 +1,7 @@
 ---
 import { getI18N, getI18NPath } from "@/i18n";
 
-interface Props {
-  currentLocale: string | undefined;
-}
-
-const { currentLocale } = Astro.props;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 
 const cvLang = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
@@ -89,7 +85,9 @@ const langPath = currentLocale === "en" ? "/" : "/en";
             </a>
           </li>
 
-          <li class="pt-6 mt-2 border-t border-white/10 flex flex-col gap-4">
+          <li
+            class="pt-6 mt-2 border-t border-(--color-border) flex flex-col gap-4"
+          >
             <a
               class="nav-link glass-link-sm flex items-center justify-center gap-3 text-2xl px-6 py-2 rounded-2xl"
               target="_blank"
@@ -161,9 +159,9 @@ const langPath = currentLocale === "en" ? "/" : "/en";
     box-shadow:
       0 4px 24px color-mix(in srgb, var(--color-primary) 20%, transparent),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 30%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.08);
-    color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      inset 0 -1px 0 var(--color-glass-highlight);
+    color: var(--color-text-strong);
+    text-shadow: 0 1px 2px var(--color-text-shadow);
     transition: all 0.3s ease;
   }
 
@@ -172,13 +170,17 @@ const langPath = currentLocale === "en" ? "/" : "/en";
     box-shadow:
       0 6px 32px color-mix(in srgb, var(--color-primary) 35%, transparent),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 45%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    border-color: color-mix(in srgb, var(--color-primary) 50%, white);
+      inset 0 -1px 0 var(--color-glass-highlight);
+    border-color: color-mix(
+      in srgb,
+      var(--color-primary) 50%,
+      var(--color-text-strong)
+    );
   }
 
   /* ── Overlay del menú ── */
   .glass-overlay {
-    background: rgba(7, 14, 35, 0.6);
+    background: var(--color-overlay);
     backdrop-filter: blur(28px) saturate(160%);
     -webkit-backdrop-filter: blur(28px) saturate(160%);
     overflow: hidden;
@@ -186,16 +188,16 @@ const langPath = currentLocale === "en" ? "/" : "/en";
 
   /* ── Panel central de cristal ── */
   .glass-panel {
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    background: var(--color-glass-bg);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     border-radius: 32px;
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border: 1px solid var(--color-glass-border);
     box-shadow:
-      0 32px 80px rgba(0, 0, 0, 0.4),
-      0 0 60px color-mix(in srgb, var(--color-primary) 10%, transparent),
+      0 32px 80px var(--color-shadow),
+      0 0 60px var(--color-glass-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      inset 0 -1px 0 var(--color-glass-highlight);
     position: relative;
     overflow: hidden;
   }
@@ -234,8 +236,8 @@ const langPath = currentLocale === "en" ? "/" : "/en";
 
   /* ── Links principales ── */
   .glass-link {
-    color: rgba(255, 255, 255, 0.88);
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    color: var(--color-text);
+    text-shadow: 0 2px 8px var(--color-text-shadow);
     transition: all 0.25s ease;
     position: relative;
     background: transparent;
@@ -244,7 +246,7 @@ const langPath = currentLocale === "en" ? "/" : "/en";
   }
 
   .glass-link:hover {
-    color: white;
+    color: var(--color-text-strong);
     background: color-mix(in srgb, var(--color-primary) 18%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
     box-shadow:
@@ -257,7 +259,7 @@ const langPath = currentLocale === "en" ? "/" : "/en";
 
   /* ── Links secundarios (CV / idioma) ── */
   .glass-link-sm {
-    color: color-mix(in srgb, var(--color-primary) 60%, white);
+    color: var(--color-text-muted);
     transition: all 0.25s ease;
     background: transparent;
     border: 1px solid transparent;
@@ -265,7 +267,7 @@ const langPath = currentLocale === "en" ? "/" : "/en";
   }
 
   .glass-link-sm:hover {
-    color: white;
+    color: var(--color-text-strong);
     background: color-mix(in srgb, var(--color-primary) 15%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
     box-shadow:

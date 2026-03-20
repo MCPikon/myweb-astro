@@ -1,15 +1,15 @@
 ---
-import { getI18NPath } from '@/i18n'
-import { Image } from 'astro:assets'
+import { getI18NPath } from "@/i18n";
+import { Image } from "astro:assets";
 
 interface Props {
-  NAME: string
-  TYPE: string
-  IMAGE_PATH: string
+  NAME: string;
+  TYPE: string;
+  IMAGE_PATH: string;
 }
 
-const { currentLocale } = Astro
-const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
+const currentLocale = Astro.currentLocale ?? "es";
+const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props;
 ---
 
 <a
@@ -17,7 +17,10 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
   class="reveal group project-card relative w-full flex flex-col overflow-hidden rounded-2xl transition-all duration-500"
 >
   <!-- Shimmer sweep -->
-  <div class="card-shimmer absolute inset-0 z-10 translate-x-[-150%] bg-linear-to-r from-transparent via-primary/10 to-transparent transition-transform duration-1000 group-hover:translate-x-[150%]"></div>
+  <div
+    class="card-shimmer absolute inset-0 z-10 translate-x-[-150%] bg-linear-to-r from-transparent via-primary/10 to-transparent transition-transform duration-1000 group-hover:translate-x-[150%]"
+  >
+  </div>
 
   <!-- Imagen -->
   <div class="relative w-full aspect-video overflow-hidden">
@@ -33,7 +36,10 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
       transition:name={name}
     />
     <!-- Degradado de transición imagen → info -->
-    <div class="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-black/30 to-transparent"></div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-black/30 to-transparent"
+    >
+    </div>
   </div>
 
   <!-- Info -->
@@ -43,7 +49,7 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
 
     <div class="flex items-center justify-between">
       <div>
-        <h3 class="text-xl font-bold text-white tracking-tight">
+        <h3 class="text-xl font-bold text-(--color-text-strong) tracking-tight">
           {name}
         </h3>
         <p class="text-sm card-type">
@@ -51,12 +57,13 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
         </p>
       </div>
 
-      <div class="card-arrow p-2 rounded-full transition-all duration-300 group-hover:scale-110">
-        <svg
-          class="fill-primary size-6 transition-colors group-hover:fill-white"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.2929 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z"/>
+      <div
+        class="card-arrow p-2 rounded-full transition-all duration-300 group-hover:scale-110"
+      >
+        <svg class="size-6 transition-colors" viewBox="0 0 24 24">
+          <path
+            d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.2929 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z"
+          ></path>
         </svg>
       </div>
     </div>
@@ -66,31 +73,31 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
 <style>
   /* ── Card wrapper ── */
   .project-card {
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    background: var(--color-glass-bg);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border: 1px solid var(--color-glass-border);
     box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 8px 32px var(--color-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      inset 0 -1px 0 var(--color-glass-highlight);
   }
 
   .project-card:hover {
     background: color-mix(in srgb, var(--color-primary) 14%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
     box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.4),
-      0 0 40px color-mix(in srgb, var(--color-primary) 12%, transparent),
+      0 16px 48px var(--color-shadow),
+      0 0 40px var(--color-glass-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 35%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+      inset 0 -1px 0 var(--color-glass-highlight);
     transform: translateY(-2px);
   }
 
   /* ── Franja info inferior ── */
   .card-info {
     background: color-mix(in srgb, var(--color-primary) 6%, transparent);
-    border-top: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border-top: 1px solid var(--color-glass-border);
     overflow: hidden;
   }
 
@@ -111,7 +118,7 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
 
   /* ── Texto tipo ── */
   .card-type {
-    color: color-mix(in srgb, var(--color-primary) 70%, white);
+    color: var(--color-text-muted);
   }
 
   /* ── Botón flecha ── */
@@ -120,17 +127,27 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
     border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
   }
 
+  .card-arrow svg {
+    color: var(--color-primary);
+    fill: currentColor;
+  }
+
   .project-card:hover .card-arrow {
     background: var(--color-primary);
     border-color: color-mix(in srgb, var(--color-primary) 80%, transparent);
-    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary) 40%, transparent);
+    box-shadow: 0 4px 16px
+      color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+
+  .project-card:hover .card-arrow svg {
+    color: var(--color-text-strong);
   }
 
   @media (hover: none), (pointer: coarse) {
     .project-card {
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 6px 20px var(--color-shadow);
     }
 
     .card-shimmer {
@@ -139,7 +156,7 @@ const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props
 
     .project-card:hover {
       transform: none;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 6px 20px var(--color-shadow);
     }
 
     .project-card:hover .card-arrow {

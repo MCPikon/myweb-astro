@@ -16,7 +16,7 @@ interface Props {
   PRIORITY?: boolean;
 }
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 
 const {
@@ -53,19 +53,21 @@ const {
           {name}
           {
             name == "myweb-astro" && (
-              <span class="ms-3 whitespace-nowrap text-lg align-middle bg-blue-700 text-blue-100 px-2.5 py-0.5 rounded-md">
+              <span class="ms-3 whitespace-nowrap text-lg align-middle bg-sky-900 text-blue-100 px-2.5 py-0.5 rounded-md">
                 {i18n.PROJECT_ITEM_BADGE}
               </span>
             )
           }
         </h1>
-        <p class="text-gray-400 py-1">{description}</p>
+        <p class="text-(--color-text-muted) py-1">
+          {description}
+        </p>
       </div>
       <div class="flex gap-3 justify-center lg:justify-start flex-wrap">
         {
           tech.map((techItem) => {
             return (
-              <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary/10">
+              <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary/15">
                 {techItem}
               </span>
             );
@@ -75,7 +77,7 @@ const {
       <div
         class="flex flex-wrap gap-3 justify-center lg:justify-start items-center md:mt-2"
       >
-        <LinkIcon class="text-slate-300 size-6" />
+        <LinkIcon class="text-(--color-text-muted) size-6" />
         <a
           class="project-item-button"
           target="_blank"
@@ -114,14 +116,14 @@ const {
     border-radius: 1rem;
     font-weight: 600;
     letter-spacing: 0.04em;
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
-    color: rgb(255 255 255 / 0.92);
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border);
+    color: var(--color-text);
     box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.3),
-      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      0 16px 48px var(--color-shadow),
+      0 0 40px var(--color-glass-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      inset 0 -1px 0 var(--color-glass-highlight);
     position: relative;
     overflow: hidden;
     transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -145,7 +147,7 @@ const {
   .project-item-button:hover {
     background: color-mix(in srgb, var(--color-primary) 15%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
-    color: rgb(255 255 255 / 1);
+    color: var(--color-text-strong);
     box-shadow: 0 6px 18px
       color-mix(in srgb, var(--color-primary) 20%, transparent);
   }

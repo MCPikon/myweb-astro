@@ -1,27 +1,27 @@
 ---
 import { getI18N, getI18NExperience } from "@/i18n";
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 const EXPERIENCE = getI18NExperience({ currentLocale });
 ---
 
 <section id="experience" class="md:w-2/5 w-5/6 mx-auto m-6 py-24">
   <h1
-    class="reveal mb-8 font-extrabold text-center text-4xl text-transparent bg-clip-text bg-linear-to-r from-primary to-cyan-300"
+    class="reveal mb-8 font-extrabold text-center text-4xl text-transparent bg-clip-text bg-linear-to-r from-primary to-(--color-experience-title-to)"
   >
     {i18n.EXPERIENCE_TITLE}
   </h1>
   <div class="reveal gap-8 px-4 mx-auto">
-    <ol class="relative border-s border-gray-700">
+    <ol class="relative border-s border-(--color-border)">
       {
         EXPERIENCE &&
           EXPERIENCE.map((expItem, index) => (
             <li class={index < EXPERIENCE.length - 1 ? "mb-10 ms-6" : "ms-6"}>
-              <span class="absolute flex items-center justify-center w-6 h-6 bg-secondary rounded-full -inset-s-3 ring-4 ring-slate-800">
+              <span class="absolute flex items-center justify-center w-6 h-6 bg-secondary rounded-full -inset-s-3 ring-4 ring-(--color-bg)">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-3.5 h-3.5 text-blue-200"
+                  class="w-3.5 h-3.5 text-gray-100"
                   viewBox="0 0 24 24"
                   stroke-width="2"
                   stroke="currentColor"
@@ -39,10 +39,12 @@ const EXPERIENCE = getI18NExperience({ currentLocale });
                   </>
                 </svg>
               </span>
-              <h3 class="mb-1 text-xl font-semibold text-slate-200">
+              <h3 class="mb-1 text-xl font-semibold text-(--color-text-strong)">
                 {expItem.JOB} -
                 {expItem.TYPE && (
-                  <span class="italic text-slate-400">({expItem.TYPE})</span>
+                  <span class="italic text-(--color-text-muted)">
+                    ({expItem.TYPE})
+                  </span>
                 )}{" "}
                 {index == 0 && (
                   <span class="whitespace-nowrap bg-linear-to-r from-sky-700 to-cyan-600 text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-md ms-3">
@@ -53,11 +55,13 @@ const EXPERIENCE = getI18NExperience({ currentLocale });
                   </span>
                 )}
               </h3>
-              <h4 class="mb-1 text-lg text-slate-300">{expItem.COMPANY}</h4>
-              <time class="block mb-2 text-sm font-normal leading-none text-cyan-300">
+              <h4 class="mb-1 text-lg text-(--color-text)">
+                {expItem.COMPANY}
+              </h4>
+              <time class="block mb-2 text-sm font-bold leading-none text-(--color-experience-date)">
                 {expItem.DATE}
               </time>
-              <div class="text-base font-normal text-gray-400">
+              <div class="text-base font-normal text-(--color-text-muted)">
                 {expItem.DESCRIPTION.includes(".") &&
                 expItem.DESCRIPTION.split(".").length > 2 ? (
                   <ul class="list-disc list-inside space-y-1">

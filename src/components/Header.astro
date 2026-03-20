@@ -1,17 +1,28 @@
 ---
-import { EMAIL, INSTAGRAM_URL, GITHUB_URL, LINKEDIN_URL } from "@/utils/constants";
+import { getI18N } from "@/i18n";
+import {
+  EMAIL,
+  INSTAGRAM_URL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "@/utils/constants";
 
-import MailIcon from "./icons/Mail.astro"
-import InstagramIcon from "./icons/Instagram.astro"
-import GitHubIcon from "./icons/GitHub.astro"
-import LinkedinIcon from "./icons/Linkedin.astro"
+import MailIcon from "./icons/Mail.astro";
+import InstagramIcon from "./icons/Instagram.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+import LinkedinIcon from "./icons/Linkedin.astro";
+
+const currentLocale = Astro.currentLocale ?? "es";
+const i18n = getI18N({ currentLocale }) as Record<string, string>;
+const themeToggleToLight = i18n["THEME_TOGGLE_TO_LIGHT"] ?? "";
+const themeToggleToDark = i18n["THEME_TOGGLE_TO_DARK"] ?? "";
 ---
 
 <section
-  class='header-section fixed left-1/2 right-auto top-5 z-50 mx-auto mt-3 mb-6 w-[min(1200px,calc(100%-2rem))] -translate-x-1/2 transition-[width,margin,top,transform] duration-[500ms] ease-[cubic-bezier(0.65,0,0.35,1)] max-md:mt-2 max-md:mb-5 max-md:w-[calc(100%-1.5rem)] max-md:duration-[420ms]'
+  class="header-section fixed left-1/2 right-auto top-5 z-50 mx-auto mt-3 mb-6 w-[min(1200px,calc(100%-2rem))] -translate-x-1/2 transition-[width,margin,top,transform] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] max-md:mt-2 max-md:mb-5 max-md:w-[calc(100%-1.5rem)] max-md:duration-420"
 >
   <nav
-    class='glass-header nav-content relative flex w-full items-center justify-between overflow-hidden rounded-full px-4 py-2 transition-[border-radius,background,border-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] max-md:duration-[420ms]'
+    class="glass-header nav-content relative flex w-full items-center justify-between overflow-hidden rounded-full px-4 py-2 transition-[border-radius,background,border-color,box-shadow] duration-600 ease-[cubic-bezier(0.68,-0.55,0.265,1.55)] max-md:duration-420"
   >
     <div class="flex items-center gap-2">
       <a
@@ -19,30 +30,81 @@ import LinkedinIcon from "./icons/Linkedin.astro"
         href={"mailto:" + EMAIL}
         class="email-link-mobile flex lg:hidden p-2 rounded-lg glass-icon transition-all"
       >
-        <MailIcon class="mail-icon text-white/70 size-5 transition-all" />
+        <MailIcon
+          class="mail-icon text-(--color-text-muted) size-5 transition-all"
+        />
       </a>
       <a
         aria-label={EMAIL}
         href={"mailto:" + EMAIL}
         class="email-link-desktop hidden lg:flex flex-row items-center justify-center gap-2 px-3 py-2 rounded-xl glass-link-header transition-all"
       >
-        <div class="p-2 rounded-lg glass-icon transition-all flex items-center justify-center">
-          <MailIcon class="mail-icon text-white/70 size-5 transition-all" />
+        <div
+          class="p-2 rounded-lg glass-icon transition-all flex items-center justify-center"
+        >
+          <MailIcon
+            class="mail-icon text-(--color-text-muted) size-5 transition-all"
+          />
         </div>
-        <h3 class="text-sm text-white/80 font-medium transition-all email-text">
+        <h3
+          class="text-sm text-(--color-text-muted) font-medium transition-all email-text"
+        >
           {EMAIL}
         </h3>
       </a>
     </div>
 
     <div class="flex items-center gap-1">
+      <button
+        type="button"
+        class="theme-toggle p-2 rounded-lg glass-icon transition-all"
+        aria-pressed="false"
+        aria-label={themeToggleToLight}
+        data-label-light={themeToggleToLight}
+        data-label-dark={themeToggleToDark}
+      >
+        <svg
+          class="theme-icon theme-icon-sun size-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="M4.93 4.93l1.41 1.41"></path>
+          <path d="M17.66 17.66l1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="M4.93 19.07l1.41-1.41"></path>
+          <path d="M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg
+          class="theme-icon theme-icon-moon size-5"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <mask id="theme-moon-mask">
+            <rect x="0" y="0" width="24" height="24" fill="white"></rect>
+            <circle cx="18" cy="6" r="7" fill="black"></circle>
+          </mask>
+          <circle cx="12" cy="12" r="9" mask="url(#theme-moon-mask)"></circle>
+        </svg>
+      </button>
       <a
         aria-label="Instagram"
         target="_blank"
         href={INSTAGRAM_URL}
         class="p-2 rounded-lg glass-icon transition-all"
       >
-        <InstagramIcon class="fill-white/70 size-5 transition-all hover:fill-white" />
+        <InstagramIcon
+          class="fill-(--color-text-muted) size-5 transition-all hover:fill-(--color-text-strong)"
+        />
       </a>
       <a
         aria-label="Github"
@@ -50,7 +112,9 @@ import LinkedinIcon from "./icons/Linkedin.astro"
         href={GITHUB_URL}
         class="p-2 rounded-lg glass-icon transition-all"
       >
-        <GitHubIcon class="fill-white/70 size-5 transition-all hover:fill-white" />
+        <GitHubIcon
+          class="fill-(--color-text-muted) size-5 transition-all hover:fill-(--color-text-strong)"
+        />
       </a>
       <a
         aria-label="Linkedin"
@@ -58,16 +122,84 @@ import LinkedinIcon from "./icons/Linkedin.astro"
         href={LINKEDIN_URL}
         class="p-2 rounded-lg glass-icon transition-all"
       >
-        <LinkedinIcon class="fill-white/70 size-5 transition-all hover:fill-white" />
+        <LinkedinIcon
+          class="fill-(--color-text-muted) size-5 transition-all hover:fill-(--color-text-strong)"
+        />
       </a>
     </div>
   </nav>
 </section>
 
 <script>
-  import { initHeaderScroll } from '@/utils/headerScroll'
+  import { initHeaderScroll } from "@/utils/headerScroll";
 
-  initHeaderScroll()
+  const setThemeState = (toggle: HTMLButtonElement, theme: string) => {
+    const isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute(
+      "aria-label",
+      isLight
+        ? (toggle.dataset.labelDark ?? "")
+        : (toggle.dataset.labelLight ?? ""),
+    );
+  };
+
+  type ThemeController = (
+    nextTheme: string,
+    options?: { persist?: boolean; animate?: boolean },
+  ) => string;
+
+  const setupThemeToggle = () => {
+    const toggle = document.querySelector(
+      ".theme-toggle",
+    ) as HTMLButtonElement | null;
+    if (!toggle) return;
+    if (toggle.dataset.themeToggleReady === "true") return;
+    toggle.dataset.themeToggleReady = "true";
+
+    const root = document.documentElement;
+    const initialTheme = root.dataset.theme ?? "dark";
+    setThemeState(toggle, initialTheme); // ← ya lo tienes, sincroniza al montar ✓
+
+    toggle.addEventListener("click", () => {
+      const themeController = (
+        window as Window &
+          typeof globalThis & {
+            __applyPreferredTheme?: ThemeController;
+          }
+      ).__applyPreferredTheme;
+      const currentTheme = root.dataset.theme ?? "dark";
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      if (themeController) {
+        themeController(nextTheme, { persist: true, animate: true });
+      } else {
+        root.dataset.theme = nextTheme;
+        root.style.colorScheme = nextTheme;
+        localStorage.setItem("theme", nextTheme);
+      }
+      setThemeState(toggle, nextTheme);
+    });
+  };
+
+  const syncThemeToggle = (event: Event) => {
+    const toggle = document.querySelector(
+      ".theme-toggle",
+    ) as HTMLButtonElement | null;
+    if (!toggle) return;
+    const theme =
+      event instanceof CustomEvent && typeof event.detail?.theme === "string"
+        ? event.detail.theme
+        : (document.documentElement.dataset.theme ?? "dark");
+    setThemeState(toggle, theme);
+  };
+
+  initHeaderScroll();
+  setupThemeToggle();
+  if (document.documentElement.dataset.themeToggleEventsReady !== "true") {
+    document.documentElement.dataset.themeToggleEventsReady = "true";
+    document.addEventListener("astro:after-swap", setupThemeToggle);
+    document.addEventListener("theme:sync", syncThemeToggle);
+  }
 </script>
 
 <style>
@@ -82,17 +214,16 @@ import LinkedinIcon from "./icons/Linkedin.astro"
     padding: 0;
   }
 
-
   .glass-header {
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    background: var(--color-glass-bg);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    border: 1px solid var(--color-glass-border);
     box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.3),
-      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      0 16px 48px var(--color-shadow),
+      0 0 40px var(--color-glass-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      inset 0 -1px 0 var(--color-glass-highlight);
     will-change: border-radius;
   }
 
@@ -109,18 +240,25 @@ import LinkedinIcon from "./icons/Linkedin.astro"
   }
 
   .glass-header::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-primary) 50%, transparent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-primary) 50%, transparent),
+      transparent
+    );
   }
 
   .email-link-desktop,
   .email-text {
-    transition: background 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), color 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition:
+      background 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+      color 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .name-text {
@@ -146,18 +284,79 @@ import LinkedinIcon from "./icons/Linkedin.astro"
   .glass-icon:hover {
     background: color-mix(in srgb, var(--color-primary) 12%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .email-link-desktop:hover .glass-icon {
     background: color-mix(in srgb, var(--color-primary) 12%, transparent);
     border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary) 15%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-primary) 15%, transparent);
   }
 
   .email-link-desktop:hover .mail-icon,
   .email-link-mobile:hover .mail-icon,
   .glass-icon:hover .mail-icon {
-    color: rgb(255 255 255 / 1);
+    color: var(--color-text-strong);
+  }
+
+  .theme-toggle {
+    color: var(--color-text-muted);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible {
+    color: var(--color-text-strong);
+  }
+
+  .theme-icon {
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  :global(html.theme-transition-fallback[data-theme="dark"]) .theme-icon-moon,
+  :global(html.theme-transition-fallback[data-theme="light"]) .theme-icon-sun {
+    animation: theme-icon-pop 320ms ease;
+  }
+
+  :global(html[data-theme="dark"]) .theme-icon-sun {
+    opacity: 0;
+    transform: scale(0.8);
+    position: absolute;
+  }
+
+  :global(html[data-theme="dark"]) .theme-icon-moon {
+    opacity: 1;
+  }
+
+  :global(html[data-theme="light"]) .theme-icon-moon {
+    opacity: 0;
+    transform: scale(0.8);
+    position: absolute;
+  }
+
+  :global(html[data-theme="light"]) .theme-icon-sun {
+    opacity: 1;
+  }
+
+  @keyframes theme-icon-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.85) rotate(-8deg);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.05) rotate(3deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
   }
 </style>

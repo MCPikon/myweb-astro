@@ -18,12 +18,111 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 const makeTitle = title ? title : "Javier Picón";
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale || "en";
 ---
 
 <!doctype html>
 <html lang={currentLocale}>
   <head>
+    <script is:inline>
+      (() => {
+        const getSystemTheme = () =>
+          window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+
+        const root = document.documentElement;
+        const motionQuery = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+
+        const resolveTheme = () => {
+          const storedTheme = localStorage.getItem("theme");
+          return storedTheme === "light" || storedTheme === "dark"
+            ? storedTheme
+            : getSystemTheme();
+        };
+
+        const setThemeOnRoot = (theme) => {
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+          return theme;
+        };
+
+        const syncTheme = () => {
+          const theme = setThemeOnRoot(resolveTheme());
+          document.dispatchEvent(
+            new CustomEvent("theme:sync", { detail: { theme } }),
+          );
+          return theme;
+        };
+
+        const runThemeFallbackTransition = (updateTheme) => {
+          root.classList.remove("theme-transition-fallback");
+          window.clearTimeout(window.__themeTransitionTimeout);
+          requestAnimationFrame(() => {
+            root.classList.add("theme-transition-fallback");
+            updateTheme();
+            window.__themeTransitionTimeout = window.setTimeout(() => {
+              root.classList.remove("theme-transition-fallback");
+            }, 260);
+          });
+        };
+
+        const applyPreferredTheme = (nextTheme, options = {}) => {
+          const { persist = true, animate = true } = options;
+          const currentTheme = root.dataset.theme ?? resolveTheme();
+
+          if (persist) {
+            localStorage.setItem("theme", nextTheme);
+          }
+
+          if (currentTheme === nextTheme) {
+            return setThemeOnRoot(nextTheme);
+          }
+
+          const updateTheme = () => setThemeOnRoot(nextTheme);
+          const canUseViewTransition =
+            animate &&
+            !motionQuery.matches &&
+            document.startViewTransition instanceof Function;
+
+          if (canUseViewTransition) {
+            document.startViewTransition(updateTheme);
+            return nextTheme;
+          }
+
+          if (animate && !motionQuery.matches) {
+            runThemeFallbackTransition(updateTheme);
+            return nextTheme;
+          }
+
+          return updateTheme();
+        };
+
+        const setupSystemListener = () => {
+          if (root.dataset.themeListenerReady === "true") return;
+          root.dataset.themeListenerReady = "true";
+
+          const media = window.matchMedia("(prefers-color-scheme: light)");
+          media.addEventListener("change", (event) => {
+            const storedTheme = localStorage.getItem("theme");
+            if (storedTheme === "light" || storedTheme === "dark") return;
+            const theme = setThemeOnRoot(event.matches ? "light" : "dark");
+            document.dispatchEvent(
+              new CustomEvent("theme:sync", { detail: { theme } }),
+            );
+          });
+        };
+
+        window.__applyPreferredTheme = applyPreferredTheme;
+        syncTheme();
+        setupSystemListener();
+        document.addEventListener("astro:after-swap", () => {
+          syncTheme();
+        });
+      })();
+    </script>
     <ClientRouter />
     <Font cssVariable="--font-ibm-plex-sans" preload />
     <meta charset="UTF-8" />
@@ -115,15 +214,50 @@ const { currentLocale } = Astro;
       html {
         scroll-behavior: smooth;
         scrollbar-gutter: stable;
+        background-color: var(--color-bg);
+        min-height: 100%;
+        transition: none;
       }
       body {
         padding-top: 3.5rem;
       }
       body {
         font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
-        background-color: rgb(20, 20, 20);
+        background-color: var(--color-bg);
+        color: var(--color-text);
         background-size: 22px 22px;
         overflow-x: hidden;
+        min-height: 100%;
+        transition: none;
+      }
+
+      html.theme-transition-fallback,
+      html.theme-transition-fallback body,
+      html.theme-transition-fallback :where(a, button, svg, path) {
+        transition:
+          background-color 220ms ease,
+          color 220ms ease,
+          border-color 220ms ease,
+          fill 220ms ease,
+          stroke 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 320ms;
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html.theme-transition-fallback,
+        html.theme-transition-fallback body,
+        html.theme-transition-fallback :where(a, button, svg, path),
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          transition-duration: 0ms;
+          animation-duration: 0ms;
+        }
       }
 
       body .cursor {
@@ -132,9 +266,9 @@ const { currentLocale } = Astro;
         height: 15px;
         width: 15px;
         border-radius: 36px;
-        background-color: rgba(255, 255, 255, 0.75);
+        background-color: var(--color-cursor);
         box-shadow:
-          0 0 24px 0 #0000001a,
+          0 0 24px 0 var(--color-shadow),
           0 1px 0 0 #0000;
         pointer-events: none;
         transition: all 200ms ease-out;
@@ -147,7 +281,7 @@ const { currentLocale } = Astro;
       }
 
       ::-webkit-scrollbar-track {
-        background-color: #141414;
+        background-color: var(--color-scrollbar-track);
         -webkit-border-radius: 10px;
         border-radius: 10px;
       }
@@ -155,10 +289,10 @@ const { currentLocale } = Astro;
       ::-webkit-scrollbar-thumb {
         -webkit-border-radius: 10px;
         border-radius: 10px;
-        background: #087ec4;
+        background: var(--color-scrollbar-thumb);
       }
     </style>
-    <script>
+    <script is:inline>
       function setupAnimations() {
         const observer = new IntersectionObserver(
           (entries) => {

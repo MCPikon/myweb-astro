@@ -37,5 +37,7 @@
   "PROJECT_ITEM_WEBSITE_BUTTON": "Visitar Web",
   "NOT_FOUND_TITLE": "Parece que te has perdido",
   "NOT_FOUND_DESCRIPTION": "La página a la que estás intentando acceder no existe",
-  "NOT_FOUND_BUTTON": "Volver al Inicio"
+  "NOT_FOUND_BUTTON": "Volver al Inicio",
+  "THEME_TOGGLE_TO_LIGHT": "Cambiar a modo claro",
+  "THEME_TOGGLE_TO_DARK": "Cambiar a modo oscuro"
 }

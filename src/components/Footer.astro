@@ -13,11 +13,7 @@ import {
 
 import { getI18N } from "@/i18n";
 
-interface Props {
-  currentLocale: string;
-}
-
-const { currentLocale } = Astro.props;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 ---
 
@@ -29,9 +25,9 @@ const i18n = getI18N({ currentLocale });
       >
         <div class="flex flex-col gap-y-6">
           <h1 class="text-primary font-extrabold text-2xl">Javier Picón</h1>
-          <p class="text-slate-400 sm:w-4/6 w-full">
+          <p class="text-(--color-text-muted) sm:w-4/6 w-full">
             {i18n.FOOTER_JOB_TITLE}
-            <span class="text-slate-400/70 italic font-light"
+            <span class="text-(--color-text-muted) opacity-70 italic font-light"
               >(Java/Spring & Gen AI)</span
             >
           </p>
@@ -47,9 +43,7 @@ const i18n = getI18N({ currentLocale });
               href={INSTAGRAM_URL}
               class="footer-link"
             >
-              <InstagramIcon
-                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
-              />
+              <InstagramIcon class="size-6 transition-all ease-in-out" />
             </a>
             <a
               aria-label="Twitter/X"
@@ -57,9 +51,7 @@ const i18n = getI18N({ currentLocale });
               href={TWITTER_URL}
               class="footer-link"
             >
-              <TwitterIcon
-                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
-              />
+              <TwitterIcon class="size-6 transition-all ease-in-out" />
             </a>
             <a
               aria-label="Github"
@@ -67,9 +59,7 @@ const i18n = getI18N({ currentLocale });
               href={GITHUB_URL}
               class="footer-link"
             >
-              <GitHubIcon
-                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
-              />
+              <GitHubIcon class="size-6 transition-all ease-in-out" />
             </a>
             <a
               aria-label="Linkedin"
@@ -77,9 +67,7 @@ const i18n = getI18N({ currentLocale });
               href={LINKEDIN_URL}
               class="footer-link"
             >
-              <LinkedinIcon
-                class="fill-gray-400 size-6 transition-all ease-in-out md:hover:fill-secondary"
-              />
+              <LinkedinIcon class="size-6 transition-all ease-in-out" />
             </a>
           </div>
         </div>
@@ -112,13 +100,13 @@ const i18n = getI18N({ currentLocale });
   .footer-glass {
     width: min(1200px, calc(100% - 2rem));
     margin: 3rem auto 0;
-    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
-    border: 1px solid transparent;
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border);
     box-shadow:
-      0 16px 48px rgba(0, 0, 0, 0.3),
-      0 0 40px color-mix(in srgb, var(--color-primary) 8%, transparent),
+      0 16px 48px var(--color-shadow),
+      0 0 40px var(--color-glass-shadow),
       inset 0 1px 0 color-mix(in srgb, var(--color-primary) 25%, transparent),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      inset 0 -1px 0 var(--color-glass-highlight);
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     border-radius: 1.5rem 1.5rem 0 0;
@@ -150,8 +138,8 @@ const i18n = getI18N({ currentLocale });
   .footer-divider {
     border: none;
     height: 1px;
-    background: color-mix(in srgb, var(--color-primary) 25%, transparent);
-    opacity: 0.35;
+    background: var(--color-glass-border);
+    opacity: 0.6;
   }
 
   .footer-links {
@@ -183,6 +171,12 @@ const i18n = getI18N({ currentLocale });
     transition:
       color 0.3s ease,
       fill 0.3s ease;
+    color: var(--color-text-muted);
+    fill: currentColor;
+  }
+
+  .footer-link:hover svg {
+    color: var(--color-secondary);
   }
 
   @media (max-width: 768px) {
