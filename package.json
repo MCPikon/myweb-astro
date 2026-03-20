@@ -13,13 +13,13 @@
   "dependencies": {
     "@astrojs/check": "^0.9.8",
     "@astrojs/sitemap": "^3.7.1",
-    "@tailwindcss/vite": "^4.2.1",
-    "astro": "^6.0.5",
-    "astro-compress": "^2.3.9",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.0.8",
+    "astro-compress": "^2.4.0",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.1.0",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.1",
+    "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3"
   },
   "devDependencies": {

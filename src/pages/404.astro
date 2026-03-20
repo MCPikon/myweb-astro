@@ -5,9 +5,7 @@ import { Image } from "astro:assets";
 import lostWebp from "public/404.webp";
 import { getI18N } from "@/i18n";
 
-const supportedLocales = ["en", "es"];
-const segments = Astro.url.pathname.split("/").filter(Boolean);
-const currentLocale = supportedLocales.find((l) => l === segments[0]) ?? "es";
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 const lostImageId = `lost-image-${currentLocale}`;
 const lostWebpWidths = [320, 480, 640, 960, lostWebp.width].filter(
@@ -18,9 +16,9 @@ const lostWebpWidths = [320, 480, 640, 960, lostWebp.width].filter(
 
 <Layout title={i18n.NOT_FOUND_TITLE}>
   <main class="w-5/6 mx-auto relative" transition:persist>
-    <PageNav currentLocale={currentLocale} title={i18n.NOT_FOUND_TITLE} />
+    <PageNav title={i18n.NOT_FOUND_TITLE} />
     <section class="reveal-zoom">
-      <div class="text-(--color-404-title) mt-20 sm:mt-28 lg:mt-36">
+      <div class="text-primary mt-20 sm:mt-28 lg:mt-36">
         <h1 class="text-9xl font-semibold flex justify-center items-center">
           404
         </h1>

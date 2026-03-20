@@ -16,7 +16,7 @@ interface Props {
   PRIORITY?: boolean;
 }
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 
 const {
@@ -49,9 +49,7 @@ const {
     />
     <div class="flex flex-col gap-3">
       <div class="">
-        <h1
-          class="sm:text-5xl text-3xl font-bold text-(--color-project-item-title)"
-        >
+        <h1 class="sm:text-5xl text-3xl font-bold text-primary">
           {name}
           {
             name == "myweb-astro" && (
@@ -69,7 +67,7 @@ const {
         {
           tech.map((techItem) => {
             return (
-              <span class="px-2 text-xs font-semibold py-1 rounded-md text-(--color-project-item-tech) bg-(--color-project-item-tech)/15">
+              <span class="px-2 text-xs font-semibold py-1 rounded-md text-primary bg-primary/15">
                 {techItem}
               </span>
             );

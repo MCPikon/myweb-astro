@@ -5,7 +5,7 @@ import intellijIdea from "public/logos/intellij-idea.svg";
 import pycharm from "public/logos/pycharm.svg";
 import { Image } from "astro:assets";
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 ---
 
@@ -24,7 +24,7 @@ const i18n = getI18N({ currentLocale });
         <br />
         {i18n.ABOUT_TEXT_2}
         <span
-          class="font-bold text-transparent bg-clip-text bg-linear-to-r from-(--color-about-text-3-from) to-(--color-about-text-3-to)"
+          class="font-bold text-transparent bg-clip-text bg-linear-to-r from-primary to-(--color-about-text-3-to)"
           >{i18n.ABOUT_TEXT_3}</span
         >{i18n.ABOUT_TEXT_4}
         <br />
@@ -42,7 +42,7 @@ const i18n = getI18N({ currentLocale });
       <div class="container mx-auto">
         <div class="reveal reveal-delay-1">
           <h1
-            class="text-2xl text-transparent bg-clip-text bg-linear-to-r from-(--color-skills-title-from) to-(--color-skills-title-to) font-extrabold py-3 text-center"
+            class="text-2xl text-transparent bg-clip-text bg-linear-to-r from-primary to-(--color-skills-title-to) font-extrabold py-3 text-center"
           >
             {i18n.ABOUT_SKILLS_TITLE}
           </h1>

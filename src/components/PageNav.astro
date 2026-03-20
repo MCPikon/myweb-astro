@@ -2,11 +2,11 @@
 import { getI18N, getI18NPath } from "@/i18n";
 
 interface Props {
-  currentLocale: string | undefined;
   title: string;
 }
 
-const { currentLocale, title } = Astro.props;
+const { title } = Astro.props;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 const cvLang = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";
 const cvPath =
@@ -57,10 +57,10 @@ const cvPath =
     >
       {
         ["", "#about", "#experience"].map((path, idx) => (
-            <a
-              class="nav-link page-nav-link w-full py-2 text-center rounded-xl font-bold"
-              href={getI18NPath(currentLocale, path)}
-            >
+          <a
+            class="nav-link page-nav-link w-full py-2 text-center rounded-xl font-bold"
+            href={getI18NPath(currentLocale, path)}
+          >
             {idx === 0
               ? i18n.INDEX_AND_PAGE_NAV_LINK_1
               : idx === 1

@@ -8,7 +8,7 @@ interface Props {
   IMAGE_PATH: string;
 }
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale ?? "es";
 const { NAME: name, TYPE: type, IMAGE_PATH: imagePath } = Astro.props;
 ---
 

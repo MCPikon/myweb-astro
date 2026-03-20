@@ -12,7 +12,7 @@ import InstagramIcon from "./icons/Instagram.astro";
 import GitHubIcon from "./icons/GitHub.astro";
 import LinkedinIcon from "./icons/Linkedin.astro";
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale }) as Record<string, string>;
 const themeToggleToLight = i18n["THEME_TOGGLE_TO_LIGHT"] ?? "";
 const themeToggleToDark = i18n["THEME_TOGGLE_TO_DARK"] ?? "";

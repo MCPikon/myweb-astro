@@ -10,9 +10,9 @@ import PROJECTS from "@/i18n/projects_es.json";
 
 <Layout title="Proyectos | Javier Picón">
   <main class="relative w-5/6 mx-auto" transition:persist>
-    <PageNav title="/proyectos" currentLocale="es"/>
+    <PageNav title="/proyectos" />
     <section>
-      <h1 class="text-(--color-project-page-title) text-3xl font-extrabold mt-24 text-center sm:text-start">
+      <h1 class="text-primary text-3xl font-extrabold mt-24 text-center sm:text-start">
         {i18n.PROJECTS_PAGE_TITLE}
       </h1>
       <p class="text-(--color-text-muted) text-lg py-4 text-center sm:text-start">
@@ -28,5 +28,5 @@ import PROJECTS from "@/i18n/projects_es.json";
       </div>
     </section>
   </main>
-  <Footer currentLocale="es"/>
+  <Footer />
 </Layout>

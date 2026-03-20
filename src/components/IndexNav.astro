@@ -1,11 +1,7 @@
 ---
 import { getI18N, getI18NPath } from "@/i18n";
 
-interface Props {
-  currentLocale: string | undefined;
-}
-
-const { currentLocale } = Astro.props;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 
 const cvLang = currentLocale === "en" ? "/cv_en.pdf" : "/cv.pdf";

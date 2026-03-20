@@ -18,7 +18,7 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 const makeTitle = title ? title : "Javier Picón";
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale || "en";
 ---
 
 <!doctype html>
@@ -32,7 +32,9 @@ const { currentLocale } = Astro;
             : "dark";
 
         const root = document.documentElement;
-        const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const motionQuery = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
 
         const resolveTheme = () => {
           const storedTheme = localStorage.getItem("theme");

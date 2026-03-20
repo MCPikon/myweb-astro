@@ -1,14 +1,14 @@
 ---
 import { getI18N, getI18NExperience } from "@/i18n";
 
-const { currentLocale } = Astro;
+const currentLocale = Astro.currentLocale ?? "es";
 const i18n = getI18N({ currentLocale });
 const EXPERIENCE = getI18NExperience({ currentLocale });
 ---
 
 <section id="experience" class="md:w-2/5 w-5/6 mx-auto m-6 py-24">
   <h1
-    class="reveal mb-8 font-extrabold text-center text-4xl text-transparent bg-clip-text bg-linear-to-r from-(--color-experience-title-from) to-(--color-experience-title-to)"
+    class="reveal mb-8 font-extrabold text-center text-4xl text-transparent bg-clip-text bg-linear-to-r from-primary to-(--color-experience-title-to)"
   >
     {i18n.EXPERIENCE_TITLE}
   </h1>
