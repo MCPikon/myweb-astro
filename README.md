@@ -16,7 +16,13 @@ Portfolio personal estático construido con **Astro**, **Tailwind CSS** y **Type
 
 ## 🔍 Vista previa
 
-![MyWeb-Astro Preview 2026-03-12](/public/image.jpeg)
+### Modo Oscuro 🌑
+
+![MyWeb-Astro Dark Mode Preview 2026-03-20](/public/website-dark.jpeg)
+
+### Modo Claro ☀️
+
+![MyWeb-Astro Light Mode Preview 2026-03-20](/public/website-light.jpeg)
 
 > [!NOTE]
 > Puedes visitar el sitio web [aquí](https://javier-picon.vercel.app).
