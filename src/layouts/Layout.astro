@@ -15,7 +15,7 @@ const resolvedImageWithDomain = new URL(
 ).toString();
 
 const { title } = Astro.props;
-const makeTitle = title ? title : "Javier Picón";
+const pageTitle = title || "Javier Picón";
 
 const currentLocale = Astro.currentLocale || "es";
 const isSpanish = currentLocale === "es";
@@ -31,7 +31,7 @@ const alternateURL = new URL(alternatePath, Astro.url.origin).toString();
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  name: makeTitle,
+  name: pageTitle,
   description: metaDescription,
   url: canonicalURL,
   image: resolvedImageWithDomain,
@@ -55,7 +55,7 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{makeTitle}</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#141414" />
@@ -86,7 +86,7 @@ const structuredData = {
     <meta property="og:locale:alternate" content={alternateLocale} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={makeTitle} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:image" content={resolvedImageWithDomain} />
     <meta property="og:image:secure_url" content={resolvedImageWithDomain} />
@@ -97,7 +97,7 @@ const structuredData = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@mcpikon" />
     <meta name="twitter:creator" content="@mcpikon" />
-    <meta name="twitter:title" content={makeTitle} />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={resolvedImageWithDomain} />
     <meta name="twitter:image:alt" content="Portfolio de Javier Picón" />

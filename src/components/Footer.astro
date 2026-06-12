@@ -24,7 +24,7 @@ const i18n = getI18N({ currentLocale });
         class="flex gap-y-6 sm:flex-row flex-col-reverse justify-between py-8"
       >
         <div class="flex flex-col gap-y-6">
-          <h1 class="text-primary font-extrabold text-2xl">Javier Picón</h1>
+          <p class="text-primary font-extrabold text-2xl">Javier Picón</p>
           <p class="text-(--color-text-muted) sm:w-4/6 w-full">
             {i18n.FOOTER_JOB_TITLE}
             <span class="text-(--color-text-muted) opacity-70 italic font-light"
@@ -33,9 +33,9 @@ const i18n = getI18N({ currentLocale });
           </p>
         </div>
         <div class="flex flex-col gap-y-2">
-          <h1 class="text-primary text-xl md:text-center pb-1.5 font-bold">
+          <h2 class="text-primary text-xl md:text-center pb-1.5 font-bold">
             {i18n.FOOTER_MY_LINKS}
-          </h1>
+          </h2>
           <div class="footer-links md:gap-0.5">
             <a
               aria-label="Instagram"
@@ -73,12 +73,12 @@ const i18n = getI18N({ currentLocale });
         </div>
       </div>
       <hr class="footer-divider" />
-      <h1 class="text-secondary text-sm text-center py-4">
+      <p class="text-secondary text-sm text-center py-4">
         © <span id="year">YEAR</span> - {i18n.FOOTER_MADE_BY_TEXT}<a
           class="font-bold"
           href="/">Javier Picón</a
         >
-      </h1>
+      </p>
     </section>
   </div>
 </footer>
