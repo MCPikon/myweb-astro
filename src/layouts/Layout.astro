@@ -1,7 +1,6 @@
 ---
 import "src/styles/global.css";
 
-import { SEO } from "astro-seo";
 import { ClientRouter } from "astro:transitions";
 import { Font } from "astro:assets";
 
@@ -11,19 +10,101 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin).toString();
 const resolvedImageWithDomain = new URL(
-  "/image.jpeg",
+  "/og-image.jpeg",
   Astro.url.origin,
 ).toString();
 
 const { title } = Astro.props;
 const makeTitle = title ? title : "Javier Picón";
 
-const currentLocale = Astro.currentLocale || "en";
+const currentLocale = Astro.currentLocale || "es";
+const isSpanish = currentLocale === "es";
+const metaDescription = isSpanish
+  ? "Portfolio de Javier Picón, desarrollador backend especializado en banca con Java y GEN IA."
+  : "Javier Picón's portfolio, a backend developer focused on banking solutions with Java and GEN IA.";
+const ogLocale = isSpanish ? "es_ES" : "en_US";
+const alternateLocale = isSpanish ? "en_US" : "es_ES";
+const alternatePath = isSpanish
+  ? `/en${Astro.url.pathname}`
+  : Astro.url.pathname.replace(/^\/en/, "") || "/";
+const alternateURL = new URL(alternatePath, Astro.url.origin).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: makeTitle,
+  description: metaDescription,
+  url: canonicalURL,
+  image: resolvedImageWithDomain,
+  inLanguage: currentLocale,
+  mainEntity: {
+    "@type": "Person",
+    name: "Javier Picón",
+    url: Astro.url.origin,
+    sameAs: [
+      "https://github.com/mcpikon",
+      "https://www.linkedin.com/in/javier-picon/",
+      "https://www.instagram.com/mcpikon/",
+      "https://x.com/mcpikon",
+    ],
+  },
+};
 ---
 
 <!doctype html>
 <html lang={currentLocale}>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{makeTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#141414" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="google-site-verification"
+      content="Pw96Vux3r5C9-8rbsJZRP8Vu17fbr9bNvtOPfoSb5Gg"
+    />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang={currentLocale} href={canonicalURL} />
+    <link
+      rel="alternate"
+      hreflang={isSpanish ? "en" : "es"}
+      href={alternateURL}
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL("/", Astro.url.origin).toString()}
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:site_name" content="Javier Picón" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={alternateLocale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={makeTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={resolvedImageWithDomain} />
+    <meta property="og:image:secure_url" content={resolvedImageWithDomain} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Portfolio de Javier Picón" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@mcpikon" />
+    <meta name="twitter:creator" content="@mcpikon" />
+    <meta name="twitter:title" content={makeTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={resolvedImageWithDomain} />
+    <meta name="twitter:image:alt" content="Portfolio de Javier Picón" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
     <script is:inline>
       (() => {
         const getSystemTheme = () =>
@@ -125,40 +206,6 @@ const currentLocale = Astro.currentLocale || "en";
     </script>
     <ClientRouter />
     <Font cssVariable="--font-ibm-plex-sans" preload />
-    <meta charset="UTF-8" />
-    <meta name="description" content="Portfolio website by Javier Picón" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta
-      name="google-site-verification"
-      content="Pw96Vux3r5C9-8rbsJZRP8Vu17fbr9bNvtOPfoSb5Gg"
-    />
-    <meta name="generator" content={Astro.generator} />
-    <SEO
-      title={makeTitle}
-      description="Portfolio website by Javier Picón"
-      canonical={canonicalURL}
-      twitter={{
-        creator: "@mcpikon",
-        site: "@mcpikon",
-        card: "summary_large_image",
-      }}
-      openGraph={{
-        basic: {
-          url: canonicalURL,
-          type: "website",
-          title: `Javier Picón`,
-          image: resolvedImageWithDomain,
-        },
-        image: {
-          alt: "Javier Picón",
-        },
-        optional: {
-          description: `Portfolio website by Javier Picón`,
-        },
-      }}
-    />
-    <title>{title}</title>
   </head>
   <body class="antialiased header-padding-transition">
     <slot />

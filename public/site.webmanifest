@@ -1,0 +1,21 @@
+{
+  "name": "Javier Picón Portfolio",
+  "short_name": "Javier Picón",
+  "description": "Portfolio de Javier Picón, desarrollador backend especializado en banca con Java y GEN IA.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#141414",
+  "theme_color": "#141414",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}
