@@ -1,7 +1,7 @@
 {
   "name": "myweb-astro",
   "type": "module",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
@@ -11,10 +11,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.8",
+    "astro": "^6.4.6",
     "astro-compress": "^2.4.0",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.1.0",
